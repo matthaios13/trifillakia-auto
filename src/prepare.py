@@ -109,7 +109,11 @@ def main():
     except BlockingIOError:
         sys.exit("Τρέχει ήδη.")
 
+    before = git("rev-parse", "HEAD")
     git("pull", "-q", "--rebase", "--autostash")  # φρέσκο ιστορικό αναρτήσεων + ρυθμίσεις
+    if git("rev-parse", "HEAD") != before:  # ήρθε νέος κώδικας: ξεκινάμε ξανά με αυτόν
+        lock.close()
+        os.execv(sys.executable, [sys.executable, *sys.argv])
     cfg = yaml.safe_load((ROOT / "config.yaml").read_text())
     posted = set(json.loads((ROOT / "state/posted.json").read_text())["posted_ids"])
 
