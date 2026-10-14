@@ -33,6 +33,7 @@ cat > "$PLIST" <<EOF
   <key>EnvironmentVariables</key><dict>
     <key>PATH</key><string>$DATA/venv/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
     <key>TRIFILLAKIA_DATA</key><string>$DATA</string>
+    <key>PYTHONUNBUFFERED</key><string>1</string>
   </dict>
   <key>StartCalendarInterval</key><array>
     <dict><key>Hour</key><integer>9</integer><key>Minute</key><integer>0</integer></dict>
