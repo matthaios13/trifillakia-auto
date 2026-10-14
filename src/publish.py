@@ -63,15 +63,18 @@ def instagram_upload(video_path, caption):
     if not r.ok:
         raise RuntimeError(f"container {r.status_code}: {r.text[:500]}")
     container = r.json()["id"]
+    upload_uri = r.json().get("uri") or f"https://rupload.facebook.com/ig-api-upload/{API_VERSION}/{container}"
     print(f"Instagram container {container}, αρχείο {size} bytes")
 
     with open(video_path, "rb") as f:
-        r = requests.post(
-            f"https://rupload.facebook.com/ig-api-upload/{API_VERSION}/{container}",
-            headers={"Authorization": f"OAuth {token}", "offset": "0", "file_size": str(size)},
-            data=f, timeout=600)
+        data = f.read()
+    r = requests.post(upload_uri, headers={
+        "Authorization": f"OAuth {token}", "offset": "0", "file_size": str(size),
+        "Content-Type": "application/octet-stream"}, data=data, timeout=600)
     if not r.ok:
-        raise RuntimeError(f"upload {r.status_code}: {r.text[:500]}")
+        st = requests.get(f"{GRAPH}/{container}", params={"fields": "status_code,status", "access_token": token},
+                          timeout=60).text
+        raise RuntimeError(f"upload {r.status_code}: {r.text[:300]} | container: {st[:300]}")
 
     for _ in range(60):  # έως ~10 λεπτά επεξεργασία
         time.sleep(10)
