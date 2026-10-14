@@ -37,17 +37,6 @@ def notify(msg):
     subprocess.run(["osascript", "-e", f'display notification "{msg}" with title "Trifillakia"'], check=False)
 
 
-def load_api_key():
-    """Το κλειδί AI φυλάσσεται στο Keychain του Mac (βλ. README)."""
-    if os.environ.get("ANTHROPIC_API_KEY"):
-        return
-    key = subprocess.run(["security", "find-generic-password", "-s", "trifillakia-anthropic", "-w"],
-                         capture_output=True, text=True).stdout.strip()
-    if not key:
-        sys.exit("Δεν βρέθηκε κλειδί AI στο Keychain (trifillakia-anthropic). Δες το README.")
-    os.environ["ANTHROPIC_API_KEY"] = key
-
-
 class Queue:
     """Η ουρά ζει ΜΟΝΟ στο GitHub (branch "queue"). Κάθε φορά κάνουμε ένα ελαφρύ αντίγραφο
     χωρίς τα βίντεο (μόνο τα .json), προσθέτουμε τα καινούρια και τα ανεβάζουμε.
@@ -131,8 +120,6 @@ def main():
         target = 1 if args.one else cfg["queue"]["days_ahead"] * len(cfg["schedule"]["slots"])
         need = 1 if args.one else max(0, target - len(q.manifest))
         print(f"Στην ουρά: {len(q.manifest)} | στόχος: {target} | φτιάχνω: {need}")
-        if need:
-            load_api_key()
         made = 0
         for n in range(need):
             work = Path(tempfile.mkdtemp(prefix="trifillakia-work-"))
