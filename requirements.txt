@@ -1,0 +1,10 @@
+yt-dlp[default]
+deno
+imageio-ffmpeg
+pillow
+pyyaml
+requests
+anthropic
+google-api-python-client
+google-auth
+google-auth-oauthlib

@@ -1,0 +1,37 @@
+# Ρυθμίσεις Trifillakia auto-poster
+# Μπορείς να αλλάξεις ό,τι θέλεις εδώ μέσα από το GitHub (κουμπί ✏️) χωρίς να αγγίξεις κώδικα.
+
+source:
+  channel_url: "https://www.youtube.com/@microneuro/videos"
+  credit: "🎥 Πηγή: @microneuro"
+  sport: football            # football ή basketball (καθορίζει τα hashtags)
+  # Εξαιρεί τις πιο πρόσφατες σεζόν (1 = μόνο τη φετινή, 2 = φετινή + περσινή κ.ο.κ.)
+  exclude_recent_seasons: 1
+  # Σειρά προτεραιότητας (βλ. src/catalog.py):
+  #   1. νίκες σε Ευρώπη  2. νίκες σε πρωτάθλημα/κύπελλο  3. νίκες σε φιλικά
+  #   4. ευρωπαϊκά ματς με ισοπαλία/ήττα  5. όλα τα υπόλοιπα
+  # Μέγιστη διάρκεια βίντεο-πηγή σε δευτερόλεπτα (Shorts έως 3 λεπτά μαζί με το outro)
+  max_seconds: 170
+
+# Ώρες Ελλάδας
+schedule:
+  timezone: "Europe/Athens"
+  slots: ["10:00", "14:00", "19:00"]
+  # Αν το GitHub αργήσει, μέχρι πόσες ώρες μετά την ώρα του slot επιτρέπεται η ανάρτηση
+  grace_hours: 3
+
+hashtags:
+  football: "#paofc #panathinaikos #panathinaikosfc #ucl #championsleague #football #elabet #elaoposeisai #trifillakiagr"
+  basketball: "#paobc #panathinaikos #panathinaikosbc #paobcaktor #euroleague #basketball #elabet #elaoposeisai #trifillakiagr"
+
+# Μπαίνει στο τέλος κάθε περιγραφής (πριν τα hashtags)
+footer: "🔞 21+ | Παίξε υπεύθυνα"
+
+publish:
+  youtube: true
+  instagram: true
+  # Το YouTube ανεβάζει "private" μέχρι να εγκριθεί η εφαρμογή σου από τη Google (audit).
+  # Μετά την έγκριση άλλαξέ το σε public.
+  youtube_privacy: private
+  # Σήμανση "Περιέχει χορηγούμενη προβολή" στο YouTube
+  youtube_paid_promotion: true

@@ -1,0 +1,6 @@
+output/
+__pycache__/
+*.pyc
+client_secret*.json
+cookies.txt
+.venv/
