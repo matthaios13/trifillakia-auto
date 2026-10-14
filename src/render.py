@@ -180,7 +180,7 @@ def render(video_path, photo_path, title, out_path, max_seconds=None):
         "-loop", "1", "-framerate", "30", "-t", f"{dur:.3f}", "-i", overlay_png,
         "-i", str(outro),
         "-filter_complex", fc, "-map", "[v]", "-map", "[aout]",
-        "-c:v", "libx264", "-preset", "faster", "-crf", "21", "-maxrate", "4M", "-bufsize", "8M", "-profile:v", "high",
+        "-c:v", "libx264", "-preset", "faster", "-crf", "21", "-maxrate", "2500k", "-bufsize", "5M", "-profile:v", "high",
         "-c:a", "aac", "-b:a", "160k", "-movflags", "+faststart",
         str(out_path),
     ]
