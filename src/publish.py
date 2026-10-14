@@ -5,7 +5,14 @@ from pathlib import Path
 
 import requests
 
-GRAPH = "https://graph.facebook.com/v23.0"
+API_VERSION = "v23.0"
+
+
+def _graph(token):
+    """Tokens από "Instagram Login" (ξεκινούν με IG) πάνε στο graph.instagram.com,
+    tokens από Facebook Login στο graph.facebook.com."""
+    host = "graph.instagram.com" if token.startswith("IG") else "graph.facebook.com"
+    return f"https://{host}/{API_VERSION}"
 
 
 # ---------------- YouTube ----------------
@@ -44,8 +51,9 @@ def youtube_upload(video_path, title, description, privacy="private", paid_promo
 # ---------------- Instagram ----------------
 
 def instagram_upload(video_path, caption):
-    token = os.environ["IG_ACCESS_TOKEN"]
-    user_id = os.environ["IG_USER_ID"]
+    token = os.environ["IG_ACCESS_TOKEN"].strip()
+    user_id = os.environ["IG_USER_ID"].strip()
+    GRAPH = _graph(token)
     size = Path(video_path).stat().st_size
 
     r = requests.post(f"{GRAPH}/{user_id}/media", data={
@@ -57,7 +65,7 @@ def instagram_upload(video_path, caption):
 
     with open(video_path, "rb") as f:
         r = requests.post(
-            f"https://rupload.facebook.com/ig-api-upload/v23.0/{container}",
+            f"https://rupload.facebook.com/ig-api-upload/{API_VERSION}/{container}",
             headers={"Authorization": f"OAuth {token}", "offset": "0", "file_size": str(size)},
             data=f, timeout=600)
     r.raise_for_status()
