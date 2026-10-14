@@ -1,5 +1,7 @@
 {
-  "posted_ids": [],
+  "posted_ids": [
+    "cwd62CzpNT8"
+  ],
   "log": [
     {
       "slot": "2026-10-14 21:11 (manual)",
@@ -40,6 +42,15 @@
       "errors": [
         "Instagram: Instagram: η επεξεργασία του βίντεο άργησε πολύ"
       ]
+    },
+    {
+      "slot": "2026-10-14 22:05 (manual)",
+      "source_id": "cwd62CzpNT8",
+      "source_title": "ΠΑΝΑΘΗΝΑΪΚΟΣ - JUVENTUS 1980/81",
+      "title": "🔥 ΠΑΝΑΘΗΝΑΪΚΟΣ – JUVENTUS 4-2! ☘️ #elaoposeisai #paofc #shorts",
+      "ok": true,
+      "instagram": "https://www.instagram.com/reel/DefGGxIFL5Z/",
+      "errors": []
     }
   ]
 }
