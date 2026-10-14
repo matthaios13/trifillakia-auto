@@ -60,8 +60,14 @@ def pending(state):
     return [i for i in json.loads(manifest.read_text()) if i not in posted]
 
 
+def public_url(item_id):
+    """Δημόσιο link του βίντεο στο branch queue (το repository είναι δημόσιο)."""
+    repo = os.environ.get("GITHUB_REPOSITORY", "matthaios13/trifillakia-auto")
+    return f"https://raw.githubusercontent.com/{repo}/queue/{item_id}.mp4"
+
+
 def fetch_video(item_id):
-    """Το branch queue γίνεται checkout χωρίς τα βίντεο (sparse). Κατεβάζουμε μόνο αυτό που θα ανέβει."""
+    """Μόνο για YouTube: κατεβάζει το αρχείο από το branch queue."""
     subprocess.run(["git", "-C", str(QUEUE), "sparse-checkout", "add", f"/{item_id}.mp4"], check=True)
     return QUEUE / f"{item_id}.mp4"
 
@@ -107,7 +113,7 @@ def main():
         sys.exit("Η ουρά είναι άδεια — δεν υπάρχει έτοιμο βίντεο.")
     item_id = queue[0]
     meta = json.loads((QUEUE / f"{item_id}.json").read_text())
-    video = fetch_video(item_id)
+    video_url = public_url(item_id)
     print(f"[{slot}] {meta['source_title']} → {meta['youtube_title']}")
 
     import publish
@@ -118,7 +124,7 @@ def main():
     if pub.get("youtube"):
         try:
             entry["youtube"] = publish.youtube_upload(
-                video, meta["youtube_title"], meta["full_description"],
+                fetch_video(item_id), meta["youtube_title"], meta["full_description"],
                 privacy=pub.get("youtube_privacy", "private"),
                 paid_promotion=pub.get("youtube_paid_promotion", True))
             print("YouTube:", entry["youtube"])
@@ -127,7 +133,7 @@ def main():
     if pub.get("instagram"):
         try:
             ig_caption = f"{meta['youtube_title'].replace(' #shorts', '')}\n\n{meta['full_description']}"
-            entry["instagram"] = publish.instagram_upload(video, ig_caption)
+            entry["instagram"] = publish.instagram_upload(video_url, ig_caption)
             print("Instagram:", entry["instagram"])
         except Exception as e:
             errors.append(f"Instagram: {e}")
