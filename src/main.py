@@ -1,13 +1,15 @@
-"""Κύριο πρόγραμμα: ελέγχει αν είναι ώρα για ανάρτηση και κάνει όλη τη δουλειά.
+"""Αναρτήσεις (τρέχει στο GitHub): στις ώρες του config παίρνει το επόμενο έτοιμο βίντεο
+από την ουρά (branch "queue", που τη γεμίζει το Mac με το prepare.py) και το ανεβάζει.
 
-  python src/main.py            # κανονική λειτουργία (από το GitHub Actions)
-  python src/main.py --force    # ανάρτηση τώρα, αγνοώντας το ωράριο
-  python src/main.py --dry-run  # φτιάχνει βίντεο + κείμενο χωρίς να ανεβάσει τίποτα
+  python src/main.py --check   # γράφει due=true/false (για το workflow)
+  python src/main.py           # ανάρτηση αν είναι ώρα
+  python src/main.py --force   # ανάρτηση τώρα
 """
 import argparse
 import json
+import os
+import subprocess
 import sys
-import tempfile
 from datetime import datetime, timedelta
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -15,13 +17,11 @@ from zoneinfo import ZoneInfo
 import yaml
 
 sys.path.insert(0, str(Path(__file__).parent))
-import caption  # noqa: E402
-import publish  # noqa: E402
-import render  # noqa: E402
-import source  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 STATE = ROOT / "state" / "posted.json"
+QUEUE = ROOT / "queue"          # checkout του branch "queue"
+LOW_QUEUE = 6                   # ειδοποίηση όταν μένουν τόσα ή λιγότερα
 
 
 def load_state():
@@ -33,6 +33,10 @@ def load_state():
 def save_state(state):
     STATE.parent.mkdir(exist_ok=True)
     STATE.write_text(json.dumps(state, ensure_ascii=False, indent=2))
+
+
+def load_cfg():
+    return yaml.safe_load((ROOT / "config.yaml").read_text())
 
 
 def due_slot(cfg, state, now):
@@ -48,54 +52,73 @@ def due_slot(cfg, state, now):
     return None
 
 
+def pending(state):
+    manifest = QUEUE / "manifest.json"
+    if not manifest.exists():
+        return []
+    posted = set(state["posted_ids"])
+    return [i for i in json.loads(manifest.read_text()) if i not in posted]
+
+
+def fetch_video(item_id):
+    """Το branch queue γίνεται checkout χωρίς τα βίντεο (sparse). Κατεβάζουμε μόνο αυτό που θα ανέβει."""
+    subprocess.run(["git", "-C", str(QUEUE), "sparse-checkout", "add", f"/{item_id}.mp4"], check=True)
+    return QUEUE / f"{item_id}.mp4"
+
+
+def notify_low_queue(left):
+    """Ανοίγει issue στο GitHub (έρχεται email) όταν η ουρά αδειάζει."""
+    if left > LOW_QUEUE or not os.environ.get("GITHUB_ACTIONS"):
+        return
+    title = "Η ουρά βίντεο αδειάζει — άνοιξε το Mac"
+    open_issues = subprocess.run(["gh", "issue", "list", "--state", "open", "--search", title, "--json", "number"],
+                                 capture_output=True, text=True).stdout
+    if open_issues.strip() in ("", "[]"):
+        subprocess.run(["gh", "issue", "create", "--title", title, "--body",
+                        f"Έχουν μείνει {left} έτοιμα βίντεο. Άνοιξε το Mac για να ετοιμάσει καινούρια."])
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--force", action="store_true")
-    ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--check", action="store_true")
     args = ap.parse_args()
 
-    cfg = yaml.safe_load((ROOT / "config.yaml").read_text())
-    if not cfg.get("active") and not (args.force or args.dry_run):
-        print("Το σύστημα είναι ανενεργό (active: false στο config.yaml).")
-        return
+    cfg = load_cfg()
     state = load_state()
     now = datetime.now(ZoneInfo(cfg["schedule"]["timezone"]))
-    slot = due_slot(cfg, state, now)
-    if args.force or args.dry_run:
+    slot = due_slot(cfg, state, now) if cfg.get("active") else None
+    if args.force:
         slot = slot or now.strftime("%Y-%m-%d %H:%M") + " (manual)"
+
+    if args.check:
+        print(f"due={'true' if slot else 'false'}")
+        if os.environ.get("GITHUB_OUTPUT"):
+            with open(os.environ["GITHUB_OUTPUT"], "a") as f:
+                f.write(f"due={'true' if slot else 'false'}\n")
+        return
     if not slot:
-        print(f"{now:%H:%M} — δεν είναι ώρα ανάρτησης.")
+        print(f"{now:%H:%M} — δεν είναι ώρα ανάρτησης (ή active: false).")
         return
 
-    info = source.pick_next(cfg, set(state["posted_ids"]))
-    print(f"[{slot}] Βίντεο: {info['title']} ({info['id']}, {info['duration']}s)")
+    queue = pending(state)
+    if not queue:
+        notify_low_queue(0)
+        sys.exit("Η ουρά είναι άδεια — δεν υπάρχει έτοιμο βίντεο.")
+    item_id = queue[0]
+    meta = json.loads((QUEUE / f"{item_id}.json").read_text())
+    video = fetch_video(item_id)
+    print(f"[{slot}] {meta['source_title']} → {meta['youtube_title']}")
 
-    work = Path(tempfile.mkdtemp())
-    video, thumb = source.download(info, work)
-    text = caption.generate(info, cfg)
-    print("Τίτλος μπάρας:", text["overlay_title"])
-    print("Τίτλος YouTube:", text["youtube_title"])
-    if not text.get("confident", True):
-        print("⚠️ Το AI δεν είναι σίγουρο για τα στοιχεία του αγώνα — έλεγξε την περιγραφή.")
-
-    out = ROOT / "output" / f"{info['id']}.mp4"
-    out.parent.mkdir(exist_ok=True)
-    render.render(video, thumb, text["overlay_title"], out, max_seconds=cfg["source"]["max_seconds"])
-    (out.with_suffix(".txt")).write_text(
-        f"{text['youtube_title']}\n\n{text['full_description']}\n", encoding="utf-8")
-    print("Βίντεο έτοιμο:", out)
-
-    if args.dry_run:
-        return
-
-    entry = {"slot": slot, "source_id": info["id"], "source_title": info["title"],
-             "title": text["youtube_title"], "ok": False}
+    import publish
+    entry = {"slot": slot, "source_id": item_id, "source_title": meta["source_title"],
+             "title": meta["youtube_title"], "ok": False}
     errors = []
     pub = cfg["publish"]
     if pub.get("youtube"):
         try:
             entry["youtube"] = publish.youtube_upload(
-                out, text["youtube_title"], text["full_description"],
+                video, meta["youtube_title"], meta["full_description"],
                 privacy=pub.get("youtube_privacy", "private"),
                 paid_promotion=pub.get("youtube_paid_promotion", True))
             print("YouTube:", entry["youtube"])
@@ -103,8 +126,8 @@ def main():
             errors.append(f"YouTube: {e}")
     if pub.get("instagram"):
         try:
-            ig_caption = f"{text['youtube_title'].replace(' #shorts', '')}\n\n{text['full_description']}"
-            entry["instagram"] = publish.instagram_upload(out, ig_caption)
+            ig_caption = f"{meta['youtube_title'].replace(' #shorts', '')}\n\n{meta['full_description']}"
+            entry["instagram"] = publish.instagram_upload(video, ig_caption)
             print("Instagram:", entry["instagram"])
         except Exception as e:
             errors.append(f"Instagram: {e}")
@@ -112,9 +135,10 @@ def main():
     entry["ok"] = bool(entry.get("youtube") or entry.get("instagram"))
     entry["errors"] = errors
     if entry["ok"]:
-        state["posted_ids"].append(info["id"])
+        state["posted_ids"].append(item_id)
     state["log"].append(entry)
     save_state(state)
+    notify_low_queue(len(queue) - (1 if entry["ok"] else 0))
     if errors:
         print("\n".join(errors), file=sys.stderr)
         sys.exit(1)  # το GitHub στέλνει email όταν αποτυγχάνει κάτι

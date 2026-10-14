@@ -1,19 +1,18 @@
 """Βρίσκει και κατεβάζει το επόμενο ρετρό βίντεο από το κανάλι-πηγή."""
-import os
 import random
 import shutil
+import sys
 from pathlib import Path
 
 import yt_dlp
 
+
 def _base_opts():
-    opts = {"quiet": True, "no_warnings": True, "noprogress": True}
-    deno = shutil.which("deno")
-    if deno:
+    # Χωρίς cookies/λογαριασμό: ανώνυμο κατέβασμα, ένα-ένα με παύσεις
+    opts = {"quiet": True, "no_warnings": True, "noprogress": True, "sleep_interval_requests": 1}
+    deno = shutil.which("deno") or str(Path(sys.executable).with_name("deno"))
+    if Path(deno).exists():
         opts["js_runtimes"] = {"deno": {"path": deno}}
-    cookies = os.environ.get("YT_COOKIES_FILE")
-    if cookies and Path(cookies).exists():
-        opts["cookiefile"] = cookies
     return opts
 
 
@@ -29,12 +28,12 @@ def fetch_info(video_id):
         return ydl.extract_info(f"https://www.youtube.com/watch?v={video_id}", download=False)
 
 
-def pick_next(cfg, posted_ids):
+def pick_next(cfg, posted_ids, catalog_limit=40):
     """Διαλέγει με προτεραιότητα: νίκες πρώτα, μετά ευρωπαϊκά ματς (βλ. catalog.py)."""
     import catalog
     src = cfg["source"]
     # Ενημερώνει τον κατάλογο με όσα νέα βίντεο έχουν ανέβει (λίγα κάθε φορά)
-    cat = catalog.update(list_channel(src["channel_url"]), fetch_info, limit=40)
+    cat = catalog.update(list_channel(src["channel_url"]), fetch_info, limit=catalog_limit)
     # Η τρέχουσα σεζόν ξεκινά τον Ιούλιο. Εξαιρούμε τις πιο πρόσφατες σεζόν (δικαιώματα τηλεόρασης).
     from datetime import date
     today = date.today()

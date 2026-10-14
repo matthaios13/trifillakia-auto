@@ -8,13 +8,16 @@
   4  όλα τα υπόλοιπα
 """
 import json
+import os
 import re
+import time
 import unicodedata
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-CATALOG = ROOT / "state" / "catalog.json"
+# Ο κατάλογος ζει στο Mac (φάκελος δεδομένων), όχι στο GitHub
+CATALOG = Path(os.environ.get("TRIFILLAKIA_DATA", ROOT / "state")) / "catalog.json"
 
 EURO_WORDS = ("CHAMPIONS", "EUROPA", "UEFA", "CONFERENCE", "INTERTOTO", "ΠΡΩΤΑΘΛΗΤΡΙΩΝ",
               "ΚΥΠΕΛΛΟΥΧΩΝ", "ΚΟΚ", "ΕΚΘΕΣΕΩΝ", "ΕΥΡΩΠ", "SUPER CUP", "SUPERCUP")
@@ -76,14 +79,15 @@ def save(cat):
     CATALOG.write_text(json.dumps(cat, ensure_ascii=False, indent=1))
 
 
-def update(channel_entries, fetch_info, limit=None, workers=4):
+def update(channel_entries, fetch_info, limit=None, workers=1, pause=2.0):
     """Προσθέτει στον κατάλογο τα βίντεο που λείπουν (π.χ. καινούρια ανεβάσματα)."""
     cat = load()
     missing = [e["id"] for e in channel_entries if e["id"] not in cat]
-    if limit:
+    if limit is not None:
         missing = missing[:limit]
 
     def work(vid):
+        time.sleep(pause)  # αργά και ευγενικά, για να μη μας κόψει το YouTube
         try:
             return parse(fetch_info(vid))
         except Exception as e:  # π.χ. βίντεο που αφαιρέθηκε

@@ -16,6 +16,10 @@ source:
   # Μέγιστη διάρκεια βίντεο-πηγή σε δευτερόλεπτα (Shorts έως 3 λεπτά μαζί με το outro)
   max_seconds: 170
 
+# Πόσες μέρες μπροστά ετοιμάζει το Mac (7 μέρες x 3 = 21 βίντεο)
+queue:
+  days_ahead: 7
+
 # Ώρες Ελλάδας
 schedule:
   timezone: "Europe/Athens"
@@ -31,7 +35,8 @@ hashtags:
 footer: "🔞 21+ | Παίξε υπεύθυνα"
 
 publish:
-  youtube: true
+  # Το YouTube είναι κλειστό: μόνο Instagram. (Τα έτοιμα βίντεο μένουν στο Mac αν θες να τα ανεβάσεις μόνος σου.)
+  youtube: false
   instagram: true
   # Το YouTube ανεβάζει "private" μέχρι να εγκριθεί η εφαρμογή σου από τη Google (audit).
   # Μετά την έγκριση άλλαξέ το σε public.
