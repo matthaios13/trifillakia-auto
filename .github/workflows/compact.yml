@@ -1,0 +1,25 @@
+name: Καθαρισμός ουράς
+
+# Μία φορά την εβδομάδα σβήνει από το ιστορικό του branch "queue" τα βίντεο που έχουν ήδη αναρτηθεί,
+# ώστε το repository να μη μεγαλώνει.
+on:
+  schedule:
+    - cron: "0 3 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  compact:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: queue
+      - run: |
+          git config user.name "trifillakia-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git checkout --orphan compacted
+          git commit -qm "Ουρά (καθαρισμένη)"
+          git push -f origin compacted:queue

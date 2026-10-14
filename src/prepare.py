@@ -22,7 +22,6 @@ sys.path.insert(0, str(Path(__file__).parent))
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = Path(os.environ.get("TRIFILLAKIA_DATA", Path.home() / "Library/Application Support/TrifillakiaAuto"))
-QREPO = DATA / "queue-repo"
 os.environ["TRIFILLAKIA_DATA"] = str(DATA)
 
 import caption  # noqa: E402
@@ -49,32 +48,64 @@ def load_api_key():
     os.environ["ANTHROPIC_API_KEY"] = key
 
 
-def open_queue_repo():
-    """Τοπικό αντίγραφο του branch queue."""
-    remote = git("remote", "get-url", "origin")
-    if not (QREPO / ".git").exists():
-        QREPO.mkdir(parents=True, exist_ok=True)
-        git("init", "-q", cwd=QREPO)
-        git("remote", "add", "origin", remote, cwd=QREPO)
-        if git("ls-remote", "--heads", "origin", "queue", cwd=QREPO):
-            git("fetch", "-q", "origin", "queue", cwd=QREPO)
-            git("checkout", "-q", "-B", "queue", "FETCH_HEAD", cwd=QREPO)
+class Queue:
+    """Η ουρά ζει ΜΟΝΟ στο GitHub (branch "queue"). Κάθε φορά κάνουμε ένα ελαφρύ αντίγραφο
+    χωρίς τα βίντεο (μόνο τα .json), προσθέτουμε τα καινούρια και τα ανεβάζουμε.
+    Στο Mac δεν μένει κανένα βίντεο."""
+
+    def __init__(self):
+        self.dir = Path(tempfile.mkdtemp(prefix="trifillakia-queue-"))
+        remote = git("remote", "get-url", "origin")
+        if git("ls-remote", "--heads", remote, "queue"):
+            git("clone", "-q", "--filter=blob:none", "--no-checkout", "--single-branch", "-b", "queue",
+                remote, str(self.dir))
+            git("sparse-checkout", "set", "--no-cone", "/*.json", cwd=self.dir)
+            git("checkout", "-q", "queue", cwd=self.dir)
         else:
-            git("checkout", "-q", "--orphan", "queue", cwd=QREPO)
-    manifest = QREPO / "manifest.json"
-    return json.loads(manifest.read_text()) if manifest.exists() else []
+            git("init", "-q", "-b", "queue", str(self.dir))
+            git("remote", "add", "origin", remote, cwd=self.dir)
+            git("sparse-checkout", "set", "--no-cone", "/*.json", cwd=self.dir)
+        m = self.dir / "manifest.json"
+        self.manifest = json.loads(m.read_text()) if m.exists() else []
+        # Καθαρισμός: ό,τι δεν είναι έγκυρο έτοιμο βίντεο (π.χ. δοκιμαστικά αρχεία) φεύγει
+        valid = []
+        for item_id in self.manifest:
+            meta = self.dir / f"{item_id}.json"
+            if meta.exists() and "youtube_title" in json.loads(meta.read_text() or "{}"):
+                valid.append(item_id)
+        self.manifest = valid
+        for meta in self.dir.glob("*.json"):
+            if meta.name != "manifest.json" and meta.stem not in valid:
+                self.manifest.append(meta.stem)
+                self.remove(meta.stem)
 
+    def remove(self, item_id):
+        for ext in (".mp4", ".json"):
+            git("rm", "-q", "--cached", "--sparse", "--ignore-unmatch", f"{item_id}{ext}", cwd=self.dir)
+            (self.dir / f"{item_id}{ext}").unlink(missing_ok=True)
+        self.manifest.remove(item_id)
 
-def publish_queue(manifest):
-    """Ένα μόνο commit (χωρίς ιστορικό) ώστε το repo να μη μεγαλώνει με τα παλιά βίντεο."""
-    (QREPO / "manifest.json").write_text(json.dumps(manifest, indent=1))
-    git("checkout", "-q", "--orphan", "queue-new", cwd=QREPO)
-    git("add", "-A", cwd=QREPO)
-    git("-c", "user.name=trifillakia-mac", "-c", "user.email=mac@users.noreply.github.com",
-        "commit", "-q", "-m", f"Ουρά: {len(manifest)} βίντεο", cwd=QREPO)
-    git("branch", "-D", "queue", cwd=QREPO, check=False)
-    git("branch", "-m", "queue", cwd=QREPO)
-    git("push", "-q", "-f", "origin", "queue", cwd=QREPO)
+    def add(self, staged_mp4, meta):
+        item_id = staged_mp4.stem
+        shutil.move(str(staged_mp4), self.dir / staged_mp4.name)
+        (self.dir / f"{item_id}.json").write_text(json.dumps(meta, ensure_ascii=False, indent=1))
+        git("add", "--sparse", staged_mp4.name, f"{item_id}.json", cwd=self.dir)
+        (self.dir / staged_mp4.name).unlink()  # το βίντεο είναι πλέον μέσα στο git, σβήνουμε το αρχείο
+        self.manifest.append(item_id)
+
+    def push(self):
+        (self.dir / "manifest.json").write_text(json.dumps(self.manifest, indent=1))
+        git("add", "--sparse", "manifest.json", cwd=self.dir)
+        if git("status", "--porcelain", cwd=self.dir):
+            git("-c", "user.name=trifillakia-mac", "-c", "user.email=mac@users.noreply.github.com",
+                "commit", "-q", "-m", f"Ουρά: {len(self.manifest)} βίντεο", cwd=self.dir)
+            env = {**os.environ, "GIT_NO_LAZY_FETCH": "1"}
+            subprocess.run(["git", "push", "-q", "origin", "queue"], cwd=self.dir, check=True, env=env)
+        # καθαρίζουμε τα αντικείμενα που ανέβηκαν ώστε να μη μένουν στον δίσκο
+        git("gc", "-q", "--prune=now", cwd=self.dir, check=False)
+
+    def close(self):
+        shutil.rmtree(self.dir, ignore_errors=True)
 
 
 def main():
@@ -93,54 +124,48 @@ def main():
     cfg = yaml.safe_load((ROOT / "config.yaml").read_text())
     posted = set(json.loads((ROOT / "state/posted.json").read_text())["posted_ids"])
 
-    manifest = open_queue_repo()
-    # Βγάζουμε από την ουρά ό,τι έχει ήδη αναρτηθεί
-    for item in [i for i in manifest if i in posted]:
-        for ext in (".mp4", ".json"):
-            (QREPO / f"{item}{ext}").unlink(missing_ok=True)
-    manifest = [i for i in manifest if i not in posted]
-
-    target = 1 if args.one else cfg["queue"]["days_ahead"] * len(cfg["schedule"]["slots"])
-    need = max(0, target - len(manifest)) if not args.one else 1
-    print(f"Στην ουρά: {len(manifest)} | στόχος: {target} | φτιάχνω: {need}")
-    if need == 0:
-        publish_queue(manifest)
-        return
-
-    load_api_key()
-    made = 0
-    for n in range(need):
-        work = Path(tempfile.mkdtemp())
-        try:
-            info = source.pick_next(cfg, posted | set(manifest), catalog_limit=60 if n == 0 else 0)
-            video, thumb = source.download(info, work)
-            text = caption.generate(info, cfg)
-            render.render(video, thumb, text["overlay_title"], QREPO / f"{info['id']}.mp4",
-                          max_seconds=cfg["source"]["max_seconds"])
-            (QREPO / f"{info['id']}.json").write_text(json.dumps({
-                "source_title": info["title"],
-                "overlay_title": text["overlay_title"],
-                "youtube_title": text["youtube_title"],
-                "full_description": text["full_description"],
-                "confident": text.get("confident", True),
-            }, ensure_ascii=False, indent=1))
-            for f in QREPO.glob(f"{info['id']}_overlay.png"):
-                f.unlink()
-            manifest.append(info["id"])
-            made += 1
-            print(f"✓ {info['title']} → {text['overlay_title']}")
-            if made % 3 == 0:  # ανεβάζουμε σταδιακά, για να είναι διαθέσιμα νωρίς
-                publish_queue(manifest)
-        except Exception as e:
-            print(f"✗ σφάλμα: {e}")
-            if "not a bot" in str(e):
-                notify("Το YouTube ζήτησε παύση — συνεχίζω αργότερα.")
-                break
-        finally:
-            shutil.rmtree(work, ignore_errors=True)
-
-    publish_queue(manifest)
-    notify(f"Έτοιμα {made} νέα βίντεο. Στην ουρά: {len(manifest)}.")
+    q = Queue()
+    try:
+        for item in [i for i in q.manifest if i in posted]:  # βγάζουμε ό,τι έχει αναρτηθεί
+            q.remove(item)
+        target = 1 if args.one else cfg["queue"]["days_ahead"] * len(cfg["schedule"]["slots"])
+        need = 1 if args.one else max(0, target - len(q.manifest))
+        print(f"Στην ουρά: {len(q.manifest)} | στόχος: {target} | φτιάχνω: {need}")
+        if need:
+            load_api_key()
+        made = 0
+        for n in range(need):
+            work = Path(tempfile.mkdtemp(prefix="trifillakia-work-"))
+            try:
+                info = source.pick_next(cfg, posted | set(q.manifest), catalog_limit=60 if n == 0 else 0)
+                video, thumb = source.download(info, work)
+                text = caption.generate(info, cfg)
+                out = work / "out" / f"{info['id']}.mp4"
+                out.parent.mkdir()
+                render.render(video, thumb, text["overlay_title"], out, max_seconds=cfg["source"]["max_seconds"])
+                q.add(out, {
+                    "source_title": info["title"],
+                    "overlay_title": text["overlay_title"],
+                    "youtube_title": text["youtube_title"],
+                    "full_description": text["full_description"],
+                    "confident": text.get("confident", True),
+                })
+                made += 1
+                print(f"✓ {info['title']} → {text['overlay_title']}")
+                if made % 3 == 0:  # ανεβαίνουν σταδιακά ώστε να είναι διαθέσιμα νωρίς
+                    q.push()
+            except Exception as e:
+                print(f"✗ σφάλμα: {e}")
+                if "not a bot" in str(e):
+                    notify("Το YouTube ζήτησε παύση — συνεχίζω στην επόμενη εκτέλεση.")
+                    break
+            finally:
+                shutil.rmtree(work, ignore_errors=True)
+        q.push()
+        if made:
+            notify(f"Έτοιμα {made} νέα βίντεο. Στην ουρά: {len(q.manifest)}.")
+    finally:
+        q.close()
 
 
 if __name__ == "__main__":
