@@ -131,6 +131,11 @@ def probe_duration(path):
     return int(h) * 3600 + int(mi) * 60 + float(se)
 
 
+def has_audio(path):
+    r = subprocess.run([ffmpeg_exe(), "-i", str(path)], capture_output=True, text=True)
+    return "Audio:" in r.stderr
+
+
 def detect_crop(path, dur):
     """Βρίσκει μαύρες μπάρες (π.χ. παλιό 4:3 μέσα σε 16:9) για να κοπούν."""
     import re
@@ -162,9 +167,11 @@ def render(video_path, photo_path, title, out_path, max_seconds=None):
         f"[base][bg]overlay=0:{VIDEO_Y}:shortest=1[c1];"
         f"[c1][fg]overlay=0:{VIDEO_Y}+({VIDEO_H}-overlay_h)/2:shortest=1[c2];"
         f"[c2][1:v]overlay=0:0:shortest=1,setsar=1,format=yuv420p[main];"
-        f"[0:a]aresample=48000,aformat=channel_layouts=stereo,atrim=0:{dur:.3f}[ma];"
+        + (f"[0:a]aresample=48000,aformat=channel_layouts=stereo,atrim=0:{dur:.3f}[ma];" if has_audio(video_path)
+           else f"anullsrc=r=48000:cl=stereo,atrim=0:{dur:.3f}[ma];") +
         f"[2:v]scale={W}:{H},fps=30,setsar=1,format=yuv420p[ov];"
-        f"[2:a]aresample=48000,aformat=channel_layouts=stereo[oa];"
+        + (f"[2:a]aresample=48000,aformat=channel_layouts=stereo[oa];" if has_audio(outro)
+           else f"anullsrc=r=48000:cl=stereo,atrim=0:{probe_duration(outro):.3f}[oa];") +
         f"[main][ma][ov][oa]concat=n=2:v=1:a=1[v][aout]"
     )
     cmd = [
