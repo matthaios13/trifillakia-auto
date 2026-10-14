@@ -71,10 +71,9 @@ def instagram_upload(video_path, caption):
     r = requests.post(upload_uri, headers={
         "Authorization": f"OAuth {token}", "offset": "0", "file_size": str(size),
         "Content-Type": "application/octet-stream"}, data=data, timeout=600)
-    if not r.ok:
-        st = requests.get(f"{GRAPH}/{container}", params={"fields": "status_code,status", "access_token": token},
-                          timeout=60).text
-        raise RuntimeError(f"upload {r.status_code}: {r.text[:300]} | container: {st[:300]}")
+    upload_error = None if r.ok else f"upload {r.status_code}: {r.text[:300]}"
+    if upload_error:
+        print("Προειδοποίηση:", upload_error, "— ελέγχω την κατάσταση της ανάρτησης…")
 
     for _ in range(60):  # έως ~10 λεπτά επεξεργασία
         time.sleep(10)
@@ -82,8 +81,9 @@ def instagram_upload(video_path, caption):
                          timeout=60).json()
         if s.get("status_code") == "FINISHED":
             break
-        if s.get("status_code") == "ERROR":
-            raise RuntimeError(f"Instagram processing error: {s}")
+        print("Κατάσταση:", s.get("status_code"), s.get("status"))
+        if s.get("status_code") in ("ERROR", "EXPIRED"):
+            raise RuntimeError(f"Instagram processing error: {s} | {upload_error}")
     else:
         raise RuntimeError("Instagram: η επεξεργασία του βίντεο άργησε πολύ")
 
