@@ -45,7 +45,9 @@ cat > "$PLIST" <<EOF
   <key>StandardErrorPath</key><string>$DATA/prepare.log</string>
 </dict></plist>
 EOF
-launchctl bootout "gui/$(id -u)" "$PLIST" 2>/dev/null || true
-launchctl bootstrap "gui/$(id -u)" "$PLIST"
+if [ -z "$SKIP_AGENT" ]; then
+  launchctl bootout "gui/$(id -u)" "$PLIST" 2>/dev/null || true
+  launchctl bootstrap "gui/$(id -u)" "$PLIST"
+fi
 
 echo "✓ Έτοιμο. Ημερολόγιο: $DATA/prepare.log"
