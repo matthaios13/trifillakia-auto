@@ -55,6 +55,9 @@ def main():
     args = ap.parse_args()
 
     cfg = yaml.safe_load((ROOT / "config.yaml").read_text())
+    if not cfg.get("active") and not (args.force or args.dry_run):
+        print("Το σύστημα είναι ανενεργό (active: false στο config.yaml).")
+        return
     state = load_state()
     now = datetime.now(ZoneInfo(cfg["schedule"]["timezone"]))
     slot = due_slot(cfg, state, now)

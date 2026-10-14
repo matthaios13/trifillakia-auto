@@ -1,6 +1,9 @@
 # Ρυθμίσεις Trifillakia auto-poster
 # Μπορείς να αλλάξεις ό,τι θέλεις εδώ μέσα από το GitHub (κουμπί ✏️) χωρίς να αγγίξεις κώδικα.
 
+# Κάνε το true όταν βάλεις όλα τα secrets. Μέχρι τότε δεν γίνεται καμία αυτόματη ανάρτηση.
+active: false
+
 source:
   channel_url: "https://www.youtube.com/@microneuro/videos"
   credit: "🎥 Πηγή: @microneuro"
