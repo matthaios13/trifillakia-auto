@@ -1,1 +1,15 @@
-{"posted_ids": [], "log": []}
+{
+  "posted_ids": [],
+  "log": [
+    {
+      "slot": "2026-10-14 21:11 (manual)",
+      "source_id": "cwd62CzpNT8",
+      "source_title": "ΠΑΝΑΘΗΝΑΪΚΟΣ - JUVENTUS 1980/81",
+      "title": "🔥 ΠΑΝΑΘΗΝΑΪΚΟΣ – JUVENTUS 4-2! ☘️ #elaoposeisai #paofc #shorts",
+      "ok": false,
+      "errors": [
+        "Instagram: 400 Client Error: Bad Request for url: https://rupload.facebook.com/ig-api-upload/v23.0/18466927546190860"
+      ]
+    }
+  ]
+}
