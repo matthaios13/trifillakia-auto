@@ -1,6 +1,7 @@
 {
   "posted_ids": [
-    "cwd62CzpNT8"
+    "cwd62CzpNT8",
+    "xyFa00ifsgc"
   ],
   "log": [
     {
@@ -50,6 +51,15 @@
       "title": "🔥 ΠΑΝΑΘΗΝΑΪΚΟΣ – JUVENTUS 4-2! ☘️ #elaoposeisai #paofc #shorts",
       "ok": true,
       "instagram": "https://www.instagram.com/reel/DefGGxIFL5Z/",
+      "errors": []
+    },
+    {
+      "slot": "2026-10-15 10:00",
+      "source_id": "xyFa00ifsgc",
+      "source_title": "ΠΑΝΑΘΗΝΑΪΚΟΣ – LENS 2024/25",
+      "title": "🔥 ΠΑΝΑΘΗΝΑΪΚΟΣ – LENS 2-0! ☘️ #elaoposeisai #paofc #shorts",
+      "ok": true,
+      "instagram": "https://www.instagram.com/reel/DegcTUSFVqh/",
       "errors": []
     }
   ]
