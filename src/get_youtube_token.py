@@ -20,7 +20,21 @@ flow = InstalledAppFlow.from_client_secrets_file(
 creds = flow.run_local_server(port=0, access_type="offline", prompt="consent")
 client = json.load(open(secret_file))
 client = client.get("installed") or client.get("web")
-print("\nΒάλε αυτά στο GitHub → Settings → Secrets and variables → Actions:\n")
-print("YT_CLIENT_ID =", client["client_id"])
-print("YT_CLIENT_SECRET =", client["client_secret"])
-print("YT_REFRESH_TOKEN =", creds.refresh_token)
+values = {"YT_CLIENT_ID": client["client_id"], "YT_CLIENT_SECRET": client["client_secret"],
+          "YT_REFRESH_TOKEN": creds.refresh_token}
+
+# Αν υπάρχει το gh (GitHub CLI), τα κλειδιά μπαίνουν κατευθείαν στα secrets χωρίς να εμφανιστούν.
+import shutil
+import subprocess
+from pathlib import Path
+gh = shutil.which("gh") or str(Path.home() / ".local/bin/gh")
+if Path(gh).exists():
+    for name, value in values.items():
+        subprocess.run([gh, "secret", "set", name, "--repo", "matthaios13/trifillakia-auto"],
+                       input=value, text=True, check=True, capture_output=True)
+        print(f"✓ {name} αποθηκεύτηκε στο GitHub")
+    print("Τέλος — μπορείς να κλείσεις τον browser.")
+else:
+    print("\nΒάλε αυτά στο GitHub → Settings → Secrets and variables → Actions:\n")
+    for name, value in values.items():
+        print(f"{name} = {value}")
