@@ -80,12 +80,9 @@ def fetch_video(item_id):
 
 
 def youtube_title(meta, cfg):
-    """Τίτλος Shorts: ο τίτλος χωρίς τα hashtags του + τα hashtags του config στο τέλος (έως 100 χαρακτήρες)."""
-    import re
-    base = re.sub(r"(\s+#\S+)+\s*$", "", meta["youtube_title"]).strip()
-    tags = cfg["publish"].get("youtube_title_hashtags", "").strip()
-    room = 100 - len(tags) - 1
-    return f"{base[:room].rstrip()} {tags}".strip()
+    """Τίτλος Shorts με «αγκίστρι» (βλ. titles.py) + τα hashtags του config στο τέλος."""
+    import titles
+    return titles.youtube_title(meta, cfg["publish"].get("youtube_title_hashtags", "").strip())
 
 
 def from_queue_history(item_id, ext):
