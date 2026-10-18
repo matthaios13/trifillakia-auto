@@ -35,11 +35,14 @@ hashtags:
 footer: "🔞 21+ | Παίξε υπεύθυνα"
 
 publish:
-  # Το YouTube είναι κλειστό: μόνο Instagram. (Τα έτοιμα βίντεο μένουν στο Mac αν θες να τα ανεβάσεις μόνος σου.)
-  youtube: false
   instagram: true
-  # Το YouTube ανεβάζει "private" μέχρι να εγκριθεί η εφαρμογή σου από τη Google (audit).
-  # Μετά την έγκριση άλλαξέ το σε public.
-  youtube_privacy: private
-  # Σήμανση "Περιέχει χορηγούμενη προβολή" στο YouTube
+  # YouTube: ανεβαίνει ΠΑΝΤΑ πρώτα ιδιωτικό. Μετά από youtube_review_minutes λεπτά ελέγχεται:
+  # αν δεν έχει απορριφθεί/μπλοκαριστεί για copyright γίνεται δημόσιο, αλλιώς μένει ιδιωτικό
+  # και έρχεται email. Με youtube_auto_public: false μένουν όλα ιδιωτικά (τα κάνεις εσύ δημόσια).
+  youtube: false
+  youtube_auto_public: true
+  youtube_review_minutes: 30
+  # Hashtags στο τέλος του τίτλου των Shorts
+  youtube_title_hashtags: "#elaoposeisai #shorts #panathinaikos"
+  # Σήμανση «Περιέχει πληρωμένη προώθηση» (χορηγία Elabet) — απαιτείται από το YouTube
   youtube_paid_promotion: true

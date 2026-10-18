@@ -16,35 +16,76 @@ def _graph(token):
 
 # ---------------- YouTube ----------------
 
-def youtube_upload(video_path, title, description, privacy="private", paid_promotion=True):
+def _youtube():
     from google.oauth2.credentials import Credentials
     from googleapiclient.discovery import build
-    from googleapiclient.http import MediaFileUpload
-
     creds = Credentials(
         token=None,
-        refresh_token=os.environ["YT_REFRESH_TOKEN"],
-        client_id=os.environ["YT_CLIENT_ID"],
-        client_secret=os.environ["YT_CLIENT_SECRET"],
+        refresh_token=os.environ["YT_REFRESH_TOKEN"].strip(),
+        client_id=os.environ["YT_CLIENT_ID"].strip(),
+        client_secret=os.environ["YT_CLIENT_SECRET"].strip(),
         token_uri="https://oauth2.googleapis.com/token",
-        scopes=["https://www.googleapis.com/auth/youtube.upload"],
+        scopes=["https://www.googleapis.com/auth/youtube"],
     )
-    yt = build("youtube", "v3", credentials=creds, cache_discovery=False)
+    return build("youtube", "v3", credentials=creds, cache_discovery=False)
+
+
+def youtube_upload(video_path, title, description, privacy="private", paid_promotion=True):
+    """Ανεβάζει το βίντεο (ιδιωτικό) και επιστρέφει το video id."""
+    from googleapiclient.errors import HttpError
+    from googleapiclient.http import MediaFileUpload
+    yt = _youtube()
     body = {
         "snippet": {"title": title[:100], "description": description[:4900], "categoryId": "17",
                     "defaultLanguage": "el"},
         "status": {"privacyStatus": privacy, "selfDeclaredMadeForKids": False},
     }
     parts = ["snippet", "status"]
-    if paid_promotion:
+    if paid_promotion:  # δήλωση «Περιέχει πληρωμένη προώθηση» (χορηγία Elabet)
         body["paidProductPlacementDetails"] = {"hasPaidProductPlacement": True}
         parts.append("paidProductPlacementDetails")
-    media = MediaFileUpload(str(video_path), mimetype="video/mp4", resumable=True, chunksize=8 * 1024 * 1024)
-    req = yt.videos().insert(part=",".join(parts), body=body, media_body=media)
-    resp = None
-    while resp is None:
-        _, resp = req.next_chunk()
-    return f"https://youtube.com/shorts/{resp['id']}"
+
+    def insert(parts):
+        media = MediaFileUpload(str(video_path), mimetype="video/mp4", resumable=True, chunksize=8 * 1024 * 1024)
+        req = yt.videos().insert(part=",".join(parts), body=body, media_body=media)
+        resp = None
+        while resp is None:
+            _, resp = req.next_chunk()
+        return resp["id"]
+
+    try:
+        return insert(parts)
+    except HttpError as e:
+        if "paidProductPlacementDetails" in parts and e.resp.status == 400:
+            print("YouTube: η δήλωση πληρωμένης προώθησης δεν έγινε δεκτή από το API — "
+                  "ανέβασμα χωρίς αυτήν (δήλωσέ την στο Studio).")
+            return insert(["snippet", "status"])
+        raise
+
+
+def youtube_check(video_id):
+    """Έλεγχος μετά το ανέβασμα. Επιστρέφει ("ok"|"wait"|"hold", εξήγηση)."""
+    yt = _youtube()
+    items = yt.videos().list(part="status,contentDetails", id=video_id).execute().get("items", [])
+    if not items:
+        return "hold", "το βίντεο δεν βρέθηκε (διαγράφηκε;)"
+    v = items[0]
+    st = v["status"]
+    if st.get("uploadStatus") in ("rejected", "failed", "deleted"):
+        return "hold", f"{st.get('uploadStatus')}: {st.get('rejectionReason') or st.get('failureReason')}"
+    if st.get("uploadStatus") != "processed":
+        return "wait", f"επεξεργασία ({st.get('uploadStatus')})"
+    rr = v.get("contentDetails", {}).get("regionRestriction") or {}
+    if rr.get("blocked") or ("allowed" in rr):
+        return "hold", f"μπλοκάρισμα σε χώρες: {rr}"
+    return "ok", "καθαρό"
+
+
+def youtube_make_public(video_id):
+    _youtube().videos().update(part="status", body={
+        "id": video_id,
+        "status": {"privacyStatus": "public", "selfDeclaredMadeForKids": False, "embeddable": True},
+    }).execute()
 
 
 # ---------------- Instagram ----------------

@@ -67,9 +67,72 @@ def public_url(item_id):
 
 
 def fetch_video(item_id):
-    """Μόνο για YouTube: κατεβάζει το αρχείο από το branch queue."""
-    subprocess.run(["git", "-C", str(QUEUE), "sparse-checkout", "add", f"/{item_id}.mp4"], check=True)
-    return QUEUE / f"{item_id}.mp4"
+    """Μόνο για YouTube: κατεβάζει το αρχείο από το δημόσιο link."""
+    import tempfile
+    import requests
+    path = Path(tempfile.mkdtemp()) / f"{item_id}.mp4"
+    with requests.get(public_url(item_id), stream=True, timeout=300) as r:
+        r.raise_for_status()
+        with open(path, "wb") as f:
+            for chunk in r.iter_content(1 << 20):
+                f.write(chunk)
+    return path
+
+
+def youtube_title(meta, cfg):
+    """Τίτλος Shorts: ο τίτλος χωρίς τα hashtags του + τα hashtags του config στο τέλος (έως 100 χαρακτήρες)."""
+    import re
+    base = re.sub(r"(\s+#\S+)+\s*$", "", meta["youtube_title"]).strip()
+    tags = cfg["publish"].get("youtube_title_hashtags", "").strip()
+    room = 100 - len(tags) - 1
+    return f"{base[:room].rstrip()} {tags}".strip()
+
+
+def open_issue(title, body):
+    """Issue στο GitHub = email σε σένα."""
+    if not os.environ.get("GITHUB_ACTIONS"):
+        print(title, body)
+        return
+    subprocess.run(["gh", "issue", "create", "--title", title, "--body", body])
+
+
+def review_youtube(cfg, state):
+    """Ιδιωτικά βίντεο YouTube που ανέβηκαν πριν από ≥ N λεπτά: αν είναι καθαρά γίνονται δημόσια,
+    αλλιώς μένουν ιδιωτικά και έρχεται ειδοποίηση."""
+    pub = cfg["publish"]
+    if not pub.get("youtube") or not pub.get("youtube_auto_public"):
+        return False
+    import publish
+    now = datetime.now(ZoneInfo("UTC"))
+    min_wait = timedelta(minutes=pub.get("youtube_review_minutes", 30))
+    changed = False
+    for e in state["log"]:
+        if e.get("yt_state") != "pending":
+            continue
+        uploaded = datetime.fromisoformat(e["yt_uploaded"])
+        if now - uploaded < min_wait:
+            continue
+        try:
+            verdict, why = publish.youtube_check(e["yt_id"])
+        except Exception as ex:
+            print(f"YouTube έλεγχος {e['yt_id']}: σφάλμα {ex}")
+            continue
+        if verdict == "wait" and now - uploaded < timedelta(hours=48):
+            print(f"YouTube {e['yt_id']}: {why} — ξανακοιτάζω αργότερα")
+            continue
+        if verdict == "ok":
+            publish.youtube_make_public(e["yt_id"])
+            e["yt_state"] = "public"
+            print(f"YouTube {e['yt_id']}: καθαρό → ΔΗΜΟΣΙΟ")
+        else:
+            e["yt_state"] = "held"
+            e["yt_reason"] = why
+            open_issue(f"YouTube: έμεινε ιδιωτικό — {e['source_title']}",
+                       f"Το βίντεο https://youtube.com/shorts/{e['yt_id']} δεν έγινε δημόσιο.\n"
+                       f"Λόγος: {why}\n\nΔες το στο YouTube Studio → Περιεχόμενο.")
+            print(f"YouTube {e['yt_id']}: ΚΡΑΤΙΕΤΑΙ ιδιωτικό ({why})")
+        changed = True
+    return changed
 
 
 def notify_low_queue(left):
@@ -88,10 +151,15 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--force", action="store_true")
     ap.add_argument("--check", action="store_true")
+    ap.add_argument("--review", action="store_true")
     args = ap.parse_args()
 
     cfg = load_cfg()
     state = load_state()
+    if args.review:
+        if review_youtube(cfg, state):
+            save_state(state)
+        return
     now = datetime.now(ZoneInfo(cfg["schedule"]["timezone"]))
     slot = due_slot(cfg, state, now) if cfg.get("active") else None
     if args.force:
@@ -123,11 +191,13 @@ def main():
     pub = cfg["publish"]
     if pub.get("youtube"):
         try:
-            entry["youtube"] = publish.youtube_upload(
-                fetch_video(item_id), meta["youtube_title"], meta["full_description"],
-                privacy=pub.get("youtube_privacy", "private"),
-                paid_promotion=pub.get("youtube_paid_promotion", True))
-            print("YouTube:", entry["youtube"])
+            yt_id = publish.youtube_upload(
+                fetch_video(item_id), youtube_title(meta, cfg), meta["full_description"],
+                privacy="private", paid_promotion=pub.get("youtube_paid_promotion", True))
+            entry.update(youtube=f"https://youtube.com/shorts/{yt_id}", yt_id=yt_id,
+                         yt_uploaded=datetime.now(ZoneInfo("UTC")).isoformat(),
+                         yt_state="pending" if pub.get("youtube_auto_public") else "private")
+            print("YouTube (ιδιωτικό):", entry["youtube"])
         except Exception as e:  # συνεχίζουμε στο Instagram ακόμα κι αν αποτύχει το YouTube
             errors.append(f"YouTube: {e}")
     if pub.get("instagram"):

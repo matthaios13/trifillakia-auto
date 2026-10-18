@@ -66,8 +66,22 @@ jobs:
           if [ "${{ github.event.inputs.mode }}" = "force" ]; then python -u src/main.py --force;
           else python -u src/main.py; fi
 
+      # Σε κάθε εκτέλεση: ιδιωτικά Shorts που περιμένουν έλεγχο → δημόσια αν είναι καθαρά
+      - name: YouTube έλεγχος & δημοσίευση
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+        run: |
+          if grep -q '"yt_state": "pending"' state/posted.json 2>/dev/null; then
+            pip install -q requests google-api-python-client google-auth
+            python -u src/main.py --review
+          fi
+
       - name: Αποθήκευση ιστορικού
-        if: always() && steps.check.outputs.due == 'true'
+        if: always()
         run: |
           git config user.name "trifillakia-bot"
           git config user.email "actions@users.noreply.github.com"
