@@ -12,7 +12,11 @@ on:
         description: "normal / force (ανάρτηση τώρα) / youtube-check (έλεγχος σύνδεσης YouTube)"
         default: normal
         type: choice
-        options: [normal, force, youtube-check]
+        options: [normal, force, youtube-check, youtube-repost, youtube-review-now]
+      video:
+        description: "Για youtube-repost: το ID του βίντεο (από το state/posted.json)"
+        required: false
+        default: ""
 
 concurrency:
   group: autopost
@@ -43,11 +47,23 @@ jobs:
           pip install -q google-api-python-client google-auth
           python -u src/main.py --youtube-check
 
+      - name: YouTube — ανέβασμα βίντεο που έχει ήδη βγει στο Instagram
+        if: github.event.inputs.mode == 'youtube-repost'
+        env:
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+          VIDEO_ID: ${{ github.event.inputs.video }}
+        run: |
+          git clone -q --filter=blob:none --no-checkout -b queue "https://github.com/${GITHUB_REPOSITORY}.git" queue
+          pip install -q requests google-api-python-client google-auth
+          python -u src/main.py --youtube-repost "$VIDEO_ID"
+
       - name: Είναι ώρα ανάρτησης;
         id: check
         run: |
           if [ "${{ github.event.inputs.mode }}" = "force" ]; then echo "due=true" >> "$GITHUB_OUTPUT";
-          elif [ "${{ github.event.inputs.mode }}" = "youtube-check" ]; then echo "due=false" >> "$GITHUB_OUTPUT";
+          elif [ -n "${{ github.event.inputs.mode }}" ] && [ "${{ github.event.inputs.mode }}" != "normal" ]; then echo "due=false" >> "$GITHUB_OUTPUT";
           else python src/main.py --check; fi
 
       # Η ουρά (branch "queue") κατεβαίνει χωρίς τα βίντεο· παίρνουμε μόνο αυτό που θα ανέβει.
@@ -88,7 +104,8 @@ jobs:
         run: |
           if grep -q '"yt_state": "pending"' state/posted.json 2>/dev/null; then
             pip install -q requests google-api-python-client google-auth
-            python -u src/main.py --review
+            if [ "${{ github.event.inputs.mode }}" = "youtube-review-now" ]; then python -u src/main.py --review-now;
+            else python -u src/main.py --review; fi
           fi
 
       - name: Αποθήκευση ιστορικού

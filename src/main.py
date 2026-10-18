@@ -88,6 +88,37 @@ def youtube_title(meta, cfg):
     return f"{base[:room].rstrip()} {tags}".strip()
 
 
+def from_queue_history(item_id, ext):
+    """Παίρνει ένα αρχείο από το ιστορικό του branch queue (για βίντεο που έχουν ήδη αναρτηθεί)."""
+    commits = subprocess.run(["git", "-C", str(QUEUE), "rev-list", "HEAD", "--", f"{item_id}{ext}"],
+                             capture_output=True, text=True, check=True).stdout.split()
+    for c in commits:
+        r = subprocess.run(["git", "-C", str(QUEUE), "show", f"{c}:{item_id}{ext}"], capture_output=True)
+        if r.returncode == 0:
+            return r.stdout
+    raise RuntimeError(f"Δεν βρέθηκε το {item_id}{ext} στο ιστορικό της ουράς")
+
+
+def youtube_repost(cfg, state, item_id):
+    import tempfile
+    import publish
+    entry = next((e for e in reversed(state["log"]) if e.get("source_id") == item_id and e.get("ok")), None)
+    if not entry:
+        sys.exit(f"Δεν βρέθηκε ανάρτηση για {item_id}")
+    if entry.get("yt_id"):
+        sys.exit(f"Έχει ήδη ανέβει στο YouTube: {entry['youtube']}")
+    meta = json.loads(from_queue_history(item_id, ".json"))
+    path = Path(tempfile.mkdtemp()) / f"{item_id}.mp4"
+    path.write_bytes(from_queue_history(item_id, ".mp4"))
+    pub = cfg["publish"]
+    yt_id = publish.youtube_upload(path, youtube_title(meta, cfg), meta["full_description"],
+                                   privacy="private", paid_promotion=pub.get("youtube_paid_promotion", True))
+    entry.update(youtube=f"https://youtube.com/shorts/{yt_id}", yt_id=yt_id,
+                 yt_uploaded=datetime.now(ZoneInfo("UTC")).isoformat(),
+                 yt_state="pending" if pub.get("youtube_auto_public") else "private")
+    print(f"YouTube (ιδιωτικό): {entry['youtube']}  ← {meta['source_title']}")
+
+
 def open_issue(title, body):
     """Issue στο GitHub = email σε σένα."""
     if not os.environ.get("GITHUB_ACTIONS"):
@@ -153,6 +184,8 @@ def main():
     ap.add_argument("--check", action="store_true")
     ap.add_argument("--review", action="store_true")
     ap.add_argument("--youtube-check", action="store_true")
+    ap.add_argument("--youtube-repost", metavar="ID", help="ανέβασε στο YouTube ένα βίντεο που έχει ήδη βγει στο Instagram")
+    ap.add_argument("--review-now", action="store_true", help="έλεγχος YouTube χωρίς αναμονή 30 λεπτών")
     args = ap.parse_args()
 
     cfg = load_cfg()
@@ -161,7 +194,13 @@ def main():
         import publish
         print("Συνδεδεμένο κανάλι YouTube:", publish.youtube_channel())
         return
-    if args.review:
+    if args.youtube_repost:
+        youtube_repost(cfg, state, args.youtube_repost)
+        save_state(state)
+        return
+    if args.review or args.review_now:
+        if args.review_now:
+            cfg["publish"]["youtube_review_minutes"] = 0
         if review_youtube(cfg, state):
             save_state(state)
         return
