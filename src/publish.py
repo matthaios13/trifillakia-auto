@@ -30,6 +30,12 @@ def _youtube():
     return build("youtube", "v3", credentials=creds, cache_discovery=False)
 
 
+def youtube_channel():
+    """Όνομα του συνδεδεμένου καναλιού (έλεγχος σύνδεσης, χωρίς ανέβασμα)."""
+    items = _youtube().channels().list(part="snippet", mine=True).execute().get("items", [])
+    return items[0]["snippet"]["title"] if items else None
+
+
 def youtube_upload(video_path, title, description, privacy="private", paid_promotion=True):
     """Ανεβάζει το βίντεο (ιδιωτικό) και επιστρέφει το video id."""
     from googleapiclient.errors import HttpError

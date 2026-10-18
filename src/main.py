@@ -152,10 +152,15 @@ def main():
     ap.add_argument("--force", action="store_true")
     ap.add_argument("--check", action="store_true")
     ap.add_argument("--review", action="store_true")
+    ap.add_argument("--youtube-check", action="store_true")
     args = ap.parse_args()
 
     cfg = load_cfg()
     state = load_state()
+    if args.youtube_check:
+        import publish
+        print("Συνδεδεμένο κανάλι YouTube:", publish.youtube_channel())
+        return
     if args.review:
         if review_youtube(cfg, state):
             save_state(state)

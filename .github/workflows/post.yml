@@ -9,10 +9,10 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: "normal / force (ανάρτηση τώρα του επόμενου βίντεο της ουράς)"
+        description: "normal / force (ανάρτηση τώρα) / youtube-check (έλεγχος σύνδεσης YouTube)"
         default: normal
         type: choice
-        options: [normal, force]
+        options: [normal, force, youtube-check]
 
 concurrency:
   group: autopost
@@ -33,10 +33,21 @@ jobs:
           python-version: "3.12"
       - run: pip install pyyaml
 
+      - name: Έλεγχος σύνδεσης YouTube
+        if: github.event.inputs.mode == 'youtube-check'
+        env:
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+        run: |
+          pip install -q google-api-python-client google-auth
+          python -u src/main.py --youtube-check
+
       - name: Είναι ώρα ανάρτησης;
         id: check
         run: |
           if [ "${{ github.event.inputs.mode }}" = "force" ]; then echo "due=true" >> "$GITHUB_OUTPUT";
+          elif [ "${{ github.event.inputs.mode }}" = "youtube-check" ]; then echo "due=false" >> "$GITHUB_OUTPUT";
           else python src/main.py --check; fi
 
       # Η ουρά (branch "queue") κατεβαίνει χωρίς τα βίντεο· παίρνουμε μόνο αυτό που θα ανέβει.
