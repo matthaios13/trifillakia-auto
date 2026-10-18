@@ -39,7 +39,7 @@ publish:
   # YouTube: ανεβαίνει ΠΑΝΤΑ πρώτα ιδιωτικό. Μετά από youtube_review_minutes λεπτά ελέγχεται:
   # αν δεν έχει απορριφθεί/μπλοκαριστεί για copyright γίνεται δημόσιο, αλλιώς μένει ιδιωτικό
   # και έρχεται email. Με youtube_auto_public: false μένουν όλα ιδιωτικά (τα κάνεις εσύ δημόσια).
-  youtube: false
+  youtube: true
   youtube_auto_public: true
   youtube_review_minutes: 30
   # Hashtags στο τέλος του τίτλου των Shorts
