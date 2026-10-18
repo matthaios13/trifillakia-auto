@@ -9,7 +9,8 @@
     "SyB17wyL2hs",
     "hf8w4LsREwM",
     "d_x8hxsIHvA",
-    "qo030GI3vaM"
+    "qo030GI3vaM",
+    "s1DFFO4fl4E"
   ],
   "log": [
     {
@@ -151,6 +152,15 @@
       "errors": [
         "Instagram: Instagram processing error: {'id': '18467685016190860', 'status': 'Error: Media upload has failed with error code 2207077', 'status_code': 'ERROR'}"
       ]
+    },
+    {
+      "slot": "2026-10-18 10:00",
+      "source_id": "s1DFFO4fl4E",
+      "source_title": "ΠΑΝΑΘΗΝΑΪΚΟΣ - CSKA SOFIA 1972/73",
+      "title": "🔥 ΠΑΝΑΘΗΝΑΪΚΟΣ – CSKA SOFIA 2-1! ☘️ #elaoposeisai #paofc #shorts",
+      "ok": true,
+      "instagram": "https://www.instagram.com/reel/DeoMsChlVSA/",
+      "errors": []
     }
   ]
 }
