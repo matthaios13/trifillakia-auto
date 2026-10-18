@@ -11,7 +11,7 @@ import sys
 from google_auth_oauthlib.flow import InstalledAppFlow
 
 flow = InstalledAppFlow.from_client_secrets_file(
-    sys.argv[1], scopes=["https://www.googleapis.com/auth/youtube.upload"])
+    sys.argv[1], scopes=["https://www.googleapis.com/auth/youtube"])
 creds = flow.run_local_server(port=0, access_type="offline", prompt="consent")
 client = json.load(open(sys.argv[1]))
 client = client.get("installed") or client.get("web")
