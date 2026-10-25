@@ -270,3 +270,57 @@ def burn(video, out, cfg_subs):
                     "-crf", "19", "-c:a", "copy", str(out)], check=True)
     Path(out).with_suffix(".json").write_text(json.dumps(words, ensure_ascii=False), encoding="utf-8")
     return True
+
+
+# ---------------- template εκπομπής (όταν το βίντεο δεν το έχει) ----------------
+
+WIN = (36, 430, 1008, 567)              # παράθυρο βίντεο 16:9 του template (x, y, w, h)
+
+
+def _frame(video, t=1.0):
+    from PIL import Image
+    import io
+    png = subprocess.run([ffmpeg(), "-v", "error", "-ss", str(t), "-i", str(video), "-frames:v", "1",
+                          "-f", "image2pipe", "-vcodec", "png", "-"], capture_output=True).stdout
+    return Image.open(io.BytesIO(png)).convert("RGB") if png else None
+
+
+def content_box(video):
+    """Βρίσκει πού είναι η μετάδοση μέσα στο αρχείο. Στο κάθετο αρχείο του StreamYard η μετάδοση (16:9)
+    είναι λωρίδα στη μέση με πράσινο γέμισμα πάνω-κάτω → επιστρέφει (x, y, w, h) της λωρίδας."""
+    im = _frame(video, 2.0) or _frame(video, 0.5)
+    if im is None:
+        return None
+    w, h = im.size
+    if w >= h:                      # ήδη οριζόντιο
+        return (0, 0, w, h)
+    import numpy as np
+    a = np.asarray(im).astype(float)
+    v = np.abs(np.diff(a, axis=1)).mean(axis=(1, 2))      # λεπτομέρεια ανά γραμμή
+    rows = np.where(v > 4)[0]
+    if len(rows) == 0:
+        return (0, 0, w, h)
+    y0, y1 = int(rows.min()), int(rows.max())
+    band = y1 - y0
+    if band < h * 0.7:              # λωρίδα μετάδοσης → κρατάμε 16:9 γύρω της
+        bh = int(round(w * 9 / 16)) // 2 * 2
+        cy = (y0 + y1) / 2
+        top = int(max(0, min(h - bh, y0 - 12 if band < bh else cy - bh / 2)))
+        return (0, top // 2 * 2, w, bh)
+    return (0, 0, w, h)
+
+
+def apply_template(video, out, show_key, max_seconds=170):
+    """Βάζει το βίντεο μέσα στο πλαίσιο του template της εκπομπής (assets/shorts_templates)."""
+    tpl = ROOT / "assets" / "shorts_templates" / f"SHORTS_TEMPLATE_{show_key}.png"
+    if not tpl.exists():
+        tpl = ROOT / "assets" / "shorts_templates" / "SHORTS_TEMPLATE_TRIFILLAKIA.png"
+    x, y, w, h = content_box(video)
+    X, Y, VW, VH = WIN
+    vf = (f"[0:v]crop={w}:{h}:{x}:{y},scale={VW}:{VH}:force_original_aspect_ratio=increase:flags=lanczos,"
+          f"crop={VW}:{VH},setsar=1[clip];color=black:s={W}x{H}:r=30[bg];"
+          f"[bg][clip]overlay={X}:{Y}:shortest=1[c1];[c1][1:v]overlay=0:0,format=yuv420p[v]")
+    subprocess.run([ffmpeg(), "-v", "error", "-y", "-t", str(max_seconds), "-i", str(video), "-loop", "1", "-i", str(tpl),
+                    "-filter_complex", vf, "-map", "[v]", "-map", "0:a?", "-shortest", "-r", "30",
+                    "-c:v", "libx264", "-preset", "medium", "-crf", "18", "-c:a", "copy", str(out)], check=True)
+    return out

@@ -270,6 +270,16 @@ def main():
             src = work / ("in" + Path(f["name"]).suffix.lower())
             download(svc, f["id"], src)
             out = work / f"{f['id']}.mp4"
+            # Αν το βίντεο δεν έχει το template (π.χ. ακατέργαστο αρχείο του StreamYard), το βάζουμε εμείς
+            try:
+                import subs as _s
+                if not _s.has_card(src):
+                    templ = work / "templ.mp4"
+                    _s.apply_template(src, templ, show_key, dc.get("max_seconds", 170))
+                    src = templ
+                    print("  template εκπομπής: ✓ (το βίντεο δεν το είχε)")
+            except Exception as e:
+                errors.append(f"Template: {e}")
             sc = cfg.get("subtitles", {})
             if sc.get("active"):
                 try:
