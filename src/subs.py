@@ -93,6 +93,33 @@ def fix_words(words, replace):
     return out
 
 
+HALLUCINATION_START = ("υποτιτλοι", "υποτιτλισμος", "subtitles", "subtitle", "authorwave", "amara", "υποτιτλους")
+HALLUCINATION_PHRASES = (
+    ("ευχαριστω", "που", "παρακολουθησατε"), ("ευχαριστω", "για", "την", "παρακολουθηση"),
+    ("ευχαριστουμε", "που", "παρακολουθησατε"), ("μην", "ξεχασετε", "να", "κανετε", "subscribe"),
+)
+
+
+def drop_hallucinations(words):
+    """Βγάζει φράσεις που «επινοεί» το Whisper σε σιωπή/μουσική (π.χ. «Υπότιτλοι AUTHORWAVE»)."""
+    plain = [re.sub(r"\W", "", _plain(w["text"])) for w in words]
+    keep = [True] * len(words)
+    for i, p in enumerate(plain):
+        if any(p.startswith(h) for h in HALLUCINATION_START):
+            j = i
+            # η φράση κρατά έως 6 λέξεις / 3 δευτερόλεπτα (π.χ. «Υπότιτλοι από την κοινότητα Amara.org»)
+            while j < len(words) and j - i < 7 and words[j]["start"] - words[i]["start"] < 3.0:
+                keep[j] = False
+                if re.search(r"[.!?]$", words[j]["text"]):
+                    break
+                j += 1
+        for ph in HALLUCINATION_PHRASES:
+            if tuple(plain[i:i + len(ph)]) == ph:
+                for k in range(i, i + len(ph)):
+                    keep[k] = False
+    return [w for w, k in zip(words, keep) if k]
+
+
 def caps(s):
     """Κεφαλαία χωρίς τόνους (ελληνικός κανόνας), διαλυτικά μένουν."""
     s = unicodedata.normalize("NFD", s.upper())
@@ -252,7 +279,7 @@ def burn(video, out, cfg_subs):
     """Επιστρέφει True αν μπήκαν υπότιτλοι (False αν δεν βρέθηκε ομιλία)."""
     glossary = cfg_subs.get("glossary", [])
     words = transcribe(video, glossary, cfg_subs.get("model", "medium"))
-    words = fix_words(merge_hyphens(words), cfg_subs.get("replace", {}))
+    words = fix_words(merge_hyphens(drop_hallucinations(words)), cfg_subs.get("replace", {}))
     if not words:
         return False
     card = has_card(video)
