@@ -150,7 +150,8 @@ def texts(title, show_key, cfg):
     hashtags = " ".join(uniq)
     yt_tail = f"#elaoposeisai #shorts {show['hashtag']}"
     room = 100 - len(yt_tail) - 1
-    yt_title = f"{title[:room].rstrip()} {yt_tail}"
+    t = title if len(title) <= room else title[:room].rsplit(" ", 1)[0].rstrip(" ,-–:") + "…"
+    yt_title = f"{t} {yt_tail}"
     head = f"☘️ {title}"
     show_line = f"🎙️ Από την εκπομπή «{show['name']}» του Trifillakia.gr" if show_key != "TRIFILLAKIA" else "🎙️ Trifillakia.gr"
     full = "\n\n".join([head, show_line, dc.get("follow", "").strip(), cfg.get("footer", ""), hashtags])
