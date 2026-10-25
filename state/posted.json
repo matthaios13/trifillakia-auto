@@ -464,9 +464,10 @@
       "youtube": "https://youtube.com/shorts/JDQp1etacm8",
       "yt_id": "JDQp1etacm8",
       "yt_uploaded": "2026-10-25T11:04:06.124394+00:00",
-      "yt_state": "pending",
+      "yt_state": "held",
       "instagram": "https://www.instagram.com/reel/De6jrJQBXsd/",
-      "errors": []
+      "errors": [],
+      "yt_reason": "λάθος αρχείο (χωρίς template) — κρατήθηκε ιδιωτικό"
     }
   ]
 }
