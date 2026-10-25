@@ -46,3 +46,39 @@ publish:
   youtube_title_hashtags: "#elaoposeisai #shorts #panathinaikos"
   # Σήμανση «Περιέχει πληρωμένη προώθηση» (χορηγία Elabet) — απαιτείται από το YouTube
   youtube_paid_promotion: true
+
+# ---------------------------------------------------------------------------------------------
+# Shorts από κοινόχρηστο φάκελο Google Drive (src/drive_shorts.py, workflow drive.yml)
+# Όποιος ρίχνει βίντεο σε υποφάκελο εκπομπής → outro Elabet → ΑΜΕΣΩΣ σε Instagram + YouTube.
+# Ο φάκελος ορίζεται από τη μεταβλητή DRIVE_FOLDER_ID στο GitHub (τη βάζει το setup_drive.py).
+drive_shorts:
+  active: true
+  max_seconds: 170
+  follow: "📲 Instagram & X: @trifillakiagr | YouTube: @trifillakia_gr | Facebook: trifillakia.gr"
+  # Αν ο τίτλος (όνομα αρχείου) έχει λέξεις όπως «μπάσκετ/BC/EuroLeague» ή «ποδόσφαιρο/FC»,
+  # μπαίνουν τα αντίστοιχα hashtags· αλλιώς ό,τι ορίζει το sport της εκπομπής (both = και τα δύο).
+  sport_hashtags:
+    football: "#paofc #panathinaikos #panathinaikosfc #football"
+    basketball: "#paobc #panathinaikos #panathinaikosbc #paobcaktor #euroleague #basketball"
+    both: "#panathinaikos #paofc #paobc"
+  # folder = όνομα υποφακέλου στο Drive (τα φτιάχνει το setup_drive.py)
+  shows:
+    ROI_MAT_SHOW:       {folder: "ROI MAT SHOW",            name: "ROI MAT SHOW",            hashtag: "#roimatshow",        sport: both}
+    PITCH_TALK:         {folder: "PITCH TALK",              name: "Pitch Talk",              hashtag: "#pitchtalk",         sport: both}
+    PAO_INSIDE:         {folder: "PAO INSIDE",              name: "PAO INSIDE",              hashtag: "#paoinside",         sport: both}
+    GREEN_VOICE:        {folder: "GREEN VOICE",             name: "Green Voice",             hashtag: "#greenvoice",        sport: both}
+    13_SHADES_OF_GREEN: {folder: "13 SHADES OF GREEN",      name: "13 Shades of Green",      hashtag: "#13shadesofgreen",   sport: football}
+    2_AND_A_HALF_STEPS: {folder: "2 AND A HALF STEPS",      name: "2 and a Half Steps",      hashtag: "#2andahalfsteps",    sport: basketball}
+    PAO_LEGENDS:        {folder: "PAO LEGENDS",             name: "PAO Legends",             hashtag: "#paolegends",        sport: both}
+    PAO_UNFILTERED:     {folder: "PAO UNFILTERED",          name: "PAO Unfiltered",          hashtag: "#paounfiltered",     sport: both}
+    PAO_PLAYBOOK:       {folder: "PAO PLAYBOOK",            name: "PAO Playbook",            hashtag: "#paoplaybook",       sport: both}
+    TRIFYLLI_TALK:      {folder: "TRIFYLLI TALK",           name: "Trifylli Talk",           hashtag: "#trifyllitalk",      sport: both}
+    THE_GREEN_VIEW:     {folder: "THE GREEN VIEW",          name: "The Green View",          hashtag: "#thegreenview",      sport: both}
+    THE_GREEN_ROOM:     {folder: "THE GREEN ROOM",          name: "The Green Room",          hashtag: "#thegreenroom",      sport: both}
+    PRASINI_MATIA:      {folder: "ΠΡΑΣΙΝΗ ΜΑΤΙΑ",           name: "Πράσινη Ματιά",           hashtag: "#prasinimatia",      sport: both}
+    EUROLEAGUE_GREEN_ZONE: {folder: "EUROLEAGUE GREEN ZONE", name: "EuroLeague Green Zone",  hashtag: "#euroleaguegreenzone", sport: basketball}
+    PAO_EUROPEAN_PULSE: {folder: "PAO EUROPEAN PULSE",      name: "PAO European Pulse",      hashtag: "#paoeuropeanpulse",  sport: both}
+    ERASITECHNIS:       {folder: "ΕΡΑΣΙΤΕΧΝΗΣ",             name: "Ερασιτέχνης",             hashtag: "#erasitechnis",      sport: both}
+    PAP_GREEN_SHOW:     {folder: "PAP GREEN SHOW",          name: "Pap Green Show",          hashtag: "#papgreenshow",      sport: both}
+    SPORTS_LIVE:        {folder: "TRIFILLAKIA SPORTS LIVE", name: "Trifillakia Sports Live", hashtag: "#trifillakiasportslive", sport: both}
+    TRIFILLAKIA:        {folder: "TRIFILLAKIA (ΓΕΝΙΚΑ)",    name: "Trifillakia.gr",          hashtag: "#trifillakia",       sport: both}

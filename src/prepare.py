@@ -70,7 +70,7 @@ class Queue:
 
     def remove(self, item_id):
         for ext in (".mp4", ".json"):
-            git("rm", "-q", "--cached", "--sparse", "--ignore-unmatch", f"{item_id}{ext}", cwd=self.dir)
+            git("rm", "-q", "--cached", "--sparse", "--ignore-unmatch", "--", f"{item_id}{ext}", cwd=self.dir)
             (self.dir / f"{item_id}{ext}").unlink(missing_ok=True)
         self.manifest.remove(item_id)
 
@@ -78,7 +78,7 @@ class Queue:
         item_id = staged_mp4.stem
         shutil.move(str(staged_mp4), self.dir / staged_mp4.name)
         (self.dir / f"{item_id}.json").write_text(json.dumps(meta, ensure_ascii=False, indent=1))
-        git("add", "--sparse", staged_mp4.name, f"{item_id}.json", cwd=self.dir)
+        git("add", "--sparse", "--", staged_mp4.name, f"{item_id}.json", cwd=self.dir)
         (self.dir / staged_mp4.name).unlink()  # το βίντεο είναι πλέον μέσα στο git, σβήνουμε το αρχείο
         self.manifest.append(item_id)
 

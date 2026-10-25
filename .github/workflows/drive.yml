@@ -1,0 +1,60 @@
+name: Shorts από Google Drive
+
+# Κάθε 10 λεπτά: αν κάποιος έριξε βίντεο σε υποφάκελο εκπομπής στον κοινόχρηστο φάκελο του Drive,
+# μπαίνει το outro της Elabet και ανεβαίνει αμέσως σε Instagram (Reel) + YouTube (Short).
+# Το repository είναι δημόσιο, άρα τα λεπτά του GitHub Actions είναι δωρεάν.
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: autopost
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  drive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      GH_TOKEN: ${{ github.token }}
+      DRIVE_FOLDER_ID: ${{ vars.DRIVE_FOLDER_ID }}
+      YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+      YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+      YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+      IG_USER_ID: ${{ secrets.IG_USER_ID }}
+      IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q pyyaml requests google-api-python-client google-auth
+
+      - name: Υπάρχει καινούριο βίντεο στο Drive;
+        id: check
+        run: python -u src/drive_shorts.py --check
+
+      - name: Outro Elabet + ανάρτηση σε Instagram & YouTube
+        if: steps.check.outputs.found == 'true'
+        run: |
+          pip install -q imageio-ffmpeg
+          python -u src/drive_shorts.py
+
+      # Ιδιωτικά Shorts που περιμένουν έλεγχο copyright → δημόσια αν είναι καθαρά
+      - name: YouTube έλεγχος & δημοσίευση
+        if: always()
+        run: |
+          if grep -q '"yt_state": "pending"' state/posted.json 2>/dev/null; then python -u src/main.py --review; fi
+
+      - name: Αποθήκευση ιστορικού
+        if: always()
+        run: |
+          git config user.name "trifillakia-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add state/posted.json
+          git diff --cached --quiet || (git commit -m "Ιστορικό αναρτήσεων (Drive)" && git pull --rebase -q && git push)

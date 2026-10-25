@@ -16,7 +16,7 @@ if not paths:
     sys.exit("Δεν βρέθηκε αρχείο client_secret τύπου Desktop app.")
 secret_file = paths[-1]
 flow = InstalledAppFlow.from_client_secrets_file(
-    secret_file, scopes=["https://www.googleapis.com/auth/youtube"])
+    secret_file, scopes=["https://www.googleapis.com/auth/youtube", "https://www.googleapis.com/auth/drive"])
 creds = flow.run_local_server(port=0, access_type="offline", prompt="consent")
 client = json.load(open(secret_file))
 client = client.get("installed") or client.get("web")
