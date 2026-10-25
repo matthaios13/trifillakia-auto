@@ -269,6 +269,18 @@ def main():
             src = work / ("in" + Path(f["name"]).suffix.lower())
             download(svc, f["id"], src)
             out = work / f"{f['id']}.mp4"
+            sc = cfg.get("subtitles", {})
+            if sc.get("active"):
+                try:
+                    import subs
+                    subbed = work / "subbed.mp4"
+                    if subs.burn(src, subbed, sc):
+                        src = subbed
+                        print("  υπότιτλοι: ✓")
+                    else:
+                        print("  υπότιτλοι: δεν βρέθηκε ομιλία")
+                except Exception as e:   # οι υπότιτλοι δεν σταματούν την ανάρτηση
+                    errors.append(f"Υπότιτλοι (ανέβηκε χωρίς): {e}")
             add_outro(src, out, dc.get("max_seconds", 170))
             if pub.get("youtube"):
                 try:
