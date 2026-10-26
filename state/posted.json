@@ -36,7 +36,8 @@
     "drive-1TZ0hPFKzhOqn5tR0rzOxojFGYfXfsHPv",
     "VaOFRKfrmh8",
     "byIW0PpLrkc",
-    "nyH7u08dzH8"
+    "nyH7u08dzH8",
+    "rXeTzABWuPI"
   ],
   "log": [
     {
@@ -525,6 +526,19 @@
       "yt_uploaded": "2026-10-26T08:42:13.113938+00:00",
       "yt_state": "public",
       "instagram": "https://www.instagram.com/reel/De84SSjBmMU/",
+      "errors": []
+    },
+    {
+      "slot": "2026-10-26 14:00",
+      "source_id": "rXeTzABWuPI",
+      "source_title": "AJAX - ΠΑΝΑΘΗΝΑΪΚΟΣ 1995/96",
+      "title": "🔥 AJAX – ΠΑΝΑΘΗΝΑΪΚΟΣ 0-1! ☘️ #elaoposeisai #paofc #shorts",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/v0dzhaH6REc",
+      "yt_id": "v0dzhaH6REc",
+      "yt_uploaded": "2026-10-26T14:41:58.076713+00:00",
+      "yt_state": "pending",
+      "instagram": "https://www.instagram.com/reel/De9hf33ASMn/",
       "errors": []
     }
   ]
