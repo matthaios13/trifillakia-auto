@@ -43,7 +43,8 @@
     "HBsW0nfZ7AQ",
     "9g62F9ReNHk",
     "kuiH7S5Oqbo",
-    "d36lCAX1YUg"
+    "d36lCAX1YUg",
+    "VpsOH6HRSVw"
   ],
   "log": [
     {
@@ -623,6 +624,19 @@
       "yt_uploaded": "2026-10-28T12:45:45.497775+00:00",
       "yt_state": "public",
       "instagram": "https://www.instagram.com/reel/DfCdsTeBE-a/",
+      "errors": []
+    },
+    {
+      "slot": "2026-10-28 19:00",
+      "source_id": "VpsOH6HRSVw",
+      "source_title": "ΠΑΝΑΘΗΝΑΪΚΟΣ - QABALA 2017/18",
+      "title": "🔥 ΠΑΝΑΘΗΝΑΪΚΟΣ – QABALA 1-0! ☘️ #elaoposeisai #paofc #shorts",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/EfCV41w4prg",
+      "yt_id": "EfCV41w4prg",
+      "yt_uploaded": "2026-10-28T17:41:54.166140+00:00",
+      "yt_state": "pending",
+      "instagram": "https://www.instagram.com/reel/DfC_lJnumvD/",
       "errors": []
     }
   ]
