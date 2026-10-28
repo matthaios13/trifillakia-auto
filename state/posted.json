@@ -41,7 +41,8 @@
     "rF5Zjil90u0",
     "009dvX5L3NU",
     "HBsW0nfZ7AQ",
-    "9g62F9ReNHk"
+    "9g62F9ReNHk",
+    "kuiH7S5Oqbo"
   ],
   "log": [
     {
@@ -595,6 +596,19 @@
       "yt_uploaded": "2026-10-27T17:45:56.280447+00:00",
       "yt_state": "public",
       "instagram": "https://www.instagram.com/reel/DfAbPzBhTNn/",
+      "errors": []
+    },
+    {
+      "slot": "2026-10-28 10:00",
+      "source_id": "kuiH7S5Oqbo",
+      "source_title": "ΠΑΝΑΘΗΝΑΪΚΟΣ - MARSEILLE 2023/24",
+      "title": "🔥 ΠΑΝΑΘΗΝΑΪΚΟΣ – MARSEILLE 1-0! ☘️ #elaoposeisai #paofc #shorts",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/YIq4PgwgGow",
+      "yt_id": "YIq4PgwgGow",
+      "yt_uploaded": "2026-10-28T08:48:07.635812+00:00",
+      "yt_state": "pending",
+      "instagram": "https://www.instagram.com/reel/DfCCfwCMjsS/",
       "errors": []
     }
   ]
