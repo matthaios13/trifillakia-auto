@@ -45,7 +45,8 @@
     "kuiH7S5Oqbo",
     "d36lCAX1YUg",
     "VpsOH6HRSVw",
-    "eQQqIG2J2o0"
+    "eQQqIG2J2o0",
+    "drive-1nczaKtjLdGL1URmHUNdnq8hebJhB07Yc"
   ],
   "log": [
     {
@@ -651,6 +652,21 @@
       "yt_uploaded": "2026-10-29T08:49:51.738803+00:00",
       "yt_state": "public",
       "instagram": "https://www.instagram.com/reel/DfEnfSPS-x3/",
+      "errors": []
+    },
+    {
+      "slot": "2026-10-29 11:03 (drive)",
+      "source_id": "drive-1nczaKtjLdGL1URmHUNdnq8hebJhB07Yc",
+      "source_title": "[Pitch Talk] nan",
+      "title": "nan #elaoposeisai #shorts #pitchtalk",
+      "uploader": "nik.mandalios",
+      "sport": "both",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/Y6gE4dfkEzQ",
+      "yt_id": "Y6gE4dfkEzQ",
+      "yt_uploaded": "2026-10-29T11:04:37.844109+00:00",
+      "yt_state": "pending",
+      "instagram": "https://www.instagram.com/reel/DfE26n2OUAj/",
       "errors": []
     }
   ]
