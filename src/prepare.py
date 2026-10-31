@@ -85,7 +85,8 @@ class Queue:
     def push(self):
         (self.dir / "manifest.json").write_text(json.dumps(self.manifest, indent=1))
         git("add", "--sparse", "manifest.json", cwd=self.dir)
-        if git("status", "--porcelain", cwd=self.dir):
+        # μόνο ό,τι είναι staged: τα .mp4 που σβήσαμε από τον δίσκο φαίνονται «deleted» στο status
+        if git("diff", "--cached", "--name-only", cwd=self.dir):
             git("-c", "user.name=trifillakia-mac", "-c", "user.email=mac@users.noreply.github.com",
                 "commit", "-q", "-m", f"Ουρά: {len(self.manifest)} βίντεο", cwd=self.dir)
             env = {**os.environ, "GIT_NO_LAZY_FETCH": "1"}
