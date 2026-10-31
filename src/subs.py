@@ -338,16 +338,22 @@ def content_box(video):
 
 
 def apply_template(video, out, show_key, max_seconds=170):
-    """Βάζει το βίντεο μέσα στο πλαίσιο του template της εκπομπής (assets/shorts_templates)."""
-    tpl = ROOT / "assets" / "shorts_templates" / f"SHORTS_TEMPLATE_{show_key}.png"
-    if not tpl.exists():
-        tpl = ROOT / "assets" / "shorts_templates" / "SHORTS_TEMPLATE_TRIFILLAKIA.png"
+    """Βάζει το βίντεο μέσα στο πλαίσιο του template της εκπομπής (assets/shorts_templates).
+    Προτιμά το κινούμενο template (VP9 με διαφάνεια, loop 4") ώστε να κουνιούνται τα social εικονίδια."""
+    base = ROOT / "assets" / "shorts_templates"
+    key = show_key if (base / f"SHORTS_TEMPLATE_{show_key}.png").exists() else "TRIFILLAKIA"
+    anim = base / f"SHORTS_TEMPLATE_{key}_animated.webm"
+    if anim.exists():   # ο native vp9 decoder πετάει το alpha → libvpx-vp9
+        tpl_in = ["-stream_loop", "-1", "-c:v", "libvpx-vp9", "-i", str(anim)]
+    else:
+        tpl_in = ["-loop", "1", "-i", str(base / f"SHORTS_TEMPLATE_{key}.png")]
     x, y, w, h = content_box(video)
     X, Y, VW, VH = WIN
     vf = (f"[0:v]crop={w}:{h}:{x}:{y},scale={VW}:{VH}:force_original_aspect_ratio=increase:flags=lanczos,"
           f"crop={VW}:{VH},setsar=1[clip];color=black:s={W}x{H}:r=30[bg];"
-          f"[bg][clip]overlay={X}:{Y}:shortest=1[c1];[c1][1:v]overlay=0:0,format=yuv420p[v]")
-    subprocess.run([ffmpeg(), "-v", "error", "-y", "-t", str(max_seconds), "-i", str(video), "-loop", "1", "-i", str(tpl),
+          f"[bg][clip]overlay={X}:{Y}:shortest=1[c1];[1:v]fps=30,format=rgba[tpl];"
+          f"[c1][tpl]overlay=0:0:shortest=1,format=yuv420p[v]")
+    subprocess.run([ffmpeg(), "-v", "error", "-y", "-t", str(max_seconds), "-i", str(video), *tpl_in,
                     "-filter_complex", vf, "-map", "[v]", "-map", "0:a?", "-shortest", "-r", "30",
                     "-c:v", "libx264", "-preset", "medium", "-crf", "18", "-c:a", "copy", str(out)], check=True)
     return out
