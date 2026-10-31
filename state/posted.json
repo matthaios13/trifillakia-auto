@@ -55,7 +55,8 @@
     "-43tzjCTGcI",
     "drive-1SM4-d8TMbBGRAr5qwVzUMqVLxIKTOd8p",
     "drive-1UXZzlFI5-w0f2FpGeA8l6vkOeD3mYlT1",
-    "3_xli7PM_YQ"
+    "3_xli7PM_YQ",
+    "QkM0tdLA4l0"
   ],
   "log": [
     {
@@ -797,6 +798,19 @@
       "yt_uploaded": "2026-10-31T12:04:58.155277+00:00",
       "yt_state": "public",
       "instagram": "https://www.instagram.com/reel/DfKHZ-5JSPa/",
+      "errors": []
+    },
+    {
+      "slot": "2026-10-31 19:00",
+      "source_id": "QkM0tdLA4l0",
+      "source_title": "ΠΑΝΑΘΗΝΑΪΚΟΣ - ΗΡΑΚΛΗΣ 1992/93",
+      "title": "🔥 ΠΑΝΑΘΗΝΑΪΚΟΣ – ΗΡΑΚΛΗΣ 2-0! ☘️ #elaoposeisai #paofc #shorts",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/c34x9G2tPJ8",
+      "yt_id": "c34x9G2tPJ8",
+      "yt_uploaded": "2026-10-31T17:08:17.201819+00:00",
+      "yt_state": "pending",
+      "instagram": "https://www.instagram.com/reel/DfKqL3Hhmaj/",
       "errors": []
     }
   ]
