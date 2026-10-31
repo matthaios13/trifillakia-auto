@@ -52,7 +52,9 @@
     "aCWlp3sKBv0",
     "X9S4YnJY3kU",
     "_Zl1FAz-M3A",
-    "-43tzjCTGcI"
+    "-43tzjCTGcI",
+    "drive-1SM4-d8TMbBGRAr5qwVzUMqVLxIKTOd8p",
+    "drive-1UXZzlFI5-w0f2FpGeA8l6vkOeD3mYlT1"
   ],
   "log": [
     {
@@ -751,6 +753,36 @@
       "yt_uploaded": "2026-10-31T08:40:19.952473+00:00",
       "yt_state": "public",
       "instagram": "https://www.instagram.com/reel/DfJv_LoNINr/",
+      "errors": []
+    },
+    {
+      "slot": "2026-10-31 10:40 (drive)",
+      "source_id": "drive-1SM4-d8TMbBGRAr5qwVzUMqVLxIKTOd8p",
+      "source_title": "[Pitch Talk] 1031",
+      "title": "1031 #elaoposeisai #shorts #pitchtalk",
+      "uploader": "nik.mandalios",
+      "sport": "both",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/TDPHbNC9krs",
+      "yt_id": "TDPHbNC9krs",
+      "yt_uploaded": "2026-10-31T10:42:42.324707+00:00",
+      "yt_state": "pending",
+      "instagram": "https://www.instagram.com/reel/DfJ-E87JmUA/",
+      "errors": []
+    },
+    {
+      "slot": "2026-10-31 10:44 (drive)",
+      "source_id": "drive-1UXZzlFI5-w0f2FpGeA8l6vkOeD3mYlT1",
+      "source_title": "[Pitch Talk] αεκ",
+      "title": "αεκ #elaoposeisai #shorts #pitchtalk",
+      "uploader": "nik.mandalios",
+      "sport": "both",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/kD97VMQgcp4",
+      "yt_id": "kD97VMQgcp4",
+      "yt_uploaded": "2026-10-31T10:45:50.241117+00:00",
+      "yt_state": "pending",
+      "instagram": "https://www.instagram.com/reel/DfJ-W4rotER/",
       "errors": []
     }
   ]
