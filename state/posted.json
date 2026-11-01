@@ -56,7 +56,8 @@
     "drive-1SM4-d8TMbBGRAr5qwVzUMqVLxIKTOd8p",
     "drive-1UXZzlFI5-w0f2FpGeA8l6vkOeD3mYlT1",
     "3_xli7PM_YQ",
-    "QkM0tdLA4l0"
+    "QkM0tdLA4l0",
+    "xJGn7hjwhQc"
   ],
   "log": [
     {
@@ -811,6 +812,19 @@
       "yt_uploaded": "2026-10-31T17:08:17.201819+00:00",
       "yt_state": "public",
       "instagram": "https://www.instagram.com/reel/DfKqL3Hhmaj/",
+      "errors": []
+    },
+    {
+      "slot": "2026-11-01 10:00",
+      "source_id": "xJGn7hjwhQc",
+      "source_title": "ΑΙΓΑΛΕΩ - ΠΑΝΑΘΗΝΑΪΚΟΣ 1969/70",
+      "title": "🔥 ΑΙΓΑΛΕΩ – ΠΑΝΑΘΗΝΑΪΚΟΣ 1-3! ☘️ #elaoposeisai #paofc #shorts",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/tx7V6QS5sps",
+      "yt_id": "tx7V6QS5sps",
+      "yt_uploaded": "2026-11-01T08:44:18.224556+00:00",
+      "yt_state": "pending",
+      "instagram": "https://www.instagram.com/reel/DfMVPXHsQvn/",
       "errors": []
     }
   ]
