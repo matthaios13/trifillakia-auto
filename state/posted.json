@@ -63,7 +63,8 @@
     "drive-1zZBr-QwTNeQMy_VX-q6sK6kADei6tXKZ",
     "93HnqjVBHSU",
     "WkIMMLKxLec",
-    "z1Dej-96yx4"
+    "z1Dej-96yx4",
+    "yrKLOiT_KR8"
   ],
   "log": [
     {
@@ -911,6 +912,19 @@
       "yt_uploaded": "2026-11-02T17:52:44.528150+00:00",
       "yt_state": "public",
       "instagram": "https://www.instagram.com/reel/DfP4zA3hjnB/",
+      "errors": []
+    },
+    {
+      "slot": "2026-11-03 10:00",
+      "source_id": "yrKLOiT_KR8",
+      "source_title": "DINAMO BUCUREȘTI - ΠΑΝΑΘΗΝΑΪΚΟΣ 2009/10",
+      "title": "🔥 DINAMO BUCUREȘTI – ΠΑΝΑΘΗΝΑΪΚΟΣ 0-1! ☘️ #elaoposeisai #paofc #shorts",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/AJlN4LSVapY",
+      "yt_id": "AJlN4LSVapY",
+      "yt_uploaded": "2026-11-03T08:10:58.865201+00:00",
+      "yt_state": "pending",
+      "instagram": "https://www.instagram.com/reel/DfRbBEvB1m4/",
       "errors": []
     }
   ]
