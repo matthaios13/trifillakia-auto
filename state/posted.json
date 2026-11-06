@@ -75,7 +75,8 @@
     "6VpfH8gmjPY",
     "EvsUV-E_OEE",
     "5mgKsjSbdmg",
-    "zcRHC0QAzMw"
+    "zcRHC0QAzMw",
+    "nistroupismos-20261106"
   ],
   "log": [
     {
@@ -1081,6 +1082,19 @@
       "yt_uploaded": "2026-11-06T12:56:31.551407+00:00",
       "yt_state": "public",
       "instagram": "https://www.instagram.com/reel/DfZqE8toXkD/",
+      "errors": []
+    },
+    {
+      "slot": "2026-11-06 17:07 (manual)",
+      "source_id": "nistroupismos-20261106",
+      "source_title": "Νιστρουπισμός σε 10 δευτερόλεπτα (χειροκίνητο)",
+      "title": "Έκρυψε την μπάλα, ο Παναθηναϊκός του Νίστρουπ #elaoposeisai #shorts #panathinaikos",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/VrM_eKERUL8",
+      "yt_id": "VrM_eKERUL8",
+      "yt_uploaded": "2026-11-06T15:07:21.540597+00:00",
+      "yt_state": "pending",
+      "instagram": "https://www.instagram.com/reel/DfZ5C_tpBwX/",
       "errors": []
     }
   ]
