@@ -81,6 +81,8 @@ def fetch_video(item_id):
 
 def youtube_title(meta, cfg):
     """Τίτλος Shorts με «αγκίστρι» (βλ. titles.py) + τα hashtags του config στο τέλος."""
+    if meta.get("fixed_title"):  # χειροκίνητα βίντεο με δικό τους τίτλο
+        return meta["youtube_title"]
     import titles
     return titles.youtube_title(meta, cfg["publish"].get("youtube_title_hashtags", "").strip())
 
