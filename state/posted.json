@@ -77,7 +77,8 @@
     "5mgKsjSbdmg",
     "zcRHC0QAzMw",
     "nistroupismos-20261106",
-    "drive-1fGcimosWP3mTViM6aQbWtMtzpQGa2hdY"
+    "drive-1fGcimosWP3mTViM6aQbWtMtzpQGa2hdY",
+    "ZGwmNDwWfJA"
   ],
   "log": [
     {
@@ -1112,6 +1113,20 @@
       "yt_state": "pending",
       "errors": [
         "Instagram: publish 400: {\"error\":{\"message\":\"User is performing too many actions\",\"type\":\"OAuthException\",\"is_transient\":false,\"code\":9,\"error_subcode\":2207042,\"error_user_title\":\"Media publish limit exceeded\",\"error_user_msg\":\"You reached the maximum number of posts that is allowed to be published by Content Publishing API.\",\"fbtrace_id\":\"Akop9x3pIiLy2z3fT5jtvYe\"}}"
+      ]
+    },
+    {
+      "slot": "2026-11-06 19:00",
+      "source_id": "ZGwmNDwWfJA",
+      "source_title": "INTER - ΠΑΝΑΘΗΝΑΪΚΟΣ 2008/09",
+      "title": "🔥 INTER – ΠΑΝΑΘΗΝΑΪΚΟΣ 0-1! ☘️ #elaoposeisai #paofc #shorts",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/wFGztw7mjFg",
+      "yt_id": "wFGztw7mjFg",
+      "yt_uploaded": "2026-11-06T17:45:19.185339+00:00",
+      "yt_state": "pending",
+      "errors": [
+        "Instagram: publish 400: {\"error\":{\"message\":\"User is performing too many actions\",\"type\":\"OAuthException\",\"is_transient\":false,\"code\":9,\"error_subcode\":2207042,\"error_user_title\":\"Media publish limit exceeded\",\"error_user_msg\":\"You reached the maximum number of posts that is allowed to be published by Content Publishing API.\",\"fbtrace_id\":\"AUPkC2SXgcv4zdTzITKPPuW\"}}"
       ]
     }
   ]
