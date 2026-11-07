@@ -78,7 +78,8 @@
     "zcRHC0QAzMw",
     "nistroupismos-20261106",
     "drive-1fGcimosWP3mTViM6aQbWtMtzpQGa2hdY",
-    "ZGwmNDwWfJA"
+    "ZGwmNDwWfJA",
+    "mNhIf9xwjZQ"
   ],
   "log": [
     {
@@ -1128,6 +1129,19 @@
       "errors": [
         "Instagram: publish 400: {\"error\":{\"message\":\"User is performing too many actions\",\"type\":\"OAuthException\",\"is_transient\":false,\"code\":9,\"error_subcode\":2207042,\"error_user_title\":\"Media publish limit exceeded\",\"error_user_msg\":\"You reached the maximum number of posts that is allowed to be published by Content Publishing API.\",\"fbtrace_id\":\"AUPkC2SXgcv4zdTzITKPPuW\"}}"
       ]
+    },
+    {
+      "slot": "2026-11-07 10:00",
+      "source_id": "mNhIf9xwjZQ",
+      "source_title": "ΠΑΝΑΘΗΝΑΪΚΟΣ - ABERDEEN 2007/08",
+      "title": "🔥 ΠΑΝΑΘΗΝΑΪΚΟΣ – ABERDEEN 3-0! ☘️ #elaoposeisai #paofc #shorts",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/MZ0yk09pP-g",
+      "yt_id": "MZ0yk09pP-g",
+      "yt_uploaded": "2026-11-07T08:47:05.678714+00:00",
+      "yt_state": "pending",
+      "instagram": "https://www.instagram.com/reel/DfbyVFFuDny/",
+      "errors": []
     }
   ]
 }
