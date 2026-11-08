@@ -84,7 +84,8 @@
     "tPOarmNZ7QE",
     "RFnys1cHH24",
     "nTUmU0d9REU",
-    "goaiaQeMQL8"
+    "goaiaQeMQL8",
+    "kapitano-20261108"
   ],
   "log": [
     {
@@ -1211,6 +1212,19 @@
       "yt_uploaded": "2026-11-08T17:30:48.549842+00:00",
       "yt_state": "public",
       "instagram": "https://www.instagram.com/reel/DffTDlVpgqS/",
+      "errors": []
+    },
+    {
+      "slot": "2026-11-08 21:39 (manual)",
+      "source_id": "kapitano-20261108",
+      "source_title": "Ο Καπιτάνο τον κράτησε στην κορυφή (χειροκίνητο)",
+      "title": "Ο Καπιτάνο τον κράτησε στην κορυφή #elaoposeisai #shorts #panathinaikos",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/61aXfC1B9KY",
+      "yt_id": "61aXfC1B9KY",
+      "yt_uploaded": "2026-11-08T19:39:39.914247+00:00",
+      "yt_state": "pending",
+      "instagram": "https://www.instagram.com/reel/Dffhzhhq8vm/",
       "errors": []
     }
   ]
