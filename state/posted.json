@@ -87,7 +87,8 @@
     "goaiaQeMQL8",
     "kapitano-20261108",
     "srR64kkZCDA",
-    "drive-1mEkir9BOfEz8i_rooEC6PgURDygyRaTc"
+    "drive-1mEkir9BOfEz8i_rooEC6PgURDygyRaTc",
+    "B07xu_C5cWw"
   ],
   "log": [
     {
@@ -1253,8 +1254,21 @@
       "youtube": "https://youtube.com/shorts/yT1eiMbDYX4",
       "yt_id": "yT1eiMbDYX4",
       "yt_uploaded": "2026-11-09T12:08:02.773229+00:00",
-      "yt_state": "pending",
+      "yt_state": "public",
       "instagram": "https://www.instagram.com/reel/DfhS69CBiF2/",
+      "errors": []
+    },
+    {
+      "slot": "2026-11-09 14:00",
+      "source_id": "B07xu_C5cWw",
+      "source_title": "RANGERS - ΠΑΝΑΘΗΝΑΪΚΟΣ 2003/04",
+      "title": "🔥 RANGERS – ΠΑΝΑΘΗΝΑΪΚΟΣ 1-3! ☘️ #elaoposeisai #paofc #shorts",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/uPYRw5418I8",
+      "yt_id": "uPYRw5418I8",
+      "yt_uploaded": "2026-11-09T13:02:12.073150+00:00",
+      "yt_state": "pending",
+      "instagram": "https://www.instagram.com/reel/DfhZG8htwiD/",
       "errors": []
     }
   ]
