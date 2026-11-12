@@ -95,7 +95,8 @@
     "GOaZqoH92bA",
     "49a3wOIb5uQ",
     "0771sjHPgQA",
-    "XvzZ3iqxwhY"
+    "XvzZ3iqxwhY",
+    "EVwfq27bgrU"
   ],
   "log": [
     {
@@ -1367,6 +1368,20 @@
       "yt_uploaded": "2026-11-11T17:52:42.722854+00:00",
       "yt_state": "public",
       "instagram": "https://www.instagram.com/reel/DfnD9K2h9uy/",
+      "errors": []
+    },
+    {
+      "slot": "2026-11-12 10:00",
+      "source_id": "EVwfq27bgrU",
+      "source_title": "SPARTA PRAGUE - ΠΑΝΑΘΗΝΑΪΚΟΣ 2001/02",
+      "title": "🔥 SPARTA PRAGUE – ΠΑΝΑΘΗΝΑΪΚΟΣ 0-2! ☘️ #elaoposeisai #paofc #shorts",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/lqnviDkbK3o",
+      "yt_id": "lqnviDkbK3o",
+      "yt_uploaded": "2026-11-12T08:18:29.857655+00:00",
+      "yt_state": "pending",
+      "instagram": "https://www.instagram.com/reel/DfonB_bN4Uv/",
+      "facebook": "https://www.facebook.com/reel/1720028836199096/",
       "errors": []
     }
   ]
