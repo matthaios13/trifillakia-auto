@@ -96,7 +96,8 @@
     "49a3wOIb5uQ",
     "0771sjHPgQA",
     "XvzZ3iqxwhY",
-    "EVwfq27bgrU"
+    "EVwfq27bgrU",
+    "drive-1P-CRrDGr2V1fuupDeT9_4VxpG-QlZ6JM"
   ],
   "log": [
     {
@@ -1382,6 +1383,23 @@
       "yt_state": "public",
       "instagram": "https://www.instagram.com/reel/DfonB_bN4Uv/",
       "facebook": "https://www.facebook.com/reel/1720028836199096/",
+      "errors": []
+    },
+    {
+      "slot": "2026-11-12 12:29 (drive)",
+      "source_id": "drive-1P-CRrDGr2V1fuupDeT9_4VxpG-QlZ6JM",
+      "source_title": "[Pitch Talk] Τι μεταγραφές χρειάζεται ο Παναθηναϊκός;;",
+      "title": "Τι μεταγραφές χρειάζεται ο Παναθηναϊκός;; #elaoposeisai #shorts #pitchtalk",
+      "uploader": "nik.mandalios",
+      "sport": "both",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/tlC61LbaMow",
+      "yt_id": "tlC61LbaMow",
+      "yt_uploaded": "2026-11-12T12:30:30.555086+00:00",
+      "yt_state": "pending",
+      "instagram": "https://www.instagram.com/reel/DfpD4iRq0CA/",
+      "facebook": "https://www.facebook.com/reel/29089183070743609/",
+      "tiktok": "TikTok: στα πρόχειρα (δημοσίευση από την εφαρμογή)",
       "errors": []
     }
   ]
