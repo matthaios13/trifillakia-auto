@@ -303,19 +303,31 @@ def main():
                     print("  YouTube (ιδιωτικό → δημόσιο μετά τον έλεγχο):", entry["youtube"])
                 except Exception as e:
                     errors.append(f"YouTube: {e}")
-            if pub.get("instagram"):
+            caption = f"{title}\n\n{full.split(chr(10) * 2, 1)[1]}"
+            url = None
+            if pub.get("instagram") or pub.get("facebook"):
                 try:
                     url = publish_temp_link(out, f"{f['id']}.mp4")
-                    entry["instagram"] = publish.instagram_upload(url, f"{title}\n\n{full.split(chr(10) * 2, 1)[1]}")
+                except Exception as e:
+                    errors.append(f"Δημόσιο link βίντεο: {e}")
+            if url and pub.get("instagram"):
+                try:
+                    entry["instagram"] = publish.instagram_upload(url, caption)
                     print("  Instagram:", entry["instagram"])
                 except Exception as e:
                     errors.append(f"Instagram: {e}")
+            if url and pub.get("facebook"):
+                try:
+                    entry["facebook"] = publish.facebook_reel_upload(url, caption)
+                    print("  Facebook:", entry["facebook"])
+                except Exception as e:
+                    errors.append(f"Facebook: {e}")
         except Exception as e:
             errors.append(f"Μοντάζ/κατέβασμα: {e}")
         finally:
             shutil.rmtree(work, ignore_errors=True)
 
-        entry["ok"] = bool(entry.get("youtube") or entry.get("instagram"))
+        entry["ok"] = bool(entry.get("youtube") or entry.get("instagram") or entry.get("facebook"))
         entry["errors"] = errors
         stamp = datetime.now(timezone.utc).strftime("%Y-%m-%d")
         if entry["ok"]:

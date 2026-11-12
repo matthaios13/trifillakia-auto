@@ -51,7 +51,7 @@ publish:
 
 # ---------------------------------------------------------------------------------------------
 # Shorts από κοινόχρηστο φάκελο Google Drive (src/drive_shorts.py, workflow drive.yml)
-# Όποιος ρίχνει βίντεο σε υποφάκελο εκπομπής → outro Elabet → ΑΜΕΣΩΣ σε Instagram + YouTube.
+# Όποιος ρίχνει βίντεο σε υποφάκελο εκπομπής → outro Elabet → ΑΜΕΣΩΣ σε Instagram + YouTube + Facebook.
 # Ο φάκελος ορίζεται από τη μεταβλητή DRIVE_FOLDER_ID στο GitHub (τη βάζει το setup_drive.py).
 drive_shorts:
   active: true
