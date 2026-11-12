@@ -208,7 +208,9 @@ def tiktok_upload(video_path, caption, mode="inbox"):
     if mode == "direct":
         url, body = f"{API}/post/publish/video/init/", {"source_info": src, "post_info": {
             "title": caption[:2200], "privacy_level": "PUBLIC_TO_EVERYONE", "disable_comment": False,
-            "disable_duet": False, "disable_stitch": False, "brand_organic_toggle": True}}
+            "disable_duet": False, "disable_stitch": False,
+            # Επισήμανση χορηγίας (Elabet) σε όλα, όπως και στο YouTube.
+            "brand_content_toggle": True, "brand_organic_toggle": False}}
     else:
         url, body = f"{API}/post/publish/inbox/video/init/", {"source_info": src}
     r = requests.post(url, headers=H, json=body, timeout=60).json()
