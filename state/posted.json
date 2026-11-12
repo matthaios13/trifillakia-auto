@@ -97,7 +97,8 @@
     "0771sjHPgQA",
     "XvzZ3iqxwhY",
     "EVwfq27bgrU",
-    "drive-1P-CRrDGr2V1fuupDeT9_4VxpG-QlZ6JM"
+    "drive-1P-CRrDGr2V1fuupDeT9_4VxpG-QlZ6JM",
+    "M1A_YoqfmJA"
   ],
   "log": [
     {
@@ -1396,10 +1397,25 @@
       "youtube": "https://youtube.com/shorts/tlC61LbaMow",
       "yt_id": "tlC61LbaMow",
       "yt_uploaded": "2026-11-12T12:30:30.555086+00:00",
-      "yt_state": "pending",
+      "yt_state": "public",
       "instagram": "https://www.instagram.com/reel/DfpD4iRq0CA/",
       "facebook": "https://www.facebook.com/reel/29089183070743609/",
       "tiktok": "TikTok: στα πρόχειρα (δημοσίευση από την εφαρμογή)",
+      "errors": []
+    },
+    {
+      "slot": "2026-11-12 14:00",
+      "source_id": "M1A_YoqfmJA",
+      "source_title": "ΠΑΝΑΘΗΝΑΪΚΟΣ - BARCELONA 2001/02",
+      "title": "🔥 ΠΑΝΑΘΗΝΑΪΚΟΣ – BARCELONA 1-0! ☘️ #elaoposeisai #paofc #shorts",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/gMSBP_vd96o",
+      "yt_id": "gMSBP_vd96o",
+      "yt_uploaded": "2026-11-12T12:58:56.152281+00:00",
+      "yt_state": "pending",
+      "instagram": "https://www.instagram.com/reel/DfpHHxqvWc4/",
+      "facebook": "https://www.facebook.com/reel/1542008231113689/",
+      "tiktok": "TikTok: σε επεξεργασία (v_inbox_file~v2.7707269013277247510)",
       "errors": []
     }
   ]
