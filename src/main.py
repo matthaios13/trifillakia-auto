@@ -183,6 +183,7 @@ def main():
     ap.add_argument("--check", action="store_true")
     ap.add_argument("--review", action="store_true")
     ap.add_argument("--youtube-check", action="store_true")
+    ap.add_argument("--facebook-check", action="store_true")
     ap.add_argument("--youtube-repost", metavar="ID", help="ανέβασε στο YouTube ένα βίντεο που έχει ήδη βγει στο Instagram")
     ap.add_argument("--review-now", action="store_true", help="έλεγχος YouTube χωρίς αναμονή 30 λεπτών")
     args = ap.parse_args()
@@ -192,6 +193,10 @@ def main():
     if args.youtube_check:
         import publish
         print("Συνδεδεμένο κανάλι YouTube:", publish.youtube_channel())
+        return
+    if args.facebook_check:
+        import publish
+        print("Facebook:", publish.facebook_check())
         return
     if args.youtube_repost:
         youtube_repost(cfg, state, args.youtube_repost)
@@ -250,8 +255,15 @@ def main():
             print("Instagram:", entry["instagram"])
         except Exception as e:
             errors.append(f"Instagram: {e}")
+    if pub.get("facebook"):
+        try:
+            fb_text = f"{meta['youtube_title'].replace(' #shorts', '')}\n\n{meta['full_description']}"
+            entry["facebook"] = publish.facebook_reel_upload(video_url, fb_text)
+            print("Facebook:", entry["facebook"])
+        except Exception as e:
+            errors.append(f"Facebook: {e}")
 
-    entry["ok"] = bool(entry.get("youtube") or entry.get("instagram"))
+    entry["ok"] = bool(entry.get("youtube") or entry.get("instagram") or entry.get("facebook"))
     entry["errors"] = errors
     if entry["ok"]:
         state["posted_ids"].append(item_id)

@@ -36,6 +36,8 @@ footer: "🔞 21+ | Παίξε υπεύθυνα"
 
 publish:
   instagram: true
+  # Facebook Reels στη Σελίδα Trifillakia.gr (ίδια λεζάντα & hashtags με το Instagram)
+  facebook: false
   # YouTube: ανεβαίνει ΠΑΝΤΑ πρώτα ιδιωτικό. Μετά από youtube_review_minutes λεπτά ελέγχεται:
   # αν δεν έχει απορριφθεί/μπλοκαριστεί για copyright γίνεται δημόσιο, αλλιώς μένει ιδιωτικό
   # και έρχεται email. Με youtube_auto_public: false μένουν όλα ιδιωτικά (τα κάνεις εσύ δημόσια).

@@ -12,7 +12,7 @@ on:
         description: "normal / force (ανάρτηση τώρα) / youtube-check (έλεγχος σύνδεσης YouTube)"
         default: normal
         type: choice
-        options: [normal, force, youtube-check, youtube-repost, youtube-review-now]
+        options: [normal, force, facebook-check, youtube-check, youtube-repost, youtube-review-now]
       video:
         description: "Για youtube-repost: το ID του βίντεο (από το state/posted.json)"
         required: false
@@ -36,6 +36,16 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install pyyaml
+
+      - name: Έλεγχος σύνδεσης Facebook
+        if: github.event.inputs.mode == 'facebook-check'
+        env:
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+          FB_PAGE_ID: "349363601832677"
+        run: |
+          pip install -q requests
+          python -u src/main.py --facebook-check
 
       - name: Έλεγχος σύνδεσης YouTube
         if: github.event.inputs.mode == 'youtube-check'
@@ -89,6 +99,8 @@ jobs:
           YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
           IG_USER_ID: ${{ secrets.IG_USER_ID }}
           IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+          FB_PAGE_ID: "349363601832677"
         run: |
           if [ "${{ github.event.inputs.mode }}" = "force" ]; then python -u src/main.py --force;
           else python -u src/main.py; fi

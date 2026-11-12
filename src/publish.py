@@ -130,3 +130,55 @@ def instagram_upload(video_url, caption):
     link = requests.get(f"{GRAPH}/{media_id}", params={"fields": "permalink", "access_token": token},
                         timeout=60).json().get("permalink")
     return link or media_id
+
+
+# ---------------- Facebook (Reels στη Σελίδα) ----------------
+
+def _fb():
+    """(page_id, token). Token Σελίδας με pages_manage_posts: FB_PAGE_TOKEN, αλλιώς το IG_ACCESS_TOKEN
+    (αν είναι token Σελίδας από Facebook Login)."""
+    token = (os.environ.get("FB_PAGE_TOKEN") or os.environ.get("IG_ACCESS_TOKEN") or "").strip()
+    page_id = os.environ.get("FB_PAGE_ID", "").strip()
+    if not page_id:
+        page_id = requests.get(f"https://graph.facebook.com/{API_VERSION}/me", params={"access_token": token},
+                               timeout=30).json().get("id", "")
+    return page_id, token
+
+
+def facebook_check():
+    page_id, token = _fb()
+    G = f"https://graph.facebook.com/{API_VERSION}"
+    me = requests.get(f"{G}/{page_id}", params={"fields": "name", "access_token": token}, timeout=30).json()
+    d = requests.get(f"{G}/debug_token", params={"input_token": token, "access_token": token}, timeout=30).json().get("data", {})
+    return {"page": me.get("name") or me, "type": d.get("type"), "expires": d.get("expires_at"),
+            "can_post": "pages_manage_posts" in d.get("scopes", [])}
+
+
+def facebook_reel_upload(video_url, description):
+    """Facebook Reel στη Σελίδα: το Facebook κατεβάζει το βίντεο από δημόσιο link."""
+    page_id, token = _fb()
+    G = f"https://graph.facebook.com/{API_VERSION}"
+    r = requests.post(f"{G}/{page_id}/video_reels", data={"upload_phase": "start", "access_token": token}, timeout=60)
+    if not r.ok:
+        raise RuntimeError(f"start {r.status_code}: {r.text[:500]}")
+    vid = r.json()["video_id"]
+    r = requests.post(f"https://rupload.facebook.com/video-upload/{API_VERSION}/{vid}",
+                      headers={"Authorization": f"OAuth {token}", "file_url": video_url}, timeout=300)
+    if not r.ok:
+        raise RuntimeError(f"upload {r.status_code}: {r.text[:500]}")
+    r = requests.post(f"{G}/{page_id}/video_reels", data={
+        "upload_phase": "finish", "video_id": vid, "video_state": "PUBLISHED",
+        "description": description[:5000], "access_token": token}, timeout=60)
+    if not r.ok:
+        raise RuntimeError(f"finish {r.status_code}: {r.text[:500]}")
+    print(f"Facebook video {vid}")
+    for _ in range(60):  # έως ~10 λεπτά επεξεργασία
+        time.sleep(10)
+        s = requests.get(f"{G}/{vid}", params={"fields": "status,permalink_url", "access_token": token}, timeout=60).json()
+        st = s.get("status", {})
+        if st.get("video_status") == "error" or st.get("processing_phase", {}).get("status") == "error":
+            raise RuntimeError(f"Facebook processing error: {st}")
+        if st.get("publishing_phase", {}).get("status") == "complete":
+            break
+    link = s.get("permalink_url") or f"/reel/{vid}"
+    return link if link.startswith("http") else f"https://www.facebook.com{link}"
