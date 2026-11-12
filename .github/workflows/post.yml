@@ -132,6 +132,17 @@ jobs:
             else python -u src/main.py --review; fi
           fi
 
+      # Παλιά ρετρό στο TikTok (12:00 & 17:00): ένα κάθε φορά, το παλιότερο.
+      - name: TikTok — παλιά ρετρό
+        if: always() && (github.event_name == 'schedule' || github.event.inputs.mode == 'normal')
+        env:
+          TIKTOK_PUSH_KEY: ${{ secrets.TIKTOK_PUSH_KEY }}
+        run: |
+          if [ -d queue/.git ]; then git -C queue fetch -q --unshallow --filter=blob:none origin queue 2>/dev/null || true
+          else git clone -q --filter=blob:none --no-checkout -b queue "https://github.com/${GITHUB_REPOSITORY}.git" queue; fi
+          pip install -q requests
+          python -u src/main.py --tiktok-backlog || echo "::warning::TikTok παλιά: σφάλμα"
+
       - name: Αποθήκευση ιστορικού
         if: always()
         run: |

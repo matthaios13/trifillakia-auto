@@ -327,6 +327,7 @@ def main():
                     tt_caption = f"{caption} {pub.get('tiktok_hashtags', '')}".strip()[:2200]
                     entry["tiktok_caption"] = tt_caption   # για τη λίστα «TikTok πρόχειρα» στο panel
                     entry["tiktok"] = publish.tiktok_upload(out, tt_caption, pub.get("tiktok_mode", "inbox"))
+                    entry["tiktok_at"] = datetime.now(timezone.utc).isoformat()
                     print("  " + entry["tiktok"])
                 except Exception as e:
                     errors.append(f"TikTok: {e}")

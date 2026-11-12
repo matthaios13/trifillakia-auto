@@ -130,8 +130,56 @@ def tiktok_repost(cfg, state, item_id):
     pub = cfg["publish"]
     caption = entry.get("tiktok_caption") or entry.get("title", "")
     entry["tiktok"] = publish.tiktok_upload(path, caption, pub.get("tiktok_mode", "inbox"))
+    entry["tiktok_at"] = datetime.now(ZoneInfo("UTC")).isoformat()
     entry["tiktok_caption"] = caption
     print(f"{entry['tiktok']}  ← {entry.get('title')}")
+
+
+def tiktok_backlog(cfg, state, now):
+    """Ένα παλιό ρετρό στο TikTok όταν είναι η ώρα κάποιου slot του tiktok_backlog (π.χ. 12:00, 17:00)."""
+    import tempfile
+    import publish
+    pub = cfg["publish"]
+    bl = pub.get("tiktok_backlog") or {}
+    if not (bl.get("active") and pub.get("tiktok") and os.environ.get("TIKTOK_PUSH_KEY")):
+        print("TikTok παλιά: ανενεργό.")
+        return
+    done = set(state.setdefault("tt_backlog_done", []))
+    slot = None
+    for hhmm in bl.get("slots", []):
+        h, m = map(int, hhmm.split(":"))
+        t = now.replace(hour=h, minute=m, second=0, microsecond=0)
+        key = t.strftime("%Y-%m-%d %H:%M")
+        if t <= now < t + timedelta(hours=cfg["schedule"]["grace_hours"]) and key not in done:
+            slot = key
+            break
+    if not slot:
+        print("TikTok παλιά: δεν είναι ώρα.")
+        return
+    # Το παλιότερο ρετρό που δεν έχει πάει ακόμα στο TikTok (όχι Drive).
+    cands = [e for e in state["log"] if e.get("ok") and not e.get("tiktok") and "drive" not in str(e.get("slot", ""))
+             and not str(e.get("source_id", "")).startswith("drive-")]
+    for e in cands:
+        item_id = e["source_id"]
+        try:
+            meta = json.loads(from_queue_history(item_id, ".json"))
+            path = Path(tempfile.mkdtemp()) / f"{item_id}.mp4"
+            path.write_bytes(from_queue_history(item_id, ".mp4"))
+        except Exception as ex:   # δεν υπάρχει πια το αρχείο: το προσπερνάμε
+            e["tiktok"] = f"παράλειψη: {ex}"
+            continue
+        caption = f"{meta['youtube_title'].replace(' #shorts', '')}\n\n{meta['full_description']} {pub.get('tiktok_hashtags', '')}".strip()[:2200]
+        e["tiktok_caption"] = caption
+        e["tiktok"] = publish.tiktok_upload(path, caption, pub.get("tiktok_mode", "inbox"))
+        e["tiktok_at"] = datetime.now(ZoneInfo("UTC")).isoformat()
+        e["tiktok_backlog"] = slot
+        state["tt_backlog_done"].append(slot)
+        print(f"[{slot}] TikTok (παλιό): {e['tiktok']}  ← {e.get('title')}")
+        left = len(cands) - cands.index(e) - 1
+        print(f"Απομένουν {left} παλιά ρετρό για το TikTok.")
+        return
+    state["tt_backlog_done"].append(slot)
+    print("TikTok παλιά: δεν απέμεινε κανένα.")
 
 
 def open_issue(title, body):
@@ -203,6 +251,7 @@ def main():
     ap.add_argument("--youtube-repost", metavar="ID", help="ανέβασε στο YouTube ένα βίντεο που έχει ήδη βγει στο Instagram")
     ap.add_argument("--review-now", action="store_true", help="έλεγχος YouTube χωρίς αναμονή 30 λεπτών")
     ap.add_argument("--tiktok-repost", metavar="ID", help="ξαναστέλνει ένα βίντεο στα πρόχειρα του TikTok")
+    ap.add_argument("--tiktok-backlog", action="store_true", help="ένα παλιό ρετρό στο TikTok, αν είναι η ώρα")
     args = ap.parse_args()
 
     cfg = load_cfg()
@@ -214,6 +263,10 @@ def main():
     if args.facebook_check:
         import publish
         print("Facebook:", publish.facebook_check())
+        return
+    if args.tiktok_backlog:
+        tiktok_backlog(cfg, state, datetime.now(ZoneInfo(cfg["schedule"]["timezone"])))
+        save_state(state)
         return
     if args.tiktok_repost:
         tiktok_repost(cfg, state, args.tiktok_repost)
@@ -289,6 +342,7 @@ def main():
             tt_text = f"{meta['youtube_title'].replace(' #shorts', '')}\n\n{meta['full_description']} {pub.get('tiktok_hashtags', '')}".strip()
             entry["tiktok_caption"] = tt_text[:2200]   # για τη λίστα «TikTok πρόχειρα» στο panel (τα πρόχειρα δεν παίρνουν λεζάντα)
             entry["tiktok"] = publish.tiktok_upload(fetch_video(item_id), tt_text, pub.get("tiktok_mode", "inbox"))
+            entry["tiktok_at"] = datetime.now(ZoneInfo("UTC")).isoformat()
             print(entry["tiktok"])
         except Exception as e:
             errors.append(f"TikTok: {e}")
