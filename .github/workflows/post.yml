@@ -12,7 +12,7 @@ on:
         description: "normal / force (ανάρτηση τώρα) / youtube-check (έλεγχος σύνδεσης YouTube)"
         default: normal
         type: choice
-        options: [normal, force, facebook-check, youtube-check, youtube-repost, youtube-review-now]
+        options: [normal, force, facebook-check, youtube-check, youtube-repost, tiktok-repost, youtube-review-now]
       video:
         description: "Για youtube-repost: το ID του βίντεο (από το state/posted.json)"
         required: false
@@ -57,6 +57,16 @@ jobs:
         run: |
           pip install -q google-api-python-client google-auth
           python -u src/main.py --youtube-check
+
+      - name: TikTok — ξαναστέλνει βίντεο στα πρόχειρα
+        if: github.event.inputs.mode == 'tiktok-repost'
+        env:
+          TIKTOK_PUSH_KEY: ${{ secrets.TIKTOK_PUSH_KEY }}
+          VIDEO_ID: ${{ github.event.inputs.video }}
+        run: |
+          git clone -q --filter=blob:none --no-checkout -b queue "https://github.com/${GITHUB_REPOSITORY}.git" queue
+          pip install -q requests
+          python -u src/main.py --tiktok-repost "$VIDEO_ID"
 
       - name: YouTube — ανέβασμα βίντεο που έχει ήδη βγει στο Instagram
         if: github.event.inputs.mode == 'youtube-repost'

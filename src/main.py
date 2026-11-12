@@ -118,6 +118,22 @@ def youtube_repost(cfg, state, item_id):
     print(f"YouTube (ιδιωτικό): {entry['youtube']}  ← {meta['source_title']}")
 
 
+def tiktok_repost(cfg, state, item_id):
+    """Ξαναστέλνει στα πρόχειρα του TikTok ένα βίντεο που έχει ήδη ανέβει (ρετρό)."""
+    import tempfile
+    import publish
+    entry = next((e for e in reversed(state["log"]) if e.get("source_id") == item_id and e.get("ok")), None)
+    if not entry:
+        sys.exit(f"Δεν βρέθηκε ανάρτηση για {item_id}")
+    path = Path(tempfile.mkdtemp()) / f"{item_id}.mp4"
+    path.write_bytes(from_queue_history(item_id, ".mp4"))
+    pub = cfg["publish"]
+    caption = entry.get("tiktok_caption") or entry.get("title", "")
+    entry["tiktok"] = publish.tiktok_upload(path, caption, pub.get("tiktok_mode", "inbox"))
+    entry["tiktok_caption"] = caption
+    print(f"{entry['tiktok']}  ← {entry.get('title')}")
+
+
 def open_issue(title, body):
     """Issue στο GitHub = email σε σένα."""
     if not os.environ.get("GITHUB_ACTIONS"):
@@ -186,6 +202,7 @@ def main():
     ap.add_argument("--facebook-check", action="store_true")
     ap.add_argument("--youtube-repost", metavar="ID", help="ανέβασε στο YouTube ένα βίντεο που έχει ήδη βγει στο Instagram")
     ap.add_argument("--review-now", action="store_true", help="έλεγχος YouTube χωρίς αναμονή 30 λεπτών")
+    ap.add_argument("--tiktok-repost", metavar="ID", help="ξαναστέλνει ένα βίντεο στα πρόχειρα του TikTok")
     args = ap.parse_args()
 
     cfg = load_cfg()
@@ -197,6 +214,10 @@ def main():
     if args.facebook_check:
         import publish
         print("Facebook:", publish.facebook_check())
+        return
+    if args.tiktok_repost:
+        tiktok_repost(cfg, state, args.tiktok_repost)
+        save_state(state)
         return
     if args.youtube_repost:
         youtube_repost(cfg, state, args.youtube_repost)
