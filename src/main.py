@@ -265,7 +265,8 @@ def main():
 
     if pub.get("tiktok") and os.environ.get("TIKTOK_PUSH_KEY"):
         try:
-            tt_text = f"{meta['youtube_title'].replace(' #shorts', '')}\n\n{meta['full_description']}"
+            tt_text = f"{meta['youtube_title'].replace(' #shorts', '')}\n\n{meta['full_description']} {pub.get('tiktok_hashtags', '')}".strip()
+            entry["tiktok_caption"] = tt_text[:2200]   # για τη λίστα «TikTok πρόχειρα» στο panel (τα πρόχειρα δεν παίρνουν λεζάντα)
             entry["tiktok"] = publish.tiktok_upload(fetch_video(item_id), tt_text, pub.get("tiktok_mode", "inbox"))
             print(entry["tiktok"])
         except Exception as e:

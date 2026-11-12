@@ -324,7 +324,9 @@ def main():
                     errors.append(f"Facebook: {e}")
             if pub.get("tiktok") and os.environ.get("TIKTOK_PUSH_KEY"):
                 try:
-                    entry["tiktok"] = publish.tiktok_upload(out, caption, pub.get("tiktok_mode", "inbox"))
+                    tt_caption = f"{caption} {pub.get('tiktok_hashtags', '')}".strip()[:2200]
+                    entry["tiktok_caption"] = tt_caption   # για τη λίστα «TikTok πρόχειρα» στο panel
+                    entry["tiktok"] = publish.tiktok_upload(out, tt_caption, pub.get("tiktok_mode", "inbox"))
                     print("  " + entry["tiktok"])
                 except Exception as e:
                     errors.append(f"TikTok: {e}")

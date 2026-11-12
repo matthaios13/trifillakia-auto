@@ -42,6 +42,8 @@ publish:
   # inbox = στα πρόχειρα του TikTok (πατάς «Δημοσίευση» από το κινητό) · direct = απευθείας (μετά την έγκριση του TikTok)
   tiktok: true
   tiktok_mode: inbox
+  # Επιπλέον hashtags μόνο για το TikTok (για να φτάνει σε περισσότερο κόσμο)
+  tiktok_hashtags: "#fyp #foryou #football #ποδόσφαιρο #greekfootball"
   # YouTube: ανεβαίνει ΠΑΝΤΑ πρώτα ιδιωτικό. Μετά από youtube_review_minutes λεπτά ελέγχεται:
   # αν δεν έχει απορριφθεί/μπλοκαριστεί για copyright γίνεται δημόσιο, αλλιώς μένει ιδιωτικό
   # και έρχεται email. Με youtube_auto_public: false μένουν όλα ιδιωτικά (τα κάνεις εσύ δημόσια).
