@@ -263,6 +263,14 @@ def main():
         except Exception as e:
             errors.append(f"Facebook: {e}")
 
+    if pub.get("tiktok") and os.environ.get("TIKTOK_PUSH_KEY"):
+        try:
+            tt_text = f"{meta['youtube_title'].replace(' #shorts', '')}\n\n{meta['full_description']}"
+            entry["tiktok"] = publish.tiktok_upload(fetch_video(item_id), tt_text, pub.get("tiktok_mode", "inbox"))
+            print(entry["tiktok"])
+        except Exception as e:
+            errors.append(f"TikTok: {e}")
+
     entry["ok"] = bool(entry.get("youtube") or entry.get("instagram") or entry.get("facebook"))
     entry["errors"] = errors
     if entry["ok"]:

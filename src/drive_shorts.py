@@ -322,6 +322,12 @@ def main():
                     print("  Facebook:", entry["facebook"])
                 except Exception as e:
                     errors.append(f"Facebook: {e}")
+            if pub.get("tiktok") and os.environ.get("TIKTOK_PUSH_KEY"):
+                try:
+                    entry["tiktok"] = publish.tiktok_upload(out, caption, pub.get("tiktok_mode", "inbox"))
+                    print("  " + entry["tiktok"])
+                except Exception as e:
+                    errors.append(f"TikTok: {e}")
         except Exception as e:
             errors.append(f"Μοντάζ/κατέβασμα: {e}")
         finally:

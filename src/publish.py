@@ -182,3 +182,56 @@ def facebook_reel_upload(video_url, description):
             break
     link = s.get("permalink_url") or f"/reel/{vid}"
     return link if link.startswith("http") else f"https://www.facebook.com{link}"
+
+
+# ---------------- TikTok (μέσω totalsportsmedia.gr / TotalSports Publisher) ----------------
+
+def _tiktok_token():
+    """Φρέσκο access token του TikTok από το panel (TotalSports → TikTok), με το κλειδί TIKTOK_PUSH_KEY."""
+    r = requests.post(os.environ.get("TIKTOK_TOKEN_URL", "https://totalsportsmedia.gr/wp-json/tsmg/v1/tiktok/token"),
+                      headers={"X-TSMG-Key": os.environ["TIKTOK_PUSH_KEY"].strip()},
+                      data={"username": os.environ.get("TIKTOK_ACCOUNT", "")}, timeout=60)
+    if not r.ok:
+        raise RuntimeError(f"token {r.status_code}: {r.text[:300]}")
+    return r.json()["access_token"]
+
+
+def tiktok_upload(video_path, caption, mode="inbox"):
+    """mode="inbox": στα πρόχειρα του TikTok (δημοσίευση από την εφαρμογή). mode="direct": απευθείας (μετά την έγκριση)."""
+    token = _tiktok_token()
+    API = "https://open.tiktokapis.com/v2"
+    H = {"Authorization": f"Bearer {token}", "Content-Type": "application/json; charset=UTF-8"}
+    size = os.path.getsize(video_path)
+    chunk = size if size <= 64 * 1024 * 1024 else 10 * 1024 * 1024
+    n = max(1, size // chunk)
+    src = {"source": "FILE_UPLOAD", "video_size": size, "chunk_size": chunk, "total_chunk_count": n}
+    if mode == "direct":
+        url, body = f"{API}/post/publish/video/init/", {"source_info": src, "post_info": {
+            "title": caption[:2200], "privacy_level": "PUBLIC_TO_EVERYONE", "disable_comment": False,
+            "disable_duet": False, "disable_stitch": False, "brand_organic_toggle": True}}
+    else:
+        url, body = f"{API}/post/publish/inbox/video/init/", {"source_info": src}
+    r = requests.post(url, headers=H, json=body, timeout=60).json()
+    if not r.get("data", {}).get("upload_url"):
+        raise RuntimeError(f"init: {r.get('error')}")
+    with open(video_path, "rb") as fh:
+        start = 0
+        for i in range(n):
+            length = size - start if i == n - 1 else chunk
+            data = fh.read(length)
+            u = requests.put(r["data"]["upload_url"], data=data, timeout=300, headers={
+                "Content-Type": "video/mp4", "Content-Length": str(length),
+                "Content-Range": f"bytes {start}-{start + length - 1}/{size}"})
+            if u.status_code >= 300:
+                raise RuntimeError(f"upload {u.status_code}: {u.text[:200]}")
+            start += length
+    pid = r["data"]["publish_id"]
+    for _ in range(40):
+        time.sleep(6)
+        s = requests.post(f"{API}/post/publish/status/fetch/", headers=H, json={"publish_id": pid}, timeout=60).json().get("data", {})
+        st = s.get("status")
+        if st in ("SEND_TO_USER_INBOX", "PUBLISH_COMPLETE"):
+            return "TikTok: στα πρόχειρα (δημοσίευση από την εφαρμογή)" if st == "SEND_TO_USER_INBOX" else "TikTok: δημοσιεύτηκε"
+        if st == "FAILED":
+            raise RuntimeError(f"TikTok: {s.get('fail_reason')}")
+    return f"TikTok: σε επεξεργασία ({pid})"

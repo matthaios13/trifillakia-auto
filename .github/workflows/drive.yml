@@ -30,6 +30,7 @@ jobs:
       IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
       FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
       FB_PAGE_ID: "349363601832677"
+      TIKTOK_PUSH_KEY: ${{ secrets.TIKTOK_PUSH_KEY }}
       GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
     steps:
       - uses: actions/checkout@v4
