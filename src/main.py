@@ -14,6 +14,7 @@ from datetime import datetime, timedelta
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
+import requests
 import yaml
 
 sys.path.insert(0, str(Path(__file__).parent))
@@ -161,14 +162,25 @@ def tiktok_backlog(cfg, state, now):
              and not str(e.get("source_id", "")).startswith("drive-")]
     for e in cands:
         item_id = e["source_id"]
+        path = Path(tempfile.mkdtemp()) / f"{item_id}.mp4"
         try:
             meta = json.loads(from_queue_history(item_id, ".json"))
-            path = Path(tempfile.mkdtemp()) / f"{item_id}.mp4"
             path.write_bytes(from_queue_history(item_id, ".mp4"))
-        except Exception as ex:   # δεν υπάρχει πια το αρχείο: το προσπερνάμε
-            e["tiktok"] = f"παράλειψη: {ex}"
-            continue
-        caption = f"{meta['youtube_title'].replace(' #shorts', '')}\n\n{meta['full_description']} {pub.get('tiktok_hashtags', '')}".strip()[:2200]
+            caption = f"{meta['youtube_title'].replace(' #shorts', '')}\n\n{meta['full_description']}"
+        except Exception:
+            # Η ουρά καθαρίζεται κάθε εβδομάδα: το βίντεο από το δικό μας Instagram Reel.
+            try:
+                if not e.get("instagram"):
+                    raise RuntimeError("δεν έχει Instagram")
+                r = requests.get(publish.instagram_video_url(e["instagram"]), timeout=300)
+                r.raise_for_status()
+                path.write_bytes(r.content)
+            except Exception as ex:
+                e["tiktok"] = f"παράλειψη: {ex}"
+                continue
+            tags = cfg["hashtags"]["football"]
+            caption = f"{e.get('title', '').replace(' #shorts', '')}\n\n{cfg.get('footer', '')}\n{tags}"
+        caption = f"{caption} {pub.get('tiktok_hashtags', '')}".strip()[:2200]
         e["tiktok_caption"] = caption
         e["tiktok"] = publish.tiktok_upload(path, caption, pub.get("tiktok_mode", "inbox"))
         e["tiktok_at"] = datetime.now(ZoneInfo("UTC")).isoformat()

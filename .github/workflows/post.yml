@@ -137,6 +137,8 @@ jobs:
         if: always() && (github.event_name == 'schedule' || github.event.inputs.mode == 'normal')
         env:
           TIKTOK_PUSH_KEY: ${{ secrets.TIKTOK_PUSH_KEY }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
         run: |
           if [ -d queue/.git ]; then git -C queue fetch -q --unshallow --filter=blob:none origin queue 2>/dev/null || true
           else git clone -q --filter=blob:none --no-checkout -b queue "https://github.com/${GITHUB_REPOSITORY}.git" queue; fi

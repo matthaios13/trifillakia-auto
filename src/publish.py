@@ -235,3 +235,21 @@ def tiktok_upload(video_path, caption, mode="inbox"):
         if st == "FAILED":
             raise RuntimeError(f"TikTok: {s.get('fail_reason')}")
     return f"TikTok: σε επεξεργασία ({pid})"
+
+
+def instagram_video_url(permalink):
+    """Το αρχείο βίντεο ενός δικού μας Reel (για παλιά βίντεο που δεν υπάρχουν πια στην ουρά)."""
+    token = os.environ["IG_ACCESS_TOKEN"].strip()
+    user_id = os.environ["IG_USER_ID"].strip()
+    G = _graph(token)
+    want = permalink.rstrip("/").split("/")[-1]
+    url, params = f"{G}/{user_id}/media", {"fields": "permalink,media_url,media_type", "limit": 50, "access_token": token}
+    for _ in range(20):
+        j = requests.get(url, params=params, timeout=60).json()
+        for m in j.get("data", []):
+            if (m.get("permalink") or "").rstrip("/").split("/")[-1] == want and m.get("media_url"):
+                return m["media_url"]
+        url, params = j.get("paging", {}).get("next"), None
+        if not url:
+            break
+    raise RuntimeError(f"δεν βρέθηκε στο Instagram: {permalink}")
