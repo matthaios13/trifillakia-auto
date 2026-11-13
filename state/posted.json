@@ -1461,9 +1461,8 @@
       "yt_uploaded": "2026-11-13T09:17:29.219208+00:00",
       "yt_state": "pending",
       "facebook": "https://www.facebook.com/reel/979985261403701/",
-      "errors": [
-        "Instagram: Instagram processing error: {'id': '18473302930190860', 'status': 'Error: Media upload has failed with error code 2207077', 'status_code': 'ERROR'}"
-      ]
+      "errors": [],
+      "instagram": "https://www.instagram.com/reel/DfrS4VUNtXW/"
     }
   ],
   "tt_backlog_done": [
