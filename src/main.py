@@ -14,7 +14,6 @@ from datetime import datetime, timedelta
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
-import requests
 import yaml
 
 sys.path.insert(0, str(Path(__file__).parent))
@@ -139,6 +138,7 @@ def tiktok_repost(cfg, state, item_id):
 def tiktok_backlog(cfg, state, now):
     """Ένα παλιό ρετρό στο TikTok όταν είναι η ώρα κάποιου slot του tiktok_backlog (π.χ. 12:00, 17:00)."""
     import tempfile
+    import requests
     import publish
     pub = cfg["publish"]
     bl = pub.get("tiktok_backlog") or {}
