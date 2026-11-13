@@ -40,14 +40,14 @@ publish:
   facebook: true
   # TikTok (@trifillakia.gr) μέσω του panel totalsportsmedia.gr → TikTok.
   # inbox = στα πρόχειρα του TikTok (πατάς «Δημοσίευση» από το κινητό) · direct = απευθείας (μετά την έγκριση του TikTok)
-  tiktok: true
+  tiktok: false
   tiktok_mode: inbox
   # Επιπλέον hashtags μόνο για το TikTok (για να φτάνει σε περισσότερο κόσμο)
   tiktok_hashtags: "#fyp #foryou #football #ποδόσφαιρο #greekfootball"
   # Παλιά ρετρό (που έχουν ήδη βγει σε Instagram/YouTube) στο TikTok, εκτός από τα 3 καινούρια της ημέρας.
   # Τα παλιότερα πρώτα. Μόνο ρετρό (όχι Drive). Τρόπος: ό,τι λέει το tiktok_mode (inbox τώρα, direct μετά την έγκριση).
   tiktok_backlog:
-    active: true
+    active: false
     slots: ["12:00", "17:00"]
   # YouTube: ανεβαίνει ΠΑΝΤΑ πρώτα ιδιωτικό. Μετά από youtube_review_minutes λεπτά ελέγχεται:
   # αν δεν έχει απορριφθεί/μπλοκαριστεί για copyright γίνεται δημόσιο, αλλιώς μένει ιδιωτικό
