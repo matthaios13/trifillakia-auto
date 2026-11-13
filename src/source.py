@@ -1,5 +1,6 @@
 """Βρίσκει και κατεβάζει το επόμενο ρετρό βίντεο από το κανάλι-πηγή."""
 import random
+import re
 import shutil
 import sys
 from pathlib import Path
@@ -44,10 +45,46 @@ def pick_next(cfg, posted_ids, catalog_limit=40):
                   and c.get("season_start") and c["season_start"] <= newest_allowed]
     if not candidates:
         raise RuntimeError("Δεν βρέθηκε κατάλληλο βίντεο (όλα έχουν ανέβει ή είναι πολύ μεγάλα)")
-    best = min(c["rank"] for c in candidates)
-    choice = random.choice([c for c in candidates if c["rank"] == best])
-    print(f"Επιλογή: {choice['title']} | {choice['competition']} | {choice['result']} (προτεραιότητα {best})")
+    choice = _mix_pick(cat, candidates, posted_ids)
+    print(f"Επιλογή: {choice['title']} | {choice['competition']} | {choice['result']} (κατηγορία {_kind(choice)})")
     return fetch_info(choice["id"])
+
+
+# ---- Μείγμα: ντέρμπι, ευρωπαϊκά, σημαντικά ελληνικά, και από όλες τις εποχές (όχι μόνο τα πρόσφατα) ----
+DERBY = ("ΟΛΥΜΠΙΑΚΟΣ", "ΑΕΚ", "ΠΑΟΚ", "ΑΡΗΣ")
+# Σειρά εναλλαγής: κάθε επόμενο ρετρό από την επόμενη κατηγορία
+PATTERN = ["derby", "euro", "greek_big", "derby", "euro", "greek"]
+
+
+def _kind(c):
+    import catalog
+    t, comp = catalog._norm(c.get("title")), catalog._norm(c.get("competition"))
+    if c.get("european"):
+        return "euro"
+    if any(re.search(rf"(^|[^Α-Ω]){d}([^Α-Ω]|$)", t) for d in DERBY) and not c.get("friendly"):
+        return "derby"
+    if "ΚΥΠΕΛΛ" in comp or "ΤΕΛΙΚ" in comp or "ΗΜΙΤΕΛ" in comp or "PLAY" in comp:
+        return "greek_big"
+    return "greek" if not c.get("friendly") else "other"
+
+
+def _mix_pick(cat, candidates, posted_ids):
+    posted = [cat[i] for i in posted_ids if i in cat]
+    want = PATTERN[len(posted) % len(PATTERN)]
+    # Νίκες (και ισοπαλίες στα ντέρμπι) πρώτα· αν δεν υπάρχει τίποτα στην κατηγορία, η επόμενη.
+    order = PATTERN[PATTERN.index(want):] + PATTERN[:PATTERN.index(want)]
+    for k in order + ["other"]:
+        pool = [c for c in candidates if _kind(c) == k and c.get("outcome") == "W"]
+        if not pool:
+            continue
+        # Από την εποχή (δεκαετία) που έχει ανέβει λιγότερο μέχρι τώρα → απλωνόμαστε σε όλα τα χρόνια.
+        used = {}
+        for c in posted:
+            if c.get("season_start"):
+                used[c["season_start"] // 5] = used.get(c["season_start"] // 5, 0) + 1
+        least = min(used.get(c["season_start"] // 5, 0) for c in pool)
+        return random.choice([c for c in pool if used.get(c["season_start"] // 5, 0) == least])
+    return random.choice(candidates)
 
 
 def download(info, workdir):
