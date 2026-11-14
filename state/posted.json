@@ -104,7 +104,8 @@
     "Oe-kAm3bFic",
     "-bd5Qb2WCBc",
     "drive-1UX4jrmRgAwPQPBnnyWz8f0IXFIgy4Rxl",
-    "Y0CfJm1ARlU"
+    "Y0CfJm1ARlU",
+    "8AeZesTOIC8"
   ],
   "log": [
     {
@@ -1526,6 +1527,20 @@
       "yt_state": "public",
       "instagram": "https://www.instagram.com/reel/DftuikFJTmu/",
       "facebook": "https://www.facebook.com/reel/1157604460148586/",
+      "errors": []
+    },
+    {
+      "slot": "2026-11-14 14:00",
+      "source_id": "8AeZesTOIC8",
+      "source_title": "ΠΑΝΑΘΗΝΑΪΚΟΣ - ARSENAL 2001/02",
+      "title": "🔥 ΠΑΝΑΘΗΝΑΪΚΟΣ – ARSENAL 1-0! ☘️ #elaoposeisai #paofc #shorts",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/0HqihCjIZ0w",
+      "yt_id": "0HqihCjIZ0w",
+      "yt_uploaded": "2026-11-14T12:00:24.326000+00:00",
+      "yt_state": "pending",
+      "instagram": "https://www.instagram.com/reel/DfuKAxssRjQ/",
+      "facebook": "https://www.facebook.com/reel/1362358965873071/",
       "errors": []
     }
   ],
