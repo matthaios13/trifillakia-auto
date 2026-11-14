@@ -105,7 +105,8 @@
     "-bd5Qb2WCBc",
     "drive-1UX4jrmRgAwPQPBnnyWz8f0IXFIgy4Rxl",
     "Y0CfJm1ARlU",
-    "8AeZesTOIC8"
+    "8AeZesTOIC8",
+    "YZhgVgPSfjQ"
   ],
   "log": [
     {
@@ -1541,6 +1542,20 @@
       "yt_state": "public",
       "instagram": "https://www.instagram.com/reel/DfuKAxssRjQ/",
       "facebook": "https://www.facebook.com/reel/1362358965873071/",
+      "errors": []
+    },
+    {
+      "slot": "2026-11-14 19:00",
+      "source_id": "YZhgVgPSfjQ",
+      "source_title": "PORTO - ΠΑΝΑΘΗΝΑΪΚΟΣ 2002/03",
+      "title": "🔥 PORTO – ΠΑΝΑΘΗΝΑΪΚΟΣ 0-1! ☘️ #elaoposeisai #paofc #shorts",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/Ea3ejQQQLkA",
+      "yt_id": "Ea3ejQQQLkA",
+      "yt_uploaded": "2026-11-14T17:00:19.946051+00:00",
+      "yt_state": "pending",
+      "instagram": "https://www.instagram.com/reel/DfusVk-Bkhw/",
+      "facebook": "https://www.facebook.com/reel/4073720822933060/",
       "errors": []
     }
   ],
