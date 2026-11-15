@@ -39,17 +39,31 @@ def load_cfg():
     return yaml.safe_load((ROOT / "config.yaml").read_text())
 
 
+def slot_times(cfg):
+    """Όλες οι ώρες ανάρτησης: (ώρα, άθλημα). Ποδόσφαιρο από το schedule, μπάσκετ από το basket."""
+    out = [(h, "football") for h in cfg["schedule"]["slots"]]
+    bk = cfg.get("basket") or {}
+    if bk.get("active"):
+        out += [(h, "basketball") for h in bk.get("slots", [])]
+    return sorted(out)
+
+
 def due_slot(cfg, state, now):
-    """Επιστρέφει το slot (π.χ. '2026-10-14 14:00') που πρέπει να γίνει τώρα, ή None."""
+    """Επιστρέφει (slot, άθλημα), π.χ. ('2026-10-14 14:00', 'football'), ή (None, None)."""
     sch = cfg["schedule"]
     done = {e["slot"] for e in state["log"] if e.get("ok")}
-    for hhmm in reversed(sch["slots"]):
+    for hhmm, sport in reversed(slot_times(cfg)):
         h, m = map(int, hhmm.split(":"))
         slot_time = now.replace(hour=h, minute=m, second=0, microsecond=0)
         key = slot_time.strftime("%Y-%m-%d %H:%M")
         if slot_time <= now < slot_time + timedelta(hours=sch["grace_hours"]) and key not in done:
-            return key
-    return None
+            return key, sport
+    return None, None
+
+
+def item_sport(item_id):
+    f = QUEUE / f"{item_id}.json"
+    return json.loads(f.read_text()).get("sport", "football") if f.exists() else "football"
 
 
 def pending(state):
@@ -159,7 +173,7 @@ def tiktok_backlog(cfg, state, now):
         return
     # Το παλιότερο ρετρό που δεν έχει πάει ακόμα στο TikTok (όχι Drive).
     cands = [e for e in state["log"] if e.get("ok") and not e.get("tiktok") and "drive" not in str(e.get("slot", ""))
-             and not str(e.get("source_id", "")).startswith("drive-")]
+             and not str(e.get("source_id", "")).startswith("drive-") and e.get("sport", "football") == "football"]
     for e in cands:
         item_id = e["source_id"]
         path = Path(tempfile.mkdtemp()) / f"{item_id}.mp4"
@@ -241,11 +255,11 @@ def review_youtube(cfg, state):
     return changed
 
 
-def notify_low_queue(left):
+def notify_low_queue(left, sport="football"):
     """Ανοίγει issue στο GitHub (έρχεται email) όταν η ουρά αδειάζει."""
-    if left > LOW_QUEUE or not os.environ.get("GITHUB_ACTIONS"):
+    if left > (LOW_QUEUE if sport == "football" else 4) or not os.environ.get("GITHUB_ACTIONS"):
         return
-    title = "Η ουρά βίντεο αδειάζει — άνοιξε το Mac"
+    title = "Η ουρά βίντεο αδειάζει — άνοιξε το Mac" + (" (μπάσκετ)" if sport == "basketball" else "")
     open_issues = subprocess.run(["gh", "issue", "list", "--state", "open", "--search", title, "--json", "number"],
                                  capture_output=True, text=True).stdout
     if open_issues.strip() in ("", "[]"):
@@ -256,6 +270,7 @@ def notify_low_queue(left):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--force", action="store_true")
+    ap.add_argument("--sport", choices=["football", "basketball"], default="football", help="με --force")
     ap.add_argument("--check", action="store_true")
     ap.add_argument("--review", action="store_true")
     ap.add_argument("--youtube-check", action="store_true")
@@ -295,9 +310,9 @@ def main():
             save_state(state)
         return
     now = datetime.now(ZoneInfo(cfg["schedule"]["timezone"]))
-    slot = due_slot(cfg, state, now) if cfg.get("active") else None
+    slot, sport = due_slot(cfg, state, now) if cfg.get("active") else (None, None)
     if args.force:
-        slot = slot or now.strftime("%Y-%m-%d %H:%M") + " (manual)"
+        slot, sport = slot or now.strftime("%Y-%m-%d %H:%M") + " (manual)", sport or args.sport
 
     if args.check:
         print(f"due={'true' if slot else 'false'}")
@@ -309,10 +324,10 @@ def main():
         print(f"{now:%H:%M} — δεν είναι ώρα ανάρτησης (ή active: false).")
         return
 
-    queue = pending(state)
+    queue = [i for i in pending(state) if item_sport(i) == sport]
     if not queue:
-        notify_low_queue(0)
-        sys.exit("Η ουρά είναι άδεια — δεν υπάρχει έτοιμο βίντεο.")
+        notify_low_queue(0, sport)
+        sys.exit(f"Η ουρά ({sport}) είναι άδεια — δεν υπάρχει έτοιμο βίντεο.")
     item_id = queue[0]
     meta = json.loads((QUEUE / f"{item_id}.json").read_text())
     video_url = public_url(item_id)
@@ -320,7 +335,7 @@ def main():
 
     import publish
     entry = {"slot": slot, "source_id": item_id, "source_title": meta["source_title"],
-             "title": meta["youtube_title"], "ok": False}
+             "title": meta["youtube_title"], "sport": sport, "ok": False}
     errors = []
     pub = cfg["publish"]
     if pub.get("youtube"):
@@ -349,7 +364,7 @@ def main():
         except Exception as e:
             errors.append(f"Facebook: {e}")
 
-    if pub.get("tiktok") and os.environ.get("TIKTOK_PUSH_KEY"):
+    if pub.get("tiktok") and os.environ.get("TIKTOK_PUSH_KEY") and sport == "football":
         try:
             tt_text = f"{meta['youtube_title'].replace(' #shorts', '')}\n\n{meta['full_description']} {pub.get('tiktok_hashtags', '')}".strip()
             entry["tiktok_caption"] = tt_text[:2200]   # για τη λίστα «TikTok πρόχειρα» στο panel (τα πρόχειρα δεν παίρνουν λεζάντα)
@@ -365,7 +380,7 @@ def main():
         state["posted_ids"].append(item_id)
     state["log"].append(entry)
     save_state(state)
-    notify_low_queue(len(queue) - (1 if entry["ok"] else 0))
+    notify_low_queue(len(queue) - (1 if entry["ok"] else 0), sport)
     if errors:
         print("\n".join(errors), file=sys.stderr)
         sys.exit(1)  # το GitHub στέλνει email όταν αποτυγχάνει κάτι

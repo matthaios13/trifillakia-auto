@@ -12,7 +12,7 @@ on:
         description: "normal / force (ανάρτηση τώρα) / youtube-check (έλεγχος σύνδεσης YouTube)"
         default: normal
         type: choice
-        options: [normal, force, facebook-check, youtube-check, youtube-repost, tiktok-repost, youtube-review-now]
+        options: [normal, force, force-basket, facebook-check, youtube-check, youtube-repost, tiktok-repost, youtube-review-now]
       video:
         description: "Για youtube-repost: το ID του βίντεο (από το state/posted.json)"
         required: false
@@ -83,7 +83,7 @@ jobs:
       - name: Είναι ώρα ανάρτησης;
         id: check
         run: |
-          if [ "${{ github.event.inputs.mode }}" = "force" ]; then echo "due=true" >> "$GITHUB_OUTPUT";
+          if [ "${{ github.event.inputs.mode }}" = "force" ] || [ "${{ github.event.inputs.mode }}" = "force-basket" ]; then echo "due=true" >> "$GITHUB_OUTPUT";
           elif [ -n "${{ github.event.inputs.mode }}" ] && [ "${{ github.event.inputs.mode }}" != "normal" ]; then echo "due=false" >> "$GITHUB_OUTPUT";
           else python src/main.py --check; fi
 
@@ -115,6 +115,7 @@ jobs:
           TIKTOK_PUSH_KEY: ${{ secrets.TIKTOK_PUSH_KEY }}
         run: |
           if [ "${{ github.event.inputs.mode }}" = "force" ]; then python -u src/main.py --force;
+          elif [ "${{ github.event.inputs.mode }}" = "force-basket" ]; then python -u src/main.py --force --sport basketball;
           else python -u src/main.py; fi
 
       # Σε κάθε εκτέλεση: ιδιωτικά Shorts που περιμένουν έλεγχο → δημόσια αν είναι καθαρά

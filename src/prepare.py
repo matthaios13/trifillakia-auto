@@ -24,6 +24,7 @@ ROOT = Path(__file__).resolve().parent.parent
 DATA = Path(os.environ.get("TRIFILLAKIA_DATA", Path.home() / "Library/Application Support/TrifillakiaAuto"))
 os.environ["TRIFILLAKIA_DATA"] = str(DATA)
 
+import basket  # noqa: E402
 import caption  # noqa: E402
 import render  # noqa: E402
 import source  # noqa: E402
@@ -101,6 +102,7 @@ class Queue:
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--one", action="store_true")
+    ap.add_argument("--sport", choices=["football", "basketball"], default="football", help="με --one")
     args = ap.parse_args()
 
     DATA.mkdir(parents=True, exist_ok=True)
@@ -122,26 +124,59 @@ def main():
     try:
         for item in [i for i in q.manifest if i in posted]:  # βγάζουμε ό,τι έχει αναρτηθεί
             q.remove(item)
-        target = 1 if args.one else cfg["queue"]["days_ahead"] * len(cfg["schedule"]["slots"])
-        need = 1 if args.one else max(0, target - len(q.manifest))
-        print(f"Στην ουρά: {len(q.manifest)} | στόχος: {target} | φτιάχνω: {need}")
+        def sport_of(i):
+            f = q.dir / f"{i}.json"
+            return json.loads(f.read_text()).get("sport", "football") if f.exists() else "football"
+        have = {"football": 0, "basketball": 0}
+        for i in q.manifest:
+            have[sport_of(i)] += 1
+        bk = cfg.get("basket") or {}
+        days = cfg["queue"]["days_ahead"]
+        targets = {"football": days * len(cfg["schedule"]["slots"]),
+                   "basketball": days * len(bk.get("slots", [])) if bk.get("active") else 0}
+        if args.one:
+            jobs = [args.sport]
+        else:
+            nf = max(0, targets["football"] - have["football"])
+            nb = max(0, targets["basketball"] - have["basketball"])
+            jobs = []  # εναλλάξ, ώστε να γεμίζουν και οι δύο ουρές ταυτόχρονα
+            while nf or nb:
+                if nf:
+                    jobs.append("football"); nf -= 1
+                if nb:
+                    jobs.append("basketball"); nb -= 1
+        print(f"Στην ουρά: ποδόσφαιρο {have['football']}/{targets['football']}, "
+              f"μπάσκετ {have['basketball']}/{targets['basketball']} | φτιάχνω: {len(jobs)}")
         made = 0
-        for n in range(need):
+        first_fb = True
+        for sport in jobs:
             work = Path(tempfile.mkdtemp(prefix="trifillakia-work-"))
             try:
-                info = source.pick_next(cfg, posted | set(q.manifest), catalog_limit=60 if n == 0 else 0)
-                video, thumb = source.download(info, work)
-                text = caption.generate(info, cfg)
+                if sport == "basketball":
+                    info = basket.pick_next(cfg, posted | set(q.manifest))
+                    video, thumb = source.download(info, work)
+                    text = basket.generate(info, cfg)
+                    max_s = bk.get("max_seconds", 170)
+                else:
+                    info = source.pick_next(cfg, posted | set(q.manifest), catalog_limit=60 if first_fb else 0)
+                    first_fb = False
+                    video, thumb = source.download(info, work)
+                    text = caption.generate(info, cfg)
+                    max_s = cfg["source"]["max_seconds"]
                 out = work / "out" / f"{info['id']}.mp4"
                 out.parent.mkdir()
-                render.render(video, thumb, text["overlay_title"], out, max_seconds=cfg["source"]["max_seconds"])
-                q.add(out, {
+                render.render(video, thumb, text["overlay_title"], out, max_seconds=max_s)
+                meta = {
                     "source_title": info["title"],
                     "overlay_title": text["overlay_title"],
                     "youtube_title": text["youtube_title"],
                     "full_description": text["full_description"],
                     "confident": text.get("confident", True),
-                })
+                    "sport": sport,
+                }
+                if sport == "basketball":
+                    meta["fixed_title"] = True  # ο τίτλος είναι ήδη έτοιμος (basket.py)
+                q.add(out, meta)
                 made += 1
                 print(f"✓ {info['title']} → {text['overlay_title']}")
                 if made % 3 == 0:  # ανεβαίνουν σταδιακά ώστε να είναι διαθέσιμα νωρίς
