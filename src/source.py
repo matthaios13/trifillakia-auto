@@ -21,7 +21,7 @@ def list_channel(channel_url):
     opts = {**_base_opts(), "extract_flat": True}
     with yt_dlp.YoutubeDL(opts) as ydl:
         info = ydl.extract_info(channel_url, download=False)
-    return [{"id": e["id"], "title": e.get("title", "")} for e in info.get("entries", []) if e]
+    return [{"id": e["id"], "title": e.get("title", ""), "duration": e.get("duration")} for e in info.get("entries", []) if e]
 
 
 def fetch_info(video_id):
