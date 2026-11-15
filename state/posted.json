@@ -106,7 +106,8 @@
     "drive-1UX4jrmRgAwPQPBnnyWz8f0IXFIgy4Rxl",
     "Y0CfJm1ARlU",
     "8AeZesTOIC8",
-    "YZhgVgPSfjQ"
+    "YZhgVgPSfjQ",
+    "_l0XLlPUVTw"
   ],
   "log": [
     {
@@ -1556,6 +1557,20 @@
       "yt_state": "public",
       "instagram": "https://www.instagram.com/reel/DfusVk-Bkhw/",
       "facebook": "https://www.facebook.com/reel/4073720822933060/",
+      "errors": []
+    },
+    {
+      "slot": "2026-11-15 10:00",
+      "source_id": "_l0XLlPUVTw",
+      "source_title": "GORICA - ΠΑΝΑΘΗΝΑΪΚΟΣ 1999/00",
+      "title": "🔥 GORICA – ΠΑΝΑΘΗΝΑΪΚΟΣ 0-1! ☘️ #elaoposeisai #paofc #shorts",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/_a9WyAJO8kI",
+      "yt_id": "_a9WyAJO8kI",
+      "yt_uploaded": "2026-11-15T08:01:03.328568+00:00",
+      "yt_state": "pending",
+      "instagram": "https://www.instagram.com/reel/DfwTepsNx8B/",
+      "facebook": "https://www.facebook.com/reel/1178719987846438/",
       "errors": []
     }
   ],
