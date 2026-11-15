@@ -108,7 +108,8 @@
     "8AeZesTOIC8",
     "YZhgVgPSfjQ",
     "_l0XLlPUVTw",
-    "1aGtUsOjk1A"
+    "1aGtUsOjk1A",
+    "gBS3IZ4p7mU"
   ],
   "log": [
     {
@@ -1584,9 +1585,24 @@
       "youtube": "https://youtube.com/shorts/g3grkjDd_qw",
       "yt_id": "g3grkjDd_qw",
       "yt_uploaded": "2026-11-15T10:30:26.381442+00:00",
-      "yt_state": "pending",
+      "yt_state": "public",
       "instagram": "https://www.instagram.com/reel/DfwkhLiAl0y/",
       "facebook": "https://www.facebook.com/reel/1563732372187874/",
+      "errors": []
+    },
+    {
+      "slot": "2026-11-15 14:00",
+      "source_id": "gBS3IZ4p7mU",
+      "source_title": "ΠΑΝΑΘΗΝΑΪΚΟΣ - GAK 1999/00",
+      "title": "🔥 ΠΑΝΑΘΗΝΑΪΚΟΣ – GAK 1-0! ☘️ #elaoposeisai #paofc #shorts",
+      "sport": "football",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/o1DZZPPzbtk",
+      "yt_id": "o1DZZPPzbtk",
+      "yt_uploaded": "2026-11-15T12:00:27.156781+00:00",
+      "yt_state": "pending",
+      "instagram": "https://www.instagram.com/reel/Dfwuz5pB5H8/",
+      "facebook": "https://www.facebook.com/reel/1791375115454413/",
       "errors": []
     }
   ],
