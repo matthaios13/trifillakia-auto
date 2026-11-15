@@ -110,7 +110,8 @@
     "_l0XLlPUVTw",
     "1aGtUsOjk1A",
     "gBS3IZ4p7mU",
-    "VKGzHlGGwJ0"
+    "VKGzHlGGwJ0",
+    "VEM9OmV1ey4"
   ],
   "log": [
     {
@@ -1616,9 +1617,24 @@
       "youtube": "https://youtube.com/shorts/4U_1PYFY8xw",
       "yt_id": "4U_1PYFY8xw",
       "yt_uploaded": "2026-11-15T15:00:26.583398+00:00",
-      "yt_state": "pending",
+      "yt_state": "public",
       "instagram": "https://www.instagram.com/reel/DfxDagOP5ce/",
       "facebook": "https://www.facebook.com/reel/2056282781719233/",
+      "errors": []
+    },
+    {
+      "slot": "2026-11-15 19:00",
+      "source_id": "VEM9OmV1ey4",
+      "source_title": "ΠΑΝΑΘΗΝΑΪΚΟΣ - LITEX 2002/03",
+      "title": "🔥 ΠΑΝΑΘΗΝΑΪΚΟΣ – LITEX 2-1! ☘️ #elaoposeisai #paofc #shorts",
+      "sport": "football",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/YTCtKPzHqGk",
+      "yt_id": "YTCtKPzHqGk",
+      "yt_uploaded": "2026-11-15T17:00:26.981029+00:00",
+      "yt_state": "pending",
+      "instagram": "https://www.instagram.com/reel/DfxRJYDhbFD/",
+      "facebook": "https://www.facebook.com/reel/2103331410292212/",
       "errors": []
     }
   ],
