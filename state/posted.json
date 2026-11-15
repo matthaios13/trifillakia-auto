@@ -107,7 +107,8 @@
     "Y0CfJm1ARlU",
     "8AeZesTOIC8",
     "YZhgVgPSfjQ",
-    "_l0XLlPUVTw"
+    "_l0XLlPUVTw",
+    "1aGtUsOjk1A"
   ],
   "log": [
     {
@@ -1568,9 +1569,24 @@
       "youtube": "https://youtube.com/shorts/_a9WyAJO8kI",
       "yt_id": "_a9WyAJO8kI",
       "yt_uploaded": "2026-11-15T08:01:03.328568+00:00",
-      "yt_state": "pending",
+      "yt_state": "public",
       "instagram": "https://www.instagram.com/reel/DfwTepsNx8B/",
       "facebook": "https://www.facebook.com/reel/1178719987846438/",
+      "errors": []
+    },
+    {
+      "slot": "2026-11-15 12:30",
+      "source_id": "1aGtUsOjk1A",
+      "source_title": "1996-97 ΠΑΝΑΘΗΝΑΙΚΟΣ-ΟΣΦΠ 79-64",
+      "title": "ΝΙΚΗ ΣΤΟ ΝΤΕΡΜΠΙ! 🔥 ΠΑΟ – ΟΛΥΜΠΙΑΚΟΣ 79-64 #elaoposeisai #paobc #shorts",
+      "sport": "basketball",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/g3grkjDd_qw",
+      "yt_id": "g3grkjDd_qw",
+      "yt_uploaded": "2026-11-15T10:30:26.381442+00:00",
+      "yt_state": "pending",
+      "instagram": "https://www.instagram.com/reel/DfwkhLiAl0y/",
+      "facebook": "https://www.facebook.com/reel/1563732372187874/",
       "errors": []
     }
   ],
