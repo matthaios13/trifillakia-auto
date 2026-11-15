@@ -111,7 +111,8 @@
     "1aGtUsOjk1A",
     "gBS3IZ4p7mU",
     "VKGzHlGGwJ0",
-    "VEM9OmV1ey4"
+    "VEM9OmV1ey4",
+    "drive-1FupqjssFi_seM8_cIFE46o8q7focA4K7"
   ],
   "log": [
     {
@@ -1632,9 +1633,25 @@
       "youtube": "https://youtube.com/shorts/YTCtKPzHqGk",
       "yt_id": "YTCtKPzHqGk",
       "yt_uploaded": "2026-11-15T17:00:26.981029+00:00",
-      "yt_state": "pending",
+      "yt_state": "public",
       "instagram": "https://www.instagram.com/reel/DfxRJYDhbFD/",
       "facebook": "https://www.facebook.com/reel/2103331410292212/",
+      "errors": []
+    },
+    {
+      "slot": "2026-11-15 19:56 (drive)",
+      "source_id": "drive-1FupqjssFi_seM8_cIFE46o8q7focA4K7",
+      "source_title": "[PAO INSIDE] Αυτός είναι ο Άντερς Ντρέγιερ που τσεκάρει ο Παναθηναϊκός!",
+      "title": "Αυτός είναι ο Άντερς Ντρέγιερ που τσεκάρει ο Παναθηναϊκός! #elaoposeisai #shorts #paoinside",
+      "uploader": "Trifillakia GR (Trifillakia.gr)",
+      "sport": "both",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/Qpmsx1YCqdE",
+      "yt_id": "Qpmsx1YCqdE",
+      "yt_uploaded": "2026-11-15T19:57:19.943355+00:00",
+      "yt_state": "pending",
+      "instagram": "https://www.instagram.com/reel/DfxlZkfPcx5/",
+      "facebook": "https://www.facebook.com/reel/1007035162474205/",
       "errors": []
     }
   ],
