@@ -113,7 +113,8 @@
     "VKGzHlGGwJ0",
     "VEM9OmV1ey4",
     "drive-1FupqjssFi_seM8_cIFE46o8q7focA4K7",
-    "5rHqU4oZbr0"
+    "5rHqU4oZbr0",
+    "KtdOdDho1y4"
   ],
   "log": [
     {
@@ -1665,9 +1666,24 @@
       "youtube": "https://youtube.com/shorts/p25jjOrURIY",
       "yt_id": "p25jjOrURIY",
       "yt_uploaded": "2026-11-16T08:00:36.502641+00:00",
-      "yt_state": "pending",
+      "yt_state": "public",
       "instagram": "https://www.instagram.com/reel/Dfy4KdMyDeT/",
       "facebook": "https://www.facebook.com/reel/1437317211821881/",
+      "errors": []
+    },
+    {
+      "slot": "2026-11-16 12:30",
+      "source_id": "KtdOdDho1y4",
+      "source_title": "2012-13 ΠΑΝΑΘΗΝΑΙΚΟΣ-ΟΣΦΠ 81-78 ΤΕΛΙΚΟΣ ΚΥΠΕΛΛΟΥ",
+      "title": "ΤΕΛΙΚΟΣ ΚΑΙ ΤΡΟΠΑΙΟ! 🏆☘️ ΠΑΟ – ΟΛΥΜΠΙΑΚΟΣ 81-78 #elaoposeisai #paobc #shorts",
+      "sport": "basketball",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/8ogm1FSN_-4",
+      "yt_id": "8ogm1FSN_-4",
+      "yt_uploaded": "2026-11-16T10:30:31.959496+00:00",
+      "yt_state": "pending",
+      "instagram": "https://www.instagram.com/reel/DfzJUkbtSe0/",
+      "facebook": "https://www.facebook.com/reel/1395923375714645/",
       "errors": []
     }
   ],
