@@ -115,7 +115,8 @@
     "drive-1FupqjssFi_seM8_cIFE46o8q7focA4K7",
     "5rHqU4oZbr0",
     "KtdOdDho1y4",
-    "FZ54kAutfXE"
+    "FZ54kAutfXE",
+    "-Cvp-s0Rrwg"
   ],
   "log": [
     {
@@ -1697,9 +1698,24 @@
       "youtube": "https://youtube.com/shorts/hfsc590gbHE",
       "yt_id": "hfsc590gbHE",
       "yt_uploaded": "2026-11-16T12:00:40.135770+00:00",
-      "yt_state": "pending",
+      "yt_state": "public",
       "instagram": "https://www.instagram.com/reel/DfzToryqQb-/",
       "facebook": "https://www.facebook.com/reel/3055865528124800/",
+      "errors": []
+    },
+    {
+      "slot": "2026-11-16 17:00",
+      "source_id": "-Cvp-s0Rrwg",
+      "source_title": "1985-86 ΠΑΝΑΘΗΝΑΙΚΟΣ-ΑΡΗΣ Θ. 87-84",
+      "title": "ΤΟ ΝΤΕΡΜΠΙ ΕΙΝΑΙ ΠΡΑΣΙΝΟ! 💚 ΠΑΟ – ΑΡΗΣ 87-84 #elaoposeisai #paobc #shorts",
+      "sport": "basketball",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/757AbYsBSpU",
+      "yt_id": "757AbYsBSpU",
+      "yt_uploaded": "2026-11-16T15:00:36.600924+00:00",
+      "yt_state": "pending",
+      "instagram": "https://www.instagram.com/reel/DfzoOtHAiay/",
+      "facebook": "https://www.facebook.com/reel/1064813533286210/",
       "errors": []
     }
   ],
