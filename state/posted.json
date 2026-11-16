@@ -114,7 +114,8 @@
     "VEM9OmV1ey4",
     "drive-1FupqjssFi_seM8_cIFE46o8q7focA4K7",
     "5rHqU4oZbr0",
-    "KtdOdDho1y4"
+    "KtdOdDho1y4",
+    "FZ54kAutfXE"
   ],
   "log": [
     {
@@ -1681,9 +1682,24 @@
       "youtube": "https://youtube.com/shorts/8ogm1FSN_-4",
       "yt_id": "8ogm1FSN_-4",
       "yt_uploaded": "2026-11-16T10:30:31.959496+00:00",
-      "yt_state": "pending",
+      "yt_state": "public",
       "instagram": "https://www.instagram.com/reel/DfzJUkbtSe0/",
       "facebook": "https://www.facebook.com/reel/1395923375714645/",
+      "errors": []
+    },
+    {
+      "slot": "2026-11-16 14:00",
+      "source_id": "FZ54kAutfXE",
+      "source_title": "ΠΑΝΑΘΗΝΑΪΚΟΣ - SLAVIA PRAGUE 2001/02",
+      "title": "🔥 ΠΑΝΑΘΗΝΑΪΚΟΣ – SLAVIA PRAGUE 1-0! ☘️ #elaoposeisai #paofc #shorts",
+      "sport": "football",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/hfsc590gbHE",
+      "yt_id": "hfsc590gbHE",
+      "yt_uploaded": "2026-11-16T12:00:40.135770+00:00",
+      "yt_state": "pending",
+      "instagram": "https://www.instagram.com/reel/DfzToryqQb-/",
+      "facebook": "https://www.facebook.com/reel/3055865528124800/",
       "errors": []
     }
   ],
