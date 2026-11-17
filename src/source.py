@@ -33,6 +33,16 @@ def pick_next(cfg, posted_ids, catalog_limit=40):
     """Διαλέγει με προτεραιότητα: νίκες πρώτα, μετά ευρωπαϊκά ματς (βλ. catalog.py)."""
     import catalog
     src = cfg["source"]
+    # Ποτέ το ίδιο βίντεο με τα Παναθηναϊκά Νέα («Σαν σήμερα»): ό,τι έχει ανέβει ή περιμένει εκεί
+    try:
+        import requests
+        raw = "https://raw.githubusercontent.com/matthaios13/panathinaikanea-auto"
+        pn = set(requests.get(f"{raw}/main/state/posted.json", timeout=30).json()["posted_ids"])
+        r = requests.get(f"{raw}/queue/manifest.json", timeout=30)
+        pn |= set(r.json()) if r.ok else set()
+        posted_ids = set(posted_ids) | pn
+    except Exception as e:
+        print(f"(Παναθηναϊκά Νέα: δεν διαβάστηκαν ({e}))")
     # Ενημερώνει τον κατάλογο με όσα νέα βίντεο έχουν ανέβει (λίγα κάθε φορά)
     cat = catalog.update(list_channel(src["channel_url"]), fetch_info, limit=catalog_limit)
     # Η τρέχουσα σεζόν ξεκινά τον Ιούλιο. Εξαιρούμε τις πιο πρόσφατες σεζόν (δικαιώματα τηλεόρασης).
