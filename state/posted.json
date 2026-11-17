@@ -119,7 +119,8 @@
     "-Cvp-s0Rrwg",
     "WSYpYKmKOgA",
     "a_RAfHUWk8A",
-    "81HU_9dK8vA"
+    "81HU_9dK8vA",
+    "YExDZtcQEYs"
   ],
   "log": [
     {
@@ -1761,9 +1762,24 @@
       "youtube": "https://youtube.com/shorts/jOw3m6a9e5w",
       "yt_id": "jOw3m6a9e5w",
       "yt_uploaded": "2026-11-17T10:30:36.435974+00:00",
-      "yt_state": "pending",
+      "yt_state": "public",
       "instagram": "https://www.instagram.com/reel/Df1uHzBNyut/",
       "facebook": "https://www.facebook.com/reel/1594154642467575/",
+      "errors": []
+    },
+    {
+      "slot": "2026-11-17 14:00",
+      "source_id": "YExDZtcQEYs",
+      "source_title": "ΠΑΝΑΘΗΝΑΪΚΟΣ - SPARTA PRAGUE 2001/02",
+      "title": "🔥 ΠΑΝΑΘΗΝΑΪΚΟΣ – SPARTA PRAGUE 2-1! ☘️ #elaoposeisai #paofc #shorts",
+      "sport": "football",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/0LTv-xEOBt0",
+      "yt_id": "0LTv-xEOBt0",
+      "yt_uploaded": "2026-11-17T12:00:25.926312+00:00",
+      "yt_state": "pending",
+      "instagram": "https://www.instagram.com/reel/Df14ZtovfRg/",
+      "facebook": "https://www.facebook.com/reel/3883939121748143/",
       "errors": []
     }
   ],
