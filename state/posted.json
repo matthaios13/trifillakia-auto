@@ -120,7 +120,8 @@
     "WSYpYKmKOgA",
     "a_RAfHUWk8A",
     "81HU_9dK8vA",
-    "YExDZtcQEYs"
+    "YExDZtcQEYs",
+    "rsVXHalvZxw"
   ],
   "log": [
     {
@@ -1777,9 +1778,24 @@
       "youtube": "https://youtube.com/shorts/0LTv-xEOBt0",
       "yt_id": "0LTv-xEOBt0",
       "yt_uploaded": "2026-11-17T12:00:25.926312+00:00",
-      "yt_state": "pending",
+      "yt_state": "public",
       "instagram": "https://www.instagram.com/reel/Df14ZtovfRg/",
       "facebook": "https://www.facebook.com/reel/3883939121748143/",
+      "errors": []
+    },
+    {
+      "slot": "2026-11-17 17:00",
+      "source_id": "rsVXHalvZxw",
+      "source_title": "2000-01 ΑΕΚ-ΠΑΝΑΘΗΝΑΙΚΟΣ 74-82",
+      "title": "ΤΟ ΝΤΕΡΜΠΙ ΕΙΝΑΙ ΠΡΑΣΙΝΟ! 💚 ΑΕΚ – ΠΑΟ 74-82 #elaoposeisai #paobc #shorts",
+      "sport": "basketball",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/22iPSq-N0Ms",
+      "yt_id": "22iPSq-N0Ms",
+      "yt_uploaded": "2026-11-17T15:04:28.575127+00:00",
+      "yt_state": "pending",
+      "instagram": "https://www.instagram.com/reel/Df2NiN-TAVR/",
+      "facebook": "https://www.facebook.com/reel/1721738979740141/",
       "errors": []
     }
   ],
