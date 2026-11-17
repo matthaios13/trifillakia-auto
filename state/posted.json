@@ -118,7 +118,8 @@
     "FZ54kAutfXE",
     "-Cvp-s0Rrwg",
     "WSYpYKmKOgA",
-    "a_RAfHUWk8A"
+    "a_RAfHUWk8A",
+    "81HU_9dK8vA"
   ],
   "log": [
     {
@@ -1745,9 +1746,24 @@
       "youtube": "https://youtube.com/shorts/cqO6kRJRvos",
       "yt_id": "cqO6kRJRvos",
       "yt_uploaded": "2026-11-17T08:00:24.013352+00:00",
-      "yt_state": "pending",
+      "yt_state": "public",
       "instagram": "https://www.instagram.com/reel/Df1c7rUh4k_/",
       "facebook": "https://www.facebook.com/reel/2026699261619830/",
+      "errors": []
+    },
+    {
+      "slot": "2026-11-17 12:30",
+      "source_id": "81HU_9dK8vA",
+      "source_title": "2008-09 ΜΑΡΟΥΣΙ-ΠΑΝΑΘΗΝΑΙΚΟΣ 72-76",
+      "title": "ΕΤΣΙ ΠΑΙΖΕΙ ΤΟ ΤΡΙΦΥΛΛΙ! ☘️ ΜΑΡΟΥΣΙ – ΠΑΟ 72-76 #elaoposeisai #paobc #shorts",
+      "sport": "basketball",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/jOw3m6a9e5w",
+      "yt_id": "jOw3m6a9e5w",
+      "yt_uploaded": "2026-11-17T10:30:36.435974+00:00",
+      "yt_state": "pending",
+      "instagram": "https://www.instagram.com/reel/Df1uHzBNyut/",
+      "facebook": "https://www.facebook.com/reel/1594154642467575/",
       "errors": []
     }
   ],
