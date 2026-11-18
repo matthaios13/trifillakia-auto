@@ -123,7 +123,8 @@
     "YExDZtcQEYs",
     "rsVXHalvZxw",
     "cBAE1U7HsJI",
-    "8_v5mDm6BrA"
+    "8_v5mDm6BrA",
+    "IQdU0uz0x7c"
   ],
   "log": [
     {
@@ -1825,9 +1826,24 @@
       "youtube": "https://youtube.com/shorts/gnVbdPufvQY",
       "yt_id": "gnVbdPufvQY",
       "yt_uploaded": "2026-11-18T08:00:29.735199+00:00",
-      "yt_state": "pending",
+      "yt_state": "public",
       "instagram": "https://www.instagram.com/reel/Df4BvX7x8e6/",
       "facebook": "https://www.facebook.com/reel/2000752584214734/",
+      "errors": []
+    },
+    {
+      "slot": "2026-11-18 12:30",
+      "source_id": "IQdU0uz0x7c",
+      "source_title": "1981-82 ΠΑΝΑΘΗΝΑΙΚΟΣ-ΤΣΣΚΑ ΜΟΣΧΑΣ 87-83",
+      "title": "ΤΟ ΤΡΙΦΥΛΛΙ ΛΑΜΠΕΙ ΣΤΗΝ ΕΥΡΩΠΗ! ☘️ ΠΑΟ – ΤΣΣΚΑ ΜΟΣΧΑΣ 87-83 #elaoposeisai #paobc #shorts",
+      "sport": "basketball",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/9Vcl4k1euQo",
+      "yt_id": "9Vcl4k1euQo",
+      "yt_uploaded": "2026-11-18T10:30:19.477389+00:00",
+      "yt_state": "pending",
+      "instagram": "https://www.instagram.com/reel/Df4S4ujz2z2/",
+      "facebook": "https://www.facebook.com/reel/1116421227833691/",
       "errors": []
     }
   ],
