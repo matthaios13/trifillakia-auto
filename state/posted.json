@@ -122,7 +122,8 @@
     "81HU_9dK8vA",
     "YExDZtcQEYs",
     "rsVXHalvZxw",
-    "cBAE1U7HsJI"
+    "cBAE1U7HsJI",
+    "8_v5mDm6BrA"
   ],
   "log": [
     {
@@ -1812,6 +1813,21 @@
       "yt_state": "public",
       "instagram": "https://www.instagram.com/reel/Df2azGKx33h/",
       "facebook": "https://www.facebook.com/reel/1116522264474570/",
+      "errors": []
+    },
+    {
+      "slot": "2026-11-18 10:00",
+      "source_id": "8_v5mDm6BrA",
+      "source_title": "ΠΑΝΑΘΗΝΑΪΚΟΣ - ΑΕΚ 1999/00",
+      "title": "🔥 ΠΑΝΑΘΗΝΑΪΚΟΣ – ΑΕΚ 1-0! ☘️ #elaoposeisai #paofc #shorts",
+      "sport": "football",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/gnVbdPufvQY",
+      "yt_id": "gnVbdPufvQY",
+      "yt_uploaded": "2026-11-18T08:00:29.735199+00:00",
+      "yt_state": "pending",
+      "instagram": "https://www.instagram.com/reel/Df4BvX7x8e6/",
+      "facebook": "https://www.facebook.com/reel/2000752584214734/",
       "errors": []
     }
   ],
