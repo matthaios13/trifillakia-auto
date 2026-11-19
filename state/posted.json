@@ -129,7 +129,8 @@
     "sw1_nq04zBA",
     "GhY_8ncRfOA",
     "EcUA2kR0qHg",
-    "YdYlAHvtUwc"
+    "YdYlAHvtUwc",
+    "BT7v0Lz65Ks"
   ],
   "log": [
     {
@@ -1921,9 +1922,24 @@
       "youtube": "https://youtube.com/shorts/YSG8QBpLfLs",
       "yt_id": "YSG8QBpLfLs",
       "yt_uploaded": "2026-11-19T10:30:24.258609+00:00",
-      "yt_state": "pending",
+      "yt_state": "public",
       "instagram": "https://www.instagram.com/reel/Df63sAJBhCw/",
       "facebook": "https://www.facebook.com/reel/3707075919457821/",
+      "errors": []
+    },
+    {
+      "slot": "2026-11-19 14:00",
+      "source_id": "BT7v0Lz65Ks",
+      "source_title": "ΛΥΚΟΙ – ΠΑΝΑΘΗΝΑΪΚΟΣ 2002/03",
+      "title": "🔥 ΛΥΚΟΙ – ΠΑΝΑΘΗΝΑΪΚΟΣ 0-2! ☘️ #elaoposeisai #paofc #shorts",
+      "sport": "football",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/TvdTNx2Kh4k",
+      "yt_id": "TvdTNx2Kh4k",
+      "yt_uploaded": "2026-11-19T12:01:02.043871+00:00",
+      "yt_state": "pending",
+      "instagram": "https://www.instagram.com/reel/Df7CD6ehgoW/",
+      "facebook": "https://www.facebook.com/reel/1132169286262191/",
       "errors": []
     }
   ],
