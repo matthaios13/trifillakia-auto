@@ -95,11 +95,12 @@ def generate(info, cfg):
     if date_long:
         body = f"{date_long}\n{body}"
 
-    hashtags = cfg["hashtags"][cfg["source"]["sport"]]
-    tail = [cfg["source"]["credit"], cfg.get("footer"), hashtags]
+    import brand
+    hashtags = brand.tags(cfg, cfg["hashtags"][cfg["source"]["sport"]])
+    tail = [cfg["source"]["credit"], brand.footer(cfg), hashtags]
     return {
         "overlay_title": overlay,
-        "youtube_title": f"🔥 {match}! ☘️ #elaoposeisai #paofc #shorts",
+        "youtube_title": f"🔥 {match}! ☘️ {brand.title_tags(cfg, '#paofc #shorts')}",
         "full_description": "\n\n".join([body] + [t for t in tail if t]),
         "confident": bool(c["result"]),
     }

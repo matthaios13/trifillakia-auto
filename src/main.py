@@ -95,10 +95,19 @@ def fetch_video(item_id):
 
 def youtube_title(meta, cfg):
     """Τίτλος Shorts με «αγκίστρι» (βλ. titles.py) + τα hashtags του config στο τέλος."""
+    import brand
     if meta.get("fixed_title"):  # χειροκίνητα βίντεο με δικό τους τίτλο
-        return meta["youtube_title"]
+        return brand.title(cfg, meta["youtube_title"])
     import titles
-    return titles.youtube_title(meta, cfg["publish"].get("youtube_title_hashtags", "").strip())
+    tags = brand.title_tags(cfg, cfg["publish"].get("youtube_title_hashtags", ""))
+    room = 100 - (len(brand.name(cfg)) + 3 if (cfg.get("retro_brand") or {}).get("title_prefix") else 0)
+    return brand.title(cfg, titles.youtube_title(meta, tags, limit=room))
+
+
+def paid(meta, cfg):
+    """Σήμανση πληρωμένης προώθησης μόνο αν το βίντεο έχει Elabet μέσα (παλιά βίντεο της ουράς: ναι)."""
+    s = meta.get("sponsor")
+    return True if s is None else bool(s)
 
 
 def from_queue_history(item_id, ext):
@@ -125,7 +134,7 @@ def youtube_repost(cfg, state, item_id):
     path.write_bytes(from_queue_history(item_id, ".mp4"))
     pub = cfg["publish"]
     yt_id = publish.youtube_upload(path, youtube_title(meta, cfg), meta["full_description"],
-                                   privacy="private", paid_promotion=pub.get("youtube_paid_promotion", True))
+                                   privacy="private", paid_promotion=paid(meta, cfg))
     entry.update(youtube=f"https://youtube.com/shorts/{yt_id}", yt_id=yt_id,
                  yt_uploaded=datetime.now(ZoneInfo("UTC")).isoformat(),
                  yt_state="pending" if pub.get("youtube_auto_public") else "private")
@@ -333,6 +342,7 @@ def main():
     video_url = public_url(item_id)
     print(f"[{slot}] {meta['source_title']} → {meta['youtube_title']}")
 
+    import brand
     import publish
     entry = {"slot": slot, "source_id": item_id, "source_title": meta["source_title"],
              "title": meta["youtube_title"], "sport": sport, "ok": False}
@@ -342,7 +352,7 @@ def main():
         try:
             yt_id = publish.youtube_upload(
                 fetch_video(item_id), youtube_title(meta, cfg), meta["full_description"],
-                privacy="private", paid_promotion=pub.get("youtube_paid_promotion", True))
+                privacy="private", paid_promotion=paid(meta, cfg))
             entry.update(youtube=f"https://youtube.com/shorts/{yt_id}", yt_id=yt_id,
                          yt_uploaded=datetime.now(ZoneInfo("UTC")).isoformat(),
                          yt_state="pending" if pub.get("youtube_auto_public") else "private")
@@ -351,14 +361,14 @@ def main():
             errors.append(f"YouTube: {e}")
     if pub.get("instagram"):
         try:
-            ig_caption = f"{meta['youtube_title'].replace(' #shorts', '')}\n\n{meta['full_description']}"
+            ig_caption = f"{brand.title(cfg, meta['youtube_title'].replace(' #shorts', ''))}\n\n{meta['full_description']}"
             entry["instagram"] = publish.instagram_upload(video_url, ig_caption)
             print("Instagram:", entry["instagram"])
         except Exception as e:
             errors.append(f"Instagram: {e}")
     if pub.get("facebook"):
         try:
-            fb_text = f"{meta['youtube_title'].replace(' #shorts', '')}\n\n{meta['full_description']}"
+            fb_text = f"{brand.title(cfg, meta['youtube_title'].replace(' #shorts', ''))}\n\n{meta['full_description']}"
             entry["facebook"] = publish.facebook_reel_upload(video_url, fb_text)
             print("Facebook:", entry["facebook"])
         except Exception as e:
@@ -366,7 +376,7 @@ def main():
 
     if pub.get("tiktok") and os.environ.get("TIKTOK_PUSH_KEY") and sport == "football":
         try:
-            tt_text = f"{meta['youtube_title'].replace(' #shorts', '')}\n\n{meta['full_description']} {pub.get('tiktok_hashtags', '')}".strip()
+            tt_text = f"{brand.title(cfg, meta['youtube_title'].replace(' #shorts', ''))}\n\n{meta['full_description']} {pub.get('tiktok_hashtags', '')}".strip()
             entry["tiktok_caption"] = tt_text[:2200]   # για τη λίστα «TikTok πρόχειρα» στο panel (τα πρόχειρα δεν παίρνουν λεζάντα)
             entry["tiktok"] = publish.tiktok_upload(fetch_video(item_id), tt_text, pub.get("tiktok_mode", "inbox"))
             entry["tiktok_at"] = datetime.now(ZoneInfo("UTC")).isoformat()

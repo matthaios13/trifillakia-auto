@@ -144,7 +144,8 @@ def generate(info, cfg):
     if p["season_start"] < 1990:
         hooks += [v.format(y=p["season_start"], s=p["season"]) for v in VINTAGE]
     hook = rnd.choice(hooks)
-    tags = "#elaoposeisai #paobc #shorts"
+    import brand
+    tags = brand.title_tags(cfg, "#paobc #shorts")
     yt = f"{hook} {short}"
     if len(yt) + len(tags) + 1 > 100:
         yt = short
@@ -153,7 +154,7 @@ def generate(info, cfg):
         lines.append(f"🏆 {EXTRA.get(_norm(p['extra']), p['extra'])}")
     lines += ["", rnd.choice(CLOSING)]
     b = cfg["basket"]
-    tail = [b.get("credit"), cfg.get("footer"), cfg["hashtags"]["basketball"]]
+    tail = [b.get("credit"), brand.footer(cfg), brand.tags(cfg, cfg["hashtags"]["basketball"])]
     overlay = f"{p['season']} · {short}"
     return {
         "overlay_title": overlay,

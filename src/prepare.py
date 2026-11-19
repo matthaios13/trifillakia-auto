@@ -27,6 +27,7 @@ os.environ["TRIFILLAKIA_DATA"] = str(DATA)
 import basket  # noqa: E402
 import caption  # noqa: E402
 import render  # noqa: E402
+import brand
 import source  # noqa: E402
 
 
@@ -165,7 +166,7 @@ def main():
                     max_s = cfg["source"]["max_seconds"]
                 out = work / "out" / f"{info['id']}.mp4"
                 out.parent.mkdir()
-                render.render(video, thumb, text["overlay_title"], out, max_seconds=max_s)
+                render.render(video, thumb, text["overlay_title"], out, max_seconds=max_s, sponsor=brand.sponsor(cfg))
                 meta = {
                     "source_title": info["title"],
                     "overlay_title": text["overlay_title"],
@@ -173,6 +174,7 @@ def main():
                     "full_description": text["full_description"],
                     "confident": text.get("confident", True),
                     "sport": sport,
+                    "sponsor": brand.sponsor(cfg),   # Elabet μέσα στο βίντεο;
                 }
                 if sport == "basketball":
                     meta["fixed_title"] = True  # ο τίτλος είναι ήδη έτοιμος (basket.py)

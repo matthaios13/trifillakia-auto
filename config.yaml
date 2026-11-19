@@ -38,10 +38,21 @@ basket:
   max_seconds: 170
 
 hashtags:
-  football: "#paofc #panathinaikos #panathinaikosfc #ucl #championsleague #football #elabet #elaoposeisai #trifillakiagr"
-  basketball: "#paobc #panathinaikos #panathinaikosbc #paobcaktor #euroleague #basketball #elabet #elaoposeisai #trifillakiagr"
+  football: "#paofc #panathinaikos #panathinaikosfc #ucl #championsleague #football #trifillakiagr"
+  basketball: "#paobc #panathinaikos #panathinaikosbc #paobcaktor #euroleague #basketball #trifillakiagr"
 
-# Μπαίνει στο τέλος κάθε περιγραφής (πριν τα hashtags)
+# PAO Retro = τα ρετρό βίντεο (ποδόσφαιρο + μπάσκετ). Σήμα: assets/pao_retro_logo.png πάνω αριστερά.
+# sponsor: false μέχρι την έγκριση της ΕΕΕΠ για Elabet στις ιστορικές αναδρομές. Με true ξαναμπαίνουν ΟΛΑ:
+# σήμα Elabet πάνω δεξιά (ο χώρος μένει κενός), ΕΕΕΠ 21+, outro Elabet, #elabet #elaoposeisai, footer 21+,
+# σήμανση πληρωμένης προώθησης. Μετά την αλλαγή: άδειασμα ουράς + prepare (το σήμα είναι μέσα στο βίντεο).
+# title_prefix: true → «PAO Retro | …» μπροστά σε κάθε τίτλο (YouTube, Instagram, Facebook).
+retro_brand:
+  name: "PAO Retro"
+  sponsor: false
+  title_prefix: false
+  sponsor_hashtags: "#elabet #elaoposeisai"
+
+# Μπαίνει στο τέλος κάθε περιγραφής (πριν τα hashtags) — στα ρετρό μόνο με retro_brand.sponsor: true
 footer: "🔞 21+ | Παίξε υπεύθυνα"
 
 publish:
@@ -66,7 +77,7 @@ publish:
   youtube_auto_public: true
   youtube_review_minutes: 30
   # Hashtags στο τέλος του τίτλου των Shorts
-  youtube_title_hashtags: "#elaoposeisai #shorts #panathinaikos"
+  youtube_title_hashtags: "#shorts #panathinaikos"
   # Σήμανση «Περιέχει πληρωμένη προώθηση» (χορηγία Elabet) — απαιτείται από το YouTube
   youtube_paid_promotion: true
 
