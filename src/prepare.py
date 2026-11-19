@@ -27,7 +27,8 @@ os.environ["TRIFILLAKIA_DATA"] = str(DATA)
 import basket  # noqa: E402
 import caption  # noqa: E402
 import render  # noqa: E402
-import brand
+import brand  # noqa: E402
+import sansimera  # noqa: E402
 import source  # noqa: E402
 
 
@@ -103,7 +104,7 @@ class Queue:
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--one", action="store_true")
-    ap.add_argument("--sport", choices=["football", "basketball"], default="football", help="με --one")
+    ap.add_argument("--sport", choices=["football", "basketball", "sansimera"], default="football", help="με --one")
     args = ap.parse_args()
 
     DATA.mkdir(parents=True, exist_ok=True)
@@ -128,32 +129,58 @@ def main():
         def sport_of(i):
             f = q.dir / f"{i}.json"
             return json.loads(f.read_text()).get("sport", "football") if f.exists() else "football"
-        have = {"football": 0, "basketball": 0}
+        from datetime import date, timedelta
+        today = date.today()
+        def meta_of(i):
+            f = q.dir / f"{i}.json"
+            return json.loads(f.read_text()) if f.exists() else {}
+        for i in [i for i in q.manifest if sport_of(i) == "sansimera" and meta_of(i).get("air_date", "") < str(today)]:
+            q.remove(i)   # «Σαν σήμερα» που πέρασε η μέρα του χωρίς να ανέβει
+        have = {"football": 0, "basketball": 0, "sansimera": 0}
         for i in q.manifest:
             have[sport_of(i)] += 1
+        ss = cfg.get("sansimera") or {}
+        ss_days = set()
+        if ss.get("active"):
+            have_days = {meta_of(i).get("air_date") for i in q.manifest if sport_of(i) == "sansimera"}
+            ss_days = [today + timedelta(days=k) for k in range(cfg["queue"]["days_ahead"])
+                       if str(today + timedelta(days=k)) not in have_days]
         bk = cfg.get("basket") or {}
         days = cfg["queue"]["days_ahead"]
         targets = {"football": days * len(cfg["schedule"]["slots"]),
                    "basketball": days * len(bk.get("slots", [])) if bk.get("active") else 0}
         if args.one:
-            jobs = [args.sport]
+            jobs = [("sansimera", d) for d in ss_days][:1] if args.sport == "sansimera" else [args.sport]
         else:
+            jobs = [("sansimera", d) for d in ss_days]   # πρώτα αυτά: είναι δεμένα με ημερομηνία
             nf = max(0, targets["football"] - have["football"])
             nb = max(0, targets["basketball"] - have["basketball"])
-            jobs = []  # εναλλάξ, ώστε να γεμίζουν και οι δύο ουρές ταυτόχρονα
+            # εναλλάξ, ώστε να γεμίζουν και οι δύο ουρές ταυτόχρονα
             while nf or nb:
                 if nf:
                     jobs.append("football"); nf -= 1
                 if nb:
                     jobs.append("basketball"); nb -= 1
         print(f"Στην ουρά: ποδόσφαιρο {have['football']}/{targets['football']}, "
-              f"μπάσκετ {have['basketball']}/{targets['basketball']} | φτιάχνω: {len(jobs)}")
+              f"μπάσκετ {have['basketball']}/{targets['basketball']}, σαν σήμερα {have['sansimera']} | φτιάχνω: {len(jobs)}")
         made = 0
         first_fb = True
         for sport in jobs:
+            day = None
+            if isinstance(sport, tuple):
+                sport, day = sport
             work = Path(tempfile.mkdtemp(prefix="trifillakia-work-"))
             try:
-                if sport == "basketball":
+                if sport == "sansimera":
+                    c, label = sansimera.pick(cfg, day, posted | set(q.manifest))
+                    if not c:
+                        print(f"– {day}: δεν βρέθηκε «Σαν σήμερα»")
+                        continue
+                    info = source.fetch_info(c["id"])
+                    video, thumb = source.download(info, work)
+                    text = sansimera.texts(c, label, cfg)
+                    max_s = cfg["source"]["max_seconds"]
+                elif sport == "basketball":
                     info = basket.pick_next(cfg, posted | set(q.manifest))
                     video, thumb = source.download(info, work)
                     text = basket.generate(info, cfg)
@@ -166,7 +193,7 @@ def main():
                     max_s = cfg["source"]["max_seconds"]
                 out = work / "out" / f"{info['id']}.mp4"
                 out.parent.mkdir()
-                render.render(video, thumb, text["overlay_title"], out, max_seconds=max_s, sponsor=brand.sponsor(cfg))
+                render.render(video, thumb, text["card"], out, max_seconds=max_s, sponsor=brand.sponsor(cfg))
                 meta = {
                     "source_title": info["title"],
                     "overlay_title": text["overlay_title"],
@@ -176,8 +203,10 @@ def main():
                     "sport": sport,
                     "sponsor": brand.sponsor(cfg),   # Elabet μέσα στο βίντεο;
                 }
-                if sport == "basketball":
-                    meta["fixed_title"] = True  # ο τίτλος είναι ήδη έτοιμος (basket.py)
+                if sport in ("basketball", "sansimera"):
+                    meta["fixed_title"] = True  # ο τίτλος είναι ήδη έτοιμος (basket.py / sansimera.py)
+                if sport == "sansimera":
+                    meta.update(air_date=str(day), label=label, match_date=c["date"])
                 q.add(out, meta)
                 made += 1
                 print(f"✓ {info['title']} → {text['overlay_title']}")

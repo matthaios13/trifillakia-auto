@@ -45,6 +45,9 @@ def slot_times(cfg):
     bk = cfg.get("basket") or {}
     if bk.get("active"):
         out += [(h, "basketball") for h in bk.get("slots", [])]
+    ss = cfg.get("sansimera") or {}
+    if ss.get("active"):
+        out += [(h, "sansimera") for h in ss.get("slots", [])]
     return sorted(out)
 
 
@@ -266,7 +269,7 @@ def review_youtube(cfg, state):
 
 def notify_low_queue(left, sport="football"):
     """Ανοίγει issue στο GitHub (έρχεται email) όταν η ουρά αδειάζει."""
-    if left > (LOW_QUEUE if sport == "football" else 4) or not os.environ.get("GITHUB_ACTIONS"):
+    if sport == "sansimera" or left > (LOW_QUEUE if sport == "football" else 4) or not os.environ.get("GITHUB_ACTIONS"):
         return
     title = "Η ουρά βίντεο αδειάζει — άνοιξε το Mac" + (" (μπάσκετ)" if sport == "basketball" else "")
     open_issues = subprocess.run(["gh", "issue", "list", "--state", "open", "--search", title, "--json", "number"],
@@ -279,7 +282,7 @@ def notify_low_queue(left, sport="football"):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--force", action="store_true")
-    ap.add_argument("--sport", choices=["football", "basketball"], default="football", help="με --force")
+    ap.add_argument("--sport", choices=["football", "basketball", "sansimera"], default="football", help="με --force")
     ap.add_argument("--check", action="store_true")
     ap.add_argument("--review", action="store_true")
     ap.add_argument("--youtube-check", action="store_true")
@@ -334,6 +337,10 @@ def main():
         return
 
     queue = [i for i in pending(state) if item_sport(i) == sport]
+    if sport == "sansimera":  # μόνο αυτό που είναι για σήμερα
+        queue = [i for i in queue if json.loads((QUEUE / f"{i}.json").read_text()).get("air_date") == now.strftime("%Y-%m-%d")]
+        if not queue:
+            sys.exit("Δεν υπάρχει «Σαν σήμερα» για σήμερα.")
     if not queue:
         notify_low_queue(0, sport)
         sys.exit(f"Η ουρά ({sport}) είναι άδεια — δεν υπάρχει έτοιμο βίντεο.")

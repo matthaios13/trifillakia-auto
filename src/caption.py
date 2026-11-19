@@ -98,7 +98,12 @@ def generate(info, cfg):
     import brand
     hashtags = brand.tags(cfg, cfg["hashtags"][cfg["source"]["sport"]])
     tail = [cfg["source"]["credit"], brand.footer(cfg), hashtags]
+    home, away = (re.split(r"\s+–\s+", teams, maxsplit=1) + [""])[:2]
+    hs, as_ = brand.split_score(c["result"])
+    chip = " · ".join(x for x in (brand.season_label(c.get("season_start")), brand.comp_short(comp)) if x)
+    card = {"hook": brand.clean_hook(prefix) + "!", "chip": chip, "home": home, "away": away, "hs": hs, "as": as_}
     return {
+        "card": card,
         "overlay_title": overlay,
         "youtube_title": f"🔥 {match}! ☘️ {brand.title_tags(cfg, '#paofc #shorts')}",
         "full_description": "\n\n".join([body] + [t for t in tail if t]),

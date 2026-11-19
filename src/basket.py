@@ -156,7 +156,12 @@ def generate(info, cfg):
     b = cfg["basket"]
     tail = [b.get("credit"), brand.footer(cfg), brand.tags(cfg, cfg["hashtags"]["basketball"])]
     overlay = f"{p['season']} · {short}"
+    s1, s2 = brand.split_score(p["score"])
+    extra = EXTRA.get(_norm(p["extra"]), p["extra"]) if p.get("extra") and k in ("final", "big") else ""
+    card = {"hook": brand.clean_hook(hook), "chip": " · ".join(x for x in (p["season"], extra) if x),
+            "home": p["home"], "away": p["away"], "hs": s1, "as": s2}
     return {
+        "card": card,
         "overlay_title": overlay,
         "youtube_title": f"{yt} {tags}",
         "full_description": "\n\n".join(["\n".join(lines)] + [t for t in tail if t]),

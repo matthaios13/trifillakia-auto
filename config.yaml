@@ -37,6 +37,12 @@ basket:
   slots: ["12:30", "17:00", "21:30"]
   max_seconds: 170
 
+# «ΣΑΝ ΣΗΜΕΡΑ» (src/sansimera.py): 1 ποδοσφαιρικό την ημέρα, ματς που έγινε την ίδια μέρα στο παρελθόν.
+# Από τον κατάλογο με ημερομηνίες των Παναθηναϊκών Νέων — ποτέ το ίδιο βίντεο και στις δύο σελίδες.
+sansimera:
+  active: true
+  slots: ["09:00"]
+
 hashtags:
   football: "#paofc #panathinaikos #panathinaikosfc #ucl #championsleague #football #trifillakiagr"
   basketball: "#paobc #panathinaikos #panathinaikosbc #paobcaktor #euroleague #basketball #trifillakiagr"
