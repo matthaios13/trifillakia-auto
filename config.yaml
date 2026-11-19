@@ -28,13 +28,13 @@ schedule:
   # Αν το GitHub αργήσει, μέχρι πόσες ώρες μετά την ώρα του slot επιτρέπεται η ανάρτηση
   grace_hours: 3
 
-# Ρετρό ΜΠΑΣΚΕΤ του Παναθηναϊκού (src/basket.py): 2 την ημέρα σε Instagram, Facebook, YouTube (όχι TikTok).
+# Ρετρό ΜΠΑΣΚΕΤ του Παναθηναϊκού (src/basket.py): 3 την ημέρα σε Instagram, Facebook, YouTube (όχι TikTok).
 # Μόνο νίκες, εναλλάξ ντέρμπι → Ευρώπη → τελικοί/μπαράζ → ντέρμπι → πρωτάθλημα, από όλες τις δεκαετίες.
 basket:
   active: true
   channel_url: "https://www.youtube.com/channel/UCJwMFBIe7jcBmNAFRwm98KQ/videos"
   credit: "🎥 Πηγή: @grvrs"
-  slots: ["12:30", "17:00"]
+  slots: ["12:30", "17:00", "21:30"]
   max_seconds: 170
 
 hashtags:
