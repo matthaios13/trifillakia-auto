@@ -132,7 +132,8 @@
     "YdYlAHvtUwc",
     "BT7v0Lz65Ks",
     "ukiFdXGET3E",
-    "1rWs_9vcwgo"
+    "1rWs_9vcwgo",
+    "vDRV-X02V0Q"
   ],
   "log": [
     {
@@ -1969,9 +1970,24 @@
       "youtube": "https://youtube.com/shorts/d3hwKBvp7v8",
       "yt_id": "d3hwKBvp7v8",
       "yt_uploaded": "2026-11-19T17:10:28.056908+00:00",
-      "yt_state": "pending",
+      "yt_state": "public",
       "instagram": "https://www.instagram.com/reel/Df7leipOWTM/",
       "facebook": "https://www.facebook.com/reel/1691195809260343/",
+      "errors": []
+    },
+    {
+      "slot": "2026-11-19 21:30",
+      "source_id": "vDRV-X02V0Q",
+      "source_title": "2015-16 ΠΑΝΑΘΗΝΑΙΚΟΣ-ΟΣΦΠ 73-69",
+      "title": "ΤΟ ΝΤΕΡΜΠΙ ΠΟΥ ΔΕΝ ΞΕΧΝΙΕΤΑΙ! ☘️ ΠΑΟ – ΟΛΥΜΠΙΑΚΟΣ 73-69 #paobc #shorts",
+      "sport": "basketball",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/0yLh-CuR-1k",
+      "yt_id": "0yLh-CuR-1k",
+      "yt_uploaded": "2026-11-19T19:30:23.557036+00:00",
+      "yt_state": "pending",
+      "instagram": "https://www.instagram.com/reel/Df71fA2hDNY/",
+      "facebook": "https://www.facebook.com/reel/2491096674631849/",
       "errors": []
     }
   ],
