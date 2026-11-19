@@ -130,7 +130,8 @@
     "GhY_8ncRfOA",
     "EcUA2kR0qHg",
     "YdYlAHvtUwc",
-    "BT7v0Lz65Ks"
+    "BT7v0Lz65Ks",
+    "ukiFdXGET3E"
   ],
   "log": [
     {
@@ -1937,9 +1938,24 @@
       "youtube": "https://youtube.com/shorts/TvdTNx2Kh4k",
       "yt_id": "TvdTNx2Kh4k",
       "yt_uploaded": "2026-11-19T12:01:02.043871+00:00",
-      "yt_state": "pending",
+      "yt_state": "public",
       "instagram": "https://www.instagram.com/reel/Df7CD6ehgoW/",
       "facebook": "https://www.facebook.com/reel/1132169286262191/",
+      "errors": []
+    },
+    {
+      "slot": "2026-11-19 17:00",
+      "source_id": "ukiFdXGET3E",
+      "source_title": "1992-93 ΠΑΝΑΘΗΝΑΙΚΟΣ-ΔΑΦΝΗ 121-76",
+      "title": "ΕΤΣΙ ΠΑΙΖΕΙ ΤΟ ΤΡΙΦΥΛΛΙ! ☘️ ΠΑΟ – ΔΑΦΝΗ 121-76 #elaoposeisai #paobc #shorts",
+      "sport": "basketball",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/tx0dT50MmNc",
+      "yt_id": "tx0dT50MmNc",
+      "yt_uploaded": "2026-11-19T15:02:42.089424+00:00",
+      "yt_state": "pending",
+      "instagram": "https://www.instagram.com/reel/Df7W2nEKa9p/",
+      "facebook": "https://www.facebook.com/reel/1668763961324108/",
       "errors": []
     }
   ],
