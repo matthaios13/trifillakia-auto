@@ -12,7 +12,7 @@
   │ └ ΠΑΝΑΧΑΪΚΗ             0 ┘   │
   │          Trifillakia.gr       │
   └──────────────────────────────┘
-Στο τέλος: outro Elabet (sponsor=True) ή κάρτα PAO Retro 2,5''.
+Στο τέλος: outro Elabet (sponsor=True) ή, χωρίς χορηγία, κάρτα PAO Retro + FOLLOW US 3,5''.
 """
 import subprocess
 import sys
@@ -432,19 +432,19 @@ def render(video_path, photo_path, card, out_path, max_seconds=None, sponsor=Fal
     build_card_overlay(card, ch, ov, sponsor)
     border = border_anim(ch)
 
-    end_png = f"{work}_end.png"
-    build_endcard(end_png)
-    extra_in = ["-loop", "1", "-framerate", "30", "-t", str(ENDCARD_SECONDS), "-i", end_png]
-    tail_f = (f"[3:v]fps=30,setsar=1,format=yuv420p,fade=t=in:st=0:d=0.4[ev];"
-              f"anullsrc=r=48000:cl=stereo,atrim=0:{ENDCARD_SECONDS}[ea];")
-    segs, n = "[main][ma][ev][ea]", 2
-    if sponsor:  # μετά την κάρτα, το outro της Elabet
+    if sponsor:  # με χορηγία: στο τέλος ΜΟΝΟ το outro της Elabet
         outro = ASSETS / "outro.mp4"
-        extra_in += ["-i", str(outro)]
-        tail_f += f"[4:v]scale={W}:{H},fps=30,setsar=1,format=yuv420p[ov];" + (
-            f"[4:a]aresample=48000,aformat=channel_layouts=stereo[oa];" if has_audio(outro)
-            else f"anullsrc=r=48000:cl=stereo,atrim=0:{probe_duration(outro):.3f}[oa];")
-        segs, n = segs + "[ov][oa]", 3
+        extra_in = ["-i", str(outro)]
+        tail_f = f"[3:v]scale={W}:{H},fps=30,setsar=1,format=yuv420p[ev];" + (
+            f"[3:a]aresample=48000,aformat=channel_layouts=stereo[ea];" if has_audio(outro)
+            else f"anullsrc=r=48000:cl=stereo,atrim=0:{probe_duration(outro):.3f}[ea];")
+    else:  # χωρίς χορηγία: δική μας κάρτα PAO Retro + FOLLOW US
+        end_png = f"{work}_end.png"
+        build_endcard(end_png)
+        extra_in = ["-loop", "1", "-framerate", "30", "-t", str(ENDCARD_SECONDS), "-i", end_png]
+        tail_f = (f"[3:v]fps=30,setsar=1,format=yuv420p,fade=t=in:st=0:d=0.4[ev];"
+                  f"anullsrc=r=48000:cl=stereo,atrim=0:{ENDCARD_SECONDS}[ea];")
+    segs, n = "[main][ma][ev][ea]", 2
     fc = (
         f"[0:v]{crop_f}fps=30,scale={CARD_W}:{ch}:force_original_aspect_ratio=increase:flags=lanczos,"
         f"crop={CARD_W}:{ch},setsar=1[v0];"
