@@ -137,7 +137,8 @@
     "a9WKKsd8XIM",
     "f3ljlnwP_DQ",
     "bby3vHLEUN0",
-    "MA1p0UljpvA"
+    "MA1p0UljpvA",
+    "SOXlnil9omA"
   ],
   "log": [
     {
@@ -2049,9 +2050,24 @@
       "youtube": "https://youtube.com/shorts/U7dEPvZ0iy0",
       "yt_id": "U7dEPvZ0iy0",
       "yt_uploaded": "2026-11-20T12:00:22.650693+00:00",
-      "yt_state": "pending",
+      "yt_state": "public",
       "instagram": "https://www.instagram.com/reel/Df9mx05O3Z_/",
       "facebook": "https://www.facebook.com/reel/1086525624409198/",
+      "errors": []
+    },
+    {
+      "slot": "2026-11-20 17:00",
+      "source_id": "SOXlnil9omA",
+      "source_title": "2005-06 ΠΑΝΑΘΗΝΑΙΚΟΣ-ΜΑΡΟΥΣΙ 68-57 ΤΕΛΙΚΟΣ ΚΥΠΕΛΛΟΥ",
+      "title": "ΤΕΛΙΚΟΣ ΚΑΙ ΤΡΟΠΑΙΟ! 🏆☘️ ΠΑΟ – ΜΑΡΟΥΣΙ 68-57 #paobc #shorts",
+      "sport": "basketball",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/AwiVX17MBVg",
+      "yt_id": "AwiVX17MBVg",
+      "yt_uploaded": "2026-11-20T15:00:30.128567+00:00",
+      "yt_state": "pending",
+      "instagram": "https://www.instagram.com/reel/Df97dAMykm0/",
+      "facebook": "https://www.facebook.com/reel/3535502616624447/",
       "errors": []
     }
   ],
