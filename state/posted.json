@@ -134,7 +134,8 @@
     "ukiFdXGET3E",
     "1rWs_9vcwgo",
     "vDRV-X02V0Q",
-    "a9WKKsd8XIM"
+    "a9WKKsd8XIM",
+    "f3ljlnwP_DQ"
   ],
   "log": [
     {
@@ -2001,9 +2002,24 @@
       "youtube": "https://youtube.com/shorts/q-NnY6gRrkw",
       "yt_id": "q-NnY6gRrkw",
       "yt_uploaded": "2026-11-20T07:00:24.324884+00:00",
-      "yt_state": "pending",
+      "yt_state": "public",
       "instagram": "https://www.instagram.com/reel/Df9Ecpxx-o-/",
       "facebook": "https://www.facebook.com/reel/1155709476848938/",
+      "errors": []
+    },
+    {
+      "slot": "2026-11-20 10:00",
+      "source_id": "f3ljlnwP_DQ",
+      "source_title": "ΑΠΟΛΛΩΝ ΑΘΗΝΩΝ - ΠΑΝΑΘΗΝΑΪΚΟΣ 1933/34",
+      "title": "🔥 ΑΠΟΛΛΩΝ ΑΘΗΝΩΝ – ΠΑΝΑΘΗΝΑΪΚΟΣ 1-3! ☘️ #paofc #shorts",
+      "sport": "football",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/Jt_BlATizzg",
+      "yt_id": "Jt_BlATizzg",
+      "yt_uploaded": "2026-11-20T08:00:19.297336+00:00",
+      "yt_state": "pending",
+      "instagram": "https://www.instagram.com/reel/Df9LThEAB3k/",
+      "facebook": "https://www.facebook.com/reel/29429582700015558/",
       "errors": []
     }
   ],
