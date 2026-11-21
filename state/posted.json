@@ -143,7 +143,8 @@
     "wYB_5V9D2_k",
     "Syn5XorfKZs",
     "M4nUHbu7Dus",
-    "_beUOHlTDWM"
+    "_beUOHlTDWM",
+    "wGJ4arKeizE"
   ],
   "log": [
     {
@@ -2145,9 +2146,24 @@
       "youtube": "https://youtube.com/shorts/4xc2_XN7jU0",
       "yt_id": "4xc2_XN7jU0",
       "yt_uploaded": "2026-11-21T10:30:22.003107+00:00",
-      "yt_state": "pending",
+      "yt_state": "public",
       "instagram": "https://www.instagram.com/reel/DgABSLVPkbP/",
       "facebook": "https://www.facebook.com/reel/1024585963224701/",
+      "errors": []
+    },
+    {
+      "slot": "2026-11-21 14:00",
+      "source_id": "wGJ4arKeizE",
+      "source_title": "ΠΑΝΑΘΗΝΑΪΚΟΣ - ΠΑΟΚ 1962/63",
+      "title": "🔥 ΠΑΝΑΘΗΝΑΪΚΟΣ – ΠΑΟΚ 2-1! ☘️ #paofc #shorts",
+      "sport": "football",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/kxlX7nB6Fdg",
+      "yt_id": "kxlX7nB6Fdg",
+      "yt_uploaded": "2026-11-21T12:00:20.592380+00:00",
+      "yt_state": "pending",
+      "instagram": "https://www.instagram.com/reel/DgALkf4PmYX/",
+      "facebook": "https://www.facebook.com/reel/1017071194786915/",
       "errors": []
     }
   ],
