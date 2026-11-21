@@ -146,7 +146,8 @@
     "_beUOHlTDWM",
     "wGJ4arKeizE",
     "-6wV6uyYwro",
-    "-pLYn8qXvY8"
+    "-pLYn8qXvY8",
+    "r8SkeXTxLt4"
   ],
   "log": [
     {
@@ -2193,9 +2194,24 @@
       "youtube": "https://youtube.com/shorts/7P2ZKqqEiuc",
       "yt_id": "7P2ZKqqEiuc",
       "yt_uploaded": "2026-11-21T17:00:27.943290+00:00",
-      "yt_state": "pending",
+      "yt_state": "public",
       "instagram": "https://www.instagram.com/reel/DgAt6qEBJWx/",
       "facebook": "https://www.facebook.com/reel/5501719246718912/",
+      "errors": []
+    },
+    {
+      "slot": "2026-11-21 21:30",
+      "source_id": "r8SkeXTxLt4",
+      "source_title": "1973-74 ΠΑΝΑΘΗΝΑΙΚΟΣ-ΧΑΝΘ 71-69",
+      "title": "ΣΠΑΝΙΟ ΒΙΝΤΕΟ ΑΠΟ ΤΟ 1973! 📼 ΠΑΟ – ΧΑΝΘ 71-69 #paobc #shorts",
+      "sport": "basketball",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/XbldofENzLA",
+      "yt_id": "XbldofENzLA",
+      "yt_uploaded": "2026-11-21T19:30:23.025412+00:00",
+      "yt_state": "pending",
+      "instagram": "https://www.instagram.com/reel/DgA_GJVhQz6/",
+      "facebook": "https://www.facebook.com/reel/1143367861870438/",
       "errors": []
     }
   ],
