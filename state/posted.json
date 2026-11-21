@@ -145,7 +145,8 @@
     "M4nUHbu7Dus",
     "_beUOHlTDWM",
     "wGJ4arKeizE",
-    "-6wV6uyYwro"
+    "-6wV6uyYwro",
+    "-pLYn8qXvY8"
   ],
   "log": [
     {
@@ -2177,9 +2178,24 @@
       "youtube": "https://youtube.com/shorts/xnnVrRtkbcs",
       "yt_id": "xnnVrRtkbcs",
       "yt_uploaded": "2026-11-21T15:00:29.515542+00:00",
-      "yt_state": "pending",
+      "yt_state": "public",
       "instagram": "https://www.instagram.com/reel/DgAgL6-BKWR/",
       "facebook": "https://www.facebook.com/reel/1045258225307576/",
+      "errors": []
+    },
+    {
+      "slot": "2026-11-21 19:00",
+      "source_id": "-pLYn8qXvY8",
+      "source_title": "ΠΑΝΑΘΗΝΑΪΚΟΣ - ΑΠΟΛΛΩΝ ΑΘΗΝΩΝ 1966/67",
+      "title": "🔥 ΠΑΝΑΘΗΝΑΪΚΟΣ – ΑΠΟΛΛΩΝ ΑΘΗΝΩΝ 2-1! ☘️ #paofc #shorts",
+      "sport": "football",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/7P2ZKqqEiuc",
+      "yt_id": "7P2ZKqqEiuc",
+      "yt_uploaded": "2026-11-21T17:00:27.943290+00:00",
+      "yt_state": "pending",
+      "instagram": "https://www.instagram.com/reel/DgAt6qEBJWx/",
+      "facebook": "https://www.facebook.com/reel/5501719246718912/",
       "errors": []
     }
   ],
