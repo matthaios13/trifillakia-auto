@@ -142,7 +142,8 @@
     "ER6OOTmC5UA",
     "wYB_5V9D2_k",
     "Syn5XorfKZs",
-    "M4nUHbu7Dus"
+    "M4nUHbu7Dus",
+    "_beUOHlTDWM"
   ],
   "log": [
     {
@@ -2114,7 +2115,7 @@
       "youtube": "https://youtube.com/shorts/9_xka8W4hcY",
       "yt_id": "9_xka8W4hcY",
       "yt_uploaded": "2026-11-21T08:00:26.404274+00:00",
-      "yt_state": "pending",
+      "yt_state": "public",
       "instagram": "https://www.instagram.com/reel/Df_wHeSyqFO/",
       "facebook": "https://www.facebook.com/reel/29075756502052281/",
       "errors": []
@@ -2129,9 +2130,24 @@
       "youtube": "https://youtube.com/shorts/_XRzG1UKAI0",
       "yt_id": "_XRzG1UKAI0",
       "yt_uploaded": "2026-11-21T08:10:21.757370+00:00",
-      "yt_state": "pending",
+      "yt_state": "public",
       "instagram": "https://www.instagram.com/reel/Df_xVfugKqv/",
       "facebook": "https://www.facebook.com/reel/1121963190823363/",
+      "errors": []
+    },
+    {
+      "slot": "2026-11-21 12:30",
+      "source_id": "_beUOHlTDWM",
+      "source_title": "1996-97 ΠΑΝΑΘΗΝΑΙΚΟΣ-ΠΑΝΙΩΝΙΟΣ 78-68",
+      "title": "ΘΥΜΑΣΑΙ ΑΥΤΗ ΤΗ ΝΙΚΗ; 😍 ΠΑΟ – ΠΑΝΙΩΝΙΟΣ 78-68 #paobc #shorts",
+      "sport": "basketball",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/4xc2_XN7jU0",
+      "yt_id": "4xc2_XN7jU0",
+      "yt_uploaded": "2026-11-21T10:30:22.003107+00:00",
+      "yt_state": "pending",
+      "instagram": "https://www.instagram.com/reel/DgABSLVPkbP/",
+      "facebook": "https://www.facebook.com/reel/1024585963224701/",
       "errors": []
     }
   ],
