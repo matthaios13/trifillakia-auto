@@ -144,7 +144,8 @@
     "Syn5XorfKZs",
     "M4nUHbu7Dus",
     "_beUOHlTDWM",
-    "wGJ4arKeizE"
+    "wGJ4arKeizE",
+    "-6wV6uyYwro"
   ],
   "log": [
     {
@@ -2161,9 +2162,24 @@
       "youtube": "https://youtube.com/shorts/kxlX7nB6Fdg",
       "yt_id": "kxlX7nB6Fdg",
       "yt_uploaded": "2026-11-21T12:00:20.592380+00:00",
-      "yt_state": "pending",
+      "yt_state": "public",
       "instagram": "https://www.instagram.com/reel/DgALkf4PmYX/",
       "facebook": "https://www.facebook.com/reel/1017071194786915/",
+      "errors": []
+    },
+    {
+      "slot": "2026-11-21 17:00",
+      "source_id": "-6wV6uyYwro",
+      "source_title": "2004-05 ΟΣΦΠ-ΠΑΝΑΘΗΝΑΙΚΟΣ 74-77",
+      "title": "ΝΙΚΗ ΣΤΟ ΝΤΕΡΜΠΙ! 🔥 ΟΛΥΜΠΙΑΚΟΣ – ΠΑΟ 74-77 #paobc #shorts",
+      "sport": "basketball",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/xnnVrRtkbcs",
+      "yt_id": "xnnVrRtkbcs",
+      "yt_uploaded": "2026-11-21T15:00:29.515542+00:00",
+      "yt_state": "pending",
+      "instagram": "https://www.instagram.com/reel/DgAgL6-BKWR/",
+      "facebook": "https://www.facebook.com/reel/1045258225307576/",
       "errors": []
     }
   ],
