@@ -153,7 +153,8 @@
     "JOmdy4DI6RU",
     "boBlh98K5a4",
     "BAaWiqY9LWo",
-    "-O8CJT6KNLE"
+    "-O8CJT6KNLE",
+    "wqoH8OWY48g"
   ],
   "log": [
     {
@@ -2308,10 +2309,26 @@
       "youtube": "https://youtube.com/shorts/jU0mF9je5IY",
       "yt_id": "jU0mF9je5IY",
       "yt_uploaded": "2026-11-22T17:02:00.342431+00:00",
-      "yt_state": "pending",
+      "yt_state": "public",
       "errors": [
         "Instagram: container 400: {\"error\":{\"message\":\"Error validating access token: The session has been invalidated because the user changed their password or Facebook has changed the session for security reasons.\",\"code\":190,\"type\":\"OAuthException\",\"error_subcode\":460,\"fbtrace_id\":\"A63KAuKPTCg66HQhjAKeea3\"}}",
         "Facebook: start 400: {\"error\":{\"message\":\"Error validating access token: The session has been invalidated because the user changed their password or Facebook has changed the session for security reasons.\",\"type\":\"OAuthException\",\"code\":190,\"error_subcode\":460,\"fbtrace_id\":\"A_NfL8oe7gzU4XWiuBeCix0\"}}"
+      ]
+    },
+    {
+      "slot": "2026-11-22 21:30",
+      "source_id": "wqoH8OWY48g",
+      "source_title": "1976-77 ΠΑΝΙΩΝΙΟΣ-ΠΑΝΑΘΗΝΑΙΚΟΣ 71-85",
+      "title": "ΣΠΑΝΙΟ ΒΙΝΤΕΟ ΑΠΟ ΤΟ 1976! 📼 ΠΑΝΙΩΝΙΟΣ – ΠΑΟ 71-85 #paobc #shorts",
+      "sport": "basketball",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/QdkRnPDtihk",
+      "yt_id": "QdkRnPDtihk",
+      "yt_uploaded": "2026-11-22T19:30:22.268166+00:00",
+      "yt_state": "pending",
+      "errors": [
+        "Instagram: container 400: {\"error\":{\"message\":\"Error validating access token: The session has been invalidated because the user changed their password or Facebook has changed the session for security reasons.\",\"code\":190,\"type\":\"OAuthException\",\"error_subcode\":460,\"fbtrace_id\":\"Af_olwEiuAGtSOtEXMmPQSx\"}}",
+        "Facebook: start 400: {\"error\":{\"message\":\"Error validating access token: The session has been invalidated because the user changed their password or Facebook has changed the session for security reasons.\",\"type\":\"OAuthException\",\"code\":190,\"error_subcode\":460,\"fbtrace_id\":\"ASOdC4jm-P3hqRy3tWQAt1R\"}}"
       ]
     }
   ],
