@@ -149,7 +149,8 @@
     "-pLYn8qXvY8",
     "r8SkeXTxLt4",
     "i-ZieQgvZvQ",
-    "oa4AV6XQ_qg"
+    "oa4AV6XQ_qg",
+    "JOmdy4DI6RU"
   ],
   "log": [
     {
@@ -2241,10 +2242,26 @@
       "youtube": "https://youtube.com/shorts/ZSEb6L1bD2s",
       "yt_id": "ZSEb6L1bD2s",
       "yt_uploaded": "2026-11-22T08:00:20.468147+00:00",
-      "yt_state": "pending",
+      "yt_state": "public",
       "instagram": "https://www.instagram.com/reel/DgCU5biv8mM/",
       "facebook": "https://www.facebook.com/reel/4173172369485925/",
       "errors": []
+    },
+    {
+      "slot": "2026-11-22 12:30",
+      "source_id": "JOmdy4DI6RU",
+      "source_title": "1968-69 ΠΑΝΑΘΗΝΑΙΚΟΣ-ΑΕΚ 85-80 ΜΠΑΡΑΖ",
+      "title": "ΝΙΚΗ ΣΤΟ ΜΠΑΡΑΖ! 🔥 ΠΑΟ – ΑΕΚ 85-80 #paobc #shorts",
+      "sport": "basketball",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/joo_oJlHYsA",
+      "yt_id": "joo_oJlHYsA",
+      "yt_uploaded": "2026-11-22T10:30:21.250069+00:00",
+      "yt_state": "pending",
+      "errors": [
+        "Instagram: container 400: {\"error\":{\"message\":\"Error validating access token: The session has been invalidated because the user changed their password or Facebook has changed the session for security reasons.\",\"code\":190,\"type\":\"OAuthException\",\"error_subcode\":460,\"fbtrace_id\":\"A6nN3T2QB7AGHLATLkKkWYx\"}}",
+        "Facebook: start 400: {\"error\":{\"message\":\"Error validating access token: The session has been invalidated because the user changed their password or Facebook has changed the session for security reasons.\",\"type\":\"OAuthException\",\"code\":190,\"error_subcode\":460,\"fbtrace_id\":\"AgUOySpBcecHGm9QfkbgOL_\"}}"
+      ]
     }
   ],
   "tt_backlog_done": [
