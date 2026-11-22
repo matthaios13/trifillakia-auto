@@ -148,7 +148,8 @@
     "-6wV6uyYwro",
     "-pLYn8qXvY8",
     "r8SkeXTxLt4",
-    "i-ZieQgvZvQ"
+    "i-ZieQgvZvQ",
+    "oa4AV6XQ_qg"
   ],
   "log": [
     {
@@ -2225,9 +2226,24 @@
       "youtube": "https://youtube.com/shorts/LL1L0vxk--0",
       "yt_id": "LL1L0vxk--0",
       "yt_uploaded": "2026-11-22T07:00:22.274566+00:00",
-      "yt_state": "pending",
+      "yt_state": "public",
       "instagram": "https://www.instagram.com/reel/DgCOCL4MYej/",
       "facebook": "https://www.facebook.com/reel/1129234013361486/",
+      "errors": []
+    },
+    {
+      "slot": "2026-11-22 10:00",
+      "source_id": "oa4AV6XQ_qg",
+      "source_title": "ΠΑΝΑΘΗΝΑΪΚΟΣ - ΦΩΣΤΗΡΑΣ 1954/55",
+      "title": "🔥 ΠΑΝΑΘΗΝΑΪΚΟΣ – ΦΩΣΤΗΡΑΣ 4-1! ☘️ #paofc #shorts",
+      "sport": "football",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/ZSEb6L1bD2s",
+      "yt_id": "ZSEb6L1bD2s",
+      "yt_uploaded": "2026-11-22T08:00:20.468147+00:00",
+      "yt_state": "pending",
+      "instagram": "https://www.instagram.com/reel/DgCU5biv8mM/",
+      "facebook": "https://www.facebook.com/reel/4173172369485925/",
       "errors": []
     }
   ],
