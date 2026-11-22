@@ -152,7 +152,8 @@
     "oa4AV6XQ_qg",
     "JOmdy4DI6RU",
     "boBlh98K5a4",
-    "BAaWiqY9LWo"
+    "BAaWiqY9LWo",
+    "-O8CJT6KNLE"
   ],
   "log": [
     {
@@ -2295,6 +2296,22 @@
       "errors": [
         "Instagram: container 400: {\"error\":{\"message\":\"Error validating access token: The session has been invalidated because the user changed their password or Facebook has changed the session for security reasons.\",\"code\":190,\"type\":\"OAuthException\",\"error_subcode\":460,\"fbtrace_id\":\"ATXQW9axMr4O5a8soYyKLtj\"}}",
         "Facebook: start 400: {\"error\":{\"message\":\"Error validating access token: The session has been invalidated because the user changed their password or Facebook has changed the session for security reasons.\",\"type\":\"OAuthException\",\"code\":190,\"error_subcode\":460,\"fbtrace_id\":\"AH1i6vfU-aqPLSmimZzv19X\"}}"
+      ]
+    },
+    {
+      "slot": "2026-11-22 19:00",
+      "source_id": "-O8CJT6KNLE",
+      "source_title": "ΠΑΝΑΘΗΝΑΪΚΟΣ - ΤΡΙΚΑΛΑ 1976/77",
+      "title": "🔥 ΠΑΝΑΘΗΝΑΪΚΟΣ – ΤΡΙΚΑΛΑ 4-2! ☘️ #paofc #shorts",
+      "sport": "football",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/jU0mF9je5IY",
+      "yt_id": "jU0mF9je5IY",
+      "yt_uploaded": "2026-11-22T17:02:00.342431+00:00",
+      "yt_state": "pending",
+      "errors": [
+        "Instagram: container 400: {\"error\":{\"message\":\"Error validating access token: The session has been invalidated because the user changed their password or Facebook has changed the session for security reasons.\",\"code\":190,\"type\":\"OAuthException\",\"error_subcode\":460,\"fbtrace_id\":\"A63KAuKPTCg66HQhjAKeea3\"}}",
+        "Facebook: start 400: {\"error\":{\"message\":\"Error validating access token: The session has been invalidated because the user changed their password or Facebook has changed the session for security reasons.\",\"type\":\"OAuthException\",\"code\":190,\"error_subcode\":460,\"fbtrace_id\":\"A_NfL8oe7gzU4XWiuBeCix0\"}}"
       ]
     }
   ],
