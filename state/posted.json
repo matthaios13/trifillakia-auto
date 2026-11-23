@@ -155,7 +155,8 @@
     "BAaWiqY9LWo",
     "-O8CJT6KNLE",
     "wqoH8OWY48g",
-    "aJ2NhEu1uE4"
+    "aJ2NhEu1uE4",
+    "xfXhztRpJ-M"
   ],
   "log": [
     {
@@ -2342,10 +2343,26 @@
       "youtube": "https://youtube.com/shorts/3FJiX_H-71g",
       "yt_id": "3FJiX_H-71g",
       "yt_uploaded": "2026-11-23T07:10:21.119570+00:00",
-      "yt_state": "pending",
+      "yt_state": "public",
       "errors": [
         "Instagram: container 400: {\"error\":{\"message\":\"Error validating access token: The session has been invalidated because the user changed their password or Facebook has changed the session for security reasons.\",\"code\":190,\"type\":\"OAuthException\",\"error_subcode\":460,\"fbtrace_id\":\"A2Od5fDN9Ch6XoJ39Tku2d7\"}}",
         "Facebook: start 400: {\"error\":{\"message\":\"Error validating access token: The session has been invalidated because the user changed their password or Facebook has changed the session for security reasons.\",\"type\":\"OAuthException\",\"code\":190,\"error_subcode\":460,\"fbtrace_id\":\"AeAzwDQMOonx82nt2v5bPcf\"}}"
+      ]
+    },
+    {
+      "slot": "2026-11-23 10:00",
+      "source_id": "xfXhztRpJ-M",
+      "source_title": "ΠΑΝΑΘΗΝΑΪΚΟΣ - ΘΗΒΑ 1983/84",
+      "title": "🔥 ΠΑΝΑΘΗΝΑΪΚΟΣ – ΘΗΒΑ 2-0! ☘️ #paofc #shorts",
+      "sport": "football",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/mIOK_Zdl4rk",
+      "yt_id": "mIOK_Zdl4rk",
+      "yt_uploaded": "2026-11-23T08:00:23.111372+00:00",
+      "yt_state": "pending",
+      "errors": [
+        "Instagram: container 400: {\"error\":{\"message\":\"Error validating access token: The session has been invalidated because the user changed their password or Facebook has changed the session for security reasons.\",\"code\":190,\"type\":\"OAuthException\",\"error_subcode\":460,\"fbtrace_id\":\"AM4q4qY4f72iyJt1jRYnEsP\"}}",
+        "Facebook: start 400: {\"error\":{\"message\":\"Error validating access token: The session has been invalidated because the user changed their password or Facebook has changed the session for security reasons.\",\"type\":\"OAuthException\",\"code\":190,\"error_subcode\":460,\"fbtrace_id\":\"AL6CeQPuVWwVyA2NBFSLbjj\"}}"
       ]
     }
   ],
