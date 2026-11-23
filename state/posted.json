@@ -160,7 +160,8 @@
     "kD3gw84wmII",
     "zFf2PPomiJo",
     "-wrY1UKZ2M8",
-    "oy88tMXCrAQ"
+    "oy88tMXCrAQ",
+    "chDgHi45ZG0"
   ],
   "log": [
     {
@@ -2432,6 +2433,21 @@
       "errors": [
         "Instagram: publish 400: {\"error\":{\"message\":\"User is performing too many actions\",\"code\":9,\"type\":\"OAuthException\",\"error_subcode\":2207042,\"is_transient\":false,\"error_user_msg\":\"You reached the maximum number of posts that is allowed to be published by Content Publishing API.\",\"error_user_title\":\"Media publish limit exceeded\",\"fbtrace_id\":\"AmDBIqm__wvfupztw_AuRcE\"}}"
       ]
+    },
+    {
+      "slot": "2026-11-23 21:30",
+      "source_id": "chDgHi45ZG0",
+      "source_title": "2015-16 ΠΑΝΑΘΗΝΑΙΚΟΣ-ΦΑΡΟΣ ΚΕΡ. 101-54 ΤΕΛΙΚΟΣ ΚΥΠΕΛΛΟΥ",
+      "title": "ΤΕΛΙΚΟΣ ΚΑΙ ΤΡΟΠΑΙΟ! 🏆☘️ ΠΑΟ – ΦΑΡΟΣ ΚΕΡΑΤΣΙΝΙΟΥ 101-54 #paobc #shorts",
+      "sport": "basketball",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/udNWEVykwIA",
+      "yt_id": "udNWEVykwIA",
+      "yt_uploaded": "2026-11-23T19:30:33.917097+00:00",
+      "yt_state": "pending",
+      "instagram": "https://www.instagram.com/reel/DgGIulRPV3E/",
+      "facebook": "https://www.facebook.com/reel/1684275793348588/",
+      "errors": []
     }
   ],
   "tt_backlog_done": [
