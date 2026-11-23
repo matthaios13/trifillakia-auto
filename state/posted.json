@@ -154,7 +154,8 @@
     "boBlh98K5a4",
     "BAaWiqY9LWo",
     "-O8CJT6KNLE",
-    "wqoH8OWY48g"
+    "wqoH8OWY48g",
+    "aJ2NhEu1uE4"
   ],
   "log": [
     {
@@ -2329,6 +2330,22 @@
       "errors": [
         "Instagram: container 400: {\"error\":{\"message\":\"Error validating access token: The session has been invalidated because the user changed their password or Facebook has changed the session for security reasons.\",\"code\":190,\"type\":\"OAuthException\",\"error_subcode\":460,\"fbtrace_id\":\"Af_olwEiuAGtSOtEXMmPQSx\"}}",
         "Facebook: start 400: {\"error\":{\"message\":\"Error validating access token: The session has been invalidated because the user changed their password or Facebook has changed the session for security reasons.\",\"type\":\"OAuthException\",\"code\":190,\"error_subcode\":460,\"fbtrace_id\":\"ASOdC4jm-P3hqRy3tWQAt1R\"}}"
+      ]
+    },
+    {
+      "slot": "2026-11-23 09:00",
+      "source_id": "aJ2NhEu1uE4",
+      "source_title": "ΒΕΡΟΙΑ - ΠΑΝΑΘΗΝΑΪΚΟΣ 1996/97",
+      "title": "ΣΑΝ ΣΗΜΕΡΑ 1996: ΒΕΡΟΙΑ – ΠΑΟ 0-0 ☘️ #shorts #panathinaikos",
+      "sport": "sansimera",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/3FJiX_H-71g",
+      "yt_id": "3FJiX_H-71g",
+      "yt_uploaded": "2026-11-23T07:10:21.119570+00:00",
+      "yt_state": "pending",
+      "errors": [
+        "Instagram: container 400: {\"error\":{\"message\":\"Error validating access token: The session has been invalidated because the user changed their password or Facebook has changed the session for security reasons.\",\"code\":190,\"type\":\"OAuthException\",\"error_subcode\":460,\"fbtrace_id\":\"A2Od5fDN9Ch6XoJ39Tku2d7\"}}",
+        "Facebook: start 400: {\"error\":{\"message\":\"Error validating access token: The session has been invalidated because the user changed their password or Facebook has changed the session for security reasons.\",\"type\":\"OAuthException\",\"code\":190,\"error_subcode\":460,\"fbtrace_id\":\"AeAzwDQMOonx82nt2v5bPcf\"}}"
       ]
     }
   ],
