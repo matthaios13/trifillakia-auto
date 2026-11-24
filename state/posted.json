@@ -164,7 +164,8 @@
     "chDgHi45ZG0",
     "qtrkc4sk2ls",
     "e7Ggku-FBCI",
-    "-UkhWdNTqyg"
+    "-UkhWdNTqyg",
+    "p6y8QEeCRfA"
   ],
   "log": [
     {
@@ -2516,9 +2517,24 @@
       "youtube": "https://youtube.com/shorts/2tGigurSLh0",
       "yt_id": "2tGigurSLh0",
       "yt_uploaded": "2026-11-24T10:30:24.381952+00:00",
-      "yt_state": "pending",
+      "yt_state": "public",
       "instagram": "https://www.instagram.com/reel/DgHvvYaRYJe/",
       "facebook": "https://www.facebook.com/reel/1008608775636699/",
+      "errors": []
+    },
+    {
+      "slot": "2026-11-24 14:00",
+      "source_id": "p6y8QEeCRfA",
+      "source_title": "ΑΕΚ - ΠΑΝΑΘΗΝΑΪΚΟΣ 1968/69",
+      "title": "🔥 ΑΕΚ – ΠΑΝΑΘΗΝΑΪΚΟΣ 1-2! ☘️ #paofc #shorts",
+      "sport": "football",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/QdFTV2fXIzw",
+      "yt_id": "QdFTV2fXIzw",
+      "yt_uploaded": "2026-11-24T12:01:03.403725+00:00",
+      "yt_state": "pending",
+      "instagram": "https://www.instagram.com/reel/DgH6E53zlg3/",
+      "facebook": "https://www.facebook.com/reel/2326814768157978/",
       "errors": []
     }
   ],
