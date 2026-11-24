@@ -166,7 +166,8 @@
     "e7Ggku-FBCI",
     "-UkhWdNTqyg",
     "p6y8QEeCRfA",
-    "bBRrjb6FFAM"
+    "bBRrjb6FFAM",
+    "xQmGVgSM2WU"
   ],
   "log": [
     {
@@ -2560,9 +2561,24 @@
       "youtube": "https://youtube.com/shorts/BuAwihhIlzU",
       "yt_id": "BuAwihhIlzU",
       "yt_uploaded": "2026-11-24T15:00:26.789120+00:00",
-      "yt_state": "pending",
+      "yt_state": "public",
       "instagram": "https://www.instagram.com/reel/DgIOkR_JJfz/",
       "facebook": "https://www.facebook.com/reel/4538967766360873/",
+      "errors": []
+    },
+    {
+      "slot": "2026-11-24 19:00",
+      "source_id": "xQmGVgSM2WU",
+      "source_title": "ΠΑΝΑΘΗΝΑΪΚΟΣ - ΧΑΝΙΑ 1975/76",
+      "title": "🔥 ΠΑΝΑΘΗΝΑΪΚΟΣ – ΧΑΝΙΑ 1-0! ☘️ #paofc #shorts",
+      "sport": "football",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/vGsJNZorvA4",
+      "yt_id": "vGsJNZorvA4",
+      "yt_uploaded": "2026-11-24T17:00:22.828512+00:00",
+      "yt_state": "pending",
+      "instagram": "https://www.instagram.com/reel/DgIcSc0vdRj/",
+      "facebook": "https://www.facebook.com/reel/1156535376871198/",
       "errors": []
     }
   ],
