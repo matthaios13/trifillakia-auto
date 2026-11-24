@@ -2476,10 +2476,22 @@
       "youtube": "https://youtube.com/shorts/59BZjd1HdHs",
       "yt_id": "59BZjd1HdHs",
       "yt_uploaded": "2026-11-24T08:00:28.814142+00:00",
-      "yt_state": "pending",
+      "yt_state": "public",
       "instagram": "https://www.instagram.com/reel/DgHegKBMW0d/",
       "facebook": "https://www.facebook.com/reel/1356306543183879/",
       "errors": []
+    },
+    {
+      "slot": "show rm-20261123-1",
+      "kind": "show_short",
+      "source_id": "show:rm-20261123-1",
+      "source_title": "ROI MAT SHOW",
+      "title": "Ποια κατάρα κυνηγάει τον Παναθηναϊκό; 😩 | ROI MAT SHOW #shorts #elaoposeisai",
+      "ok": false,
+      "youtube": "https://youtube.com/shorts/nkLcMvHMNS8",
+      "yt_id": "nkLcMvHMNS8",
+      "yt_uploaded": "2026-11-24T09:46:10.053469+00:00",
+      "yt_state": "pending"
     }
   ],
   "tt_backlog_done": [
