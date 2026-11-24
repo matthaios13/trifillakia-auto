@@ -12,7 +12,7 @@ on:
         description: "normal / force (ανάρτηση τώρα) / youtube-check (έλεγχος σύνδεσης YouTube)"
         default: normal
         type: choice
-        options: [normal, force, force-basket, facebook-check, youtube-check, youtube-repost, tiktok-repost, youtube-review-now]
+        options: [normal, force, show-short, force-basket, facebook-check, youtube-check, youtube-repost, tiktok-repost, youtube-review-now]
       video:
         description: "Για youtube-repost: το ID του βίντεο (από το state/posted.json)"
         required: false
@@ -67,6 +67,17 @@ jobs:
           git clone -q --filter=blob:none --no-checkout -b queue "https://github.com/${GITHUB_REPOSITORY}.git" queue
           pip install -q requests
           python -u src/main.py --tiktok-repost "$VIDEO_ID"
+
+      - name: YouTube — Short εκπομπής (branch shows)
+        if: github.event.inputs.mode == 'show-short'
+        env:
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+          VIDEO_ID: ${{ github.event.inputs.video }}
+        run: |
+          pip install -q requests google-api-python-client google-auth
+          python -u src/main.py --show-short "$VIDEO_ID"
 
       - name: YouTube — ανέβασμα βίντεο που έχει ήδη βγει στο Instagram
         if: github.event.inputs.mode == 'youtube-repost'

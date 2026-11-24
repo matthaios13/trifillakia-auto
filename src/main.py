@@ -144,6 +144,34 @@ def youtube_repost(cfg, state, item_id):
     print(f"YouTube (ιδιωτικό): {entry['youtube']}  ← {meta['source_title']}")
 
 
+def show_short(cfg, state, item_id):
+    """Short από εκπομπή (shorts-tool στο Mac): το mp4+json είναι στο branch «shows».
+    Ανεβαίνει ιδιωτικό και γίνεται δημόσιο από τον έλεγχο YouTube (όπως τα ρετρό)."""
+    import tempfile
+    import requests
+    import publish
+    if any(e.get("source_id") == f"show:{item_id}" and e.get("yt_id") for e in state["log"]):
+        sys.exit(f"Έχει ήδη ανέβει: {item_id}")
+    repo = os.environ.get("GITHUB_REPOSITORY", "matthaios13/trifillakia-auto")
+    base = f"https://raw.githubusercontent.com/{repo}/shows/{item_id}"
+    meta = requests.get(base + ".json", timeout=60).json()
+    path = Path(tempfile.mkdtemp()) / f"{item_id}.mp4"
+    with requests.get(base + ".mp4", stream=True, timeout=300) as r:
+        r.raise_for_status()
+        with open(path, "wb") as f:
+            for chunk in r.iter_content(1 << 20):
+                f.write(chunk)
+    pub = cfg["publish"]
+    yt_id = publish.youtube_upload(path, meta["youtube_title"], meta["description"], privacy="private",
+                                   paid_promotion=bool(meta.get("sponsor", True)))
+    state["log"].append({"slot": f"show {item_id}", "kind": "show_short", "source_id": f"show:{item_id}",
+                         "source_title": meta.get("show", ""), "title": meta["youtube_title"], "ok": False,
+                         "youtube": f"https://youtube.com/shorts/{yt_id}", "yt_id": yt_id,
+                         "yt_uploaded": datetime.now(ZoneInfo("UTC")).isoformat(),
+                         "yt_state": "pending" if pub.get("youtube_auto_public") else "private"})
+    print(f"YouTube (ιδιωτικό): https://youtube.com/shorts/{yt_id}  ← {meta['youtube_title']}")
+
+
 def tiktok_repost(cfg, state, item_id):
     """Ξαναστέλνει στα πρόχειρα του TikTok ένα βίντεο που έχει ήδη ανέβει (ρετρό)."""
     import tempfile
@@ -288,6 +316,7 @@ def main():
     ap.add_argument("--youtube-check", action="store_true")
     ap.add_argument("--facebook-check", action="store_true")
     ap.add_argument("--youtube-repost", metavar="ID", help="ανέβασε στο YouTube ένα βίντεο που έχει ήδη βγει στο Instagram")
+    ap.add_argument("--show-short", metavar="ID", help="Short εκπομπής από το branch shows → YouTube")
     ap.add_argument("--review-now", action="store_true", help="έλεγχος YouTube χωρίς αναμονή 30 λεπτών")
     ap.add_argument("--tiktok-repost", metavar="ID", help="ξαναστέλνει ένα βίντεο στα πρόχειρα του TikTok")
     ap.add_argument("--tiktok-backlog", action="store_true", help="ένα παλιό ρετρό στο TikTok, αν είναι η ώρα")
@@ -309,6 +338,10 @@ def main():
         return
     if args.tiktok_repost:
         tiktok_repost(cfg, state, args.tiktok_repost)
+        save_state(state)
+        return
+    if args.show_short:
+        show_short(cfg, state, args.show_short)
         save_state(state)
         return
     if args.youtube_repost:
