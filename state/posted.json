@@ -2532,10 +2532,22 @@
       "youtube": "https://youtube.com/shorts/QdFTV2fXIzw",
       "yt_id": "QdFTV2fXIzw",
       "yt_uploaded": "2026-11-24T12:01:03.403725+00:00",
-      "yt_state": "pending",
+      "yt_state": "public",
       "instagram": "https://www.instagram.com/reel/DgH6E53zlg3/",
       "facebook": "https://www.facebook.com/reel/2326814768157978/",
       "errors": []
+    },
+    {
+      "slot": "show rm-20261123-3",
+      "kind": "show_short",
+      "source_id": "show:rm-20261123-3",
+      "source_title": "ROI MAT SHOW",
+      "title": "Έρχονται 4 μεταγραφές στον Παναθηναϊκό! ✍️ | ROI MAT SHOW #shorts #elaoposeisai",
+      "ok": false,
+      "youtube": "https://youtube.com/shorts/y0hl65KkIP0",
+      "yt_id": "y0hl65KkIP0",
+      "yt_uploaded": "2026-11-24T12:36:51.488043+00:00",
+      "yt_state": "pending"
     }
   ],
   "tt_backlog_done": [
