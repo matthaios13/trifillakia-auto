@@ -163,7 +163,8 @@
     "oy88tMXCrAQ",
     "chDgHi45ZG0",
     "qtrkc4sk2ls",
-    "e7Ggku-FBCI"
+    "e7Ggku-FBCI",
+    "-UkhWdNTqyg"
   ],
   "log": [
     {
@@ -2491,7 +2492,7 @@
       "youtube": "https://youtube.com/shorts/nkLcMvHMNS8",
       "yt_id": "nkLcMvHMNS8",
       "yt_uploaded": "2026-11-24T09:46:10.053469+00:00",
-      "yt_state": "pending"
+      "yt_state": "public"
     },
     {
       "slot": "show rm-20261123-2",
@@ -2503,7 +2504,22 @@
       "youtube": "https://youtube.com/shorts/O1lCPtqTPko",
       "yt_id": "O1lCPtqTPko",
       "yt_uploaded": "2026-11-24T10:02:48.072894+00:00",
-      "yt_state": "pending"
+      "yt_state": "public"
+    },
+    {
+      "slot": "2026-11-24 12:30",
+      "source_id": "-UkhWdNTqyg",
+      "source_title": "1986-87 ΠΑΝΑΘΗΝΑΙΚΟΣ-ΑΕΚ 91-66",
+      "title": "ΤΟ ΝΤΕΡΜΠΙ ΠΟΥ ΔΕΝ ΞΕΧΝΙΕΤΑΙ! ☘️ ΠΑΟ – ΑΕΚ 91-66 #paobc #shorts",
+      "sport": "basketball",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/2tGigurSLh0",
+      "yt_id": "2tGigurSLh0",
+      "yt_uploaded": "2026-11-24T10:30:24.381952+00:00",
+      "yt_state": "pending",
+      "instagram": "https://www.instagram.com/reel/DgHvvYaRYJe/",
+      "facebook": "https://www.facebook.com/reel/1008608775636699/",
+      "errors": []
     }
   ],
   "tt_backlog_done": [
