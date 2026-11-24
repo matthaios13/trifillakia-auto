@@ -165,7 +165,8 @@
     "qtrkc4sk2ls",
     "e7Ggku-FBCI",
     "-UkhWdNTqyg",
-    "p6y8QEeCRfA"
+    "p6y8QEeCRfA",
+    "bBRrjb6FFAM"
   ],
   "log": [
     {
@@ -2547,7 +2548,22 @@
       "youtube": "https://youtube.com/shorts/y0hl65KkIP0",
       "yt_id": "y0hl65KkIP0",
       "yt_uploaded": "2026-11-24T12:36:51.488043+00:00",
-      "yt_state": "pending"
+      "yt_state": "public"
+    },
+    {
+      "slot": "2026-11-24 17:00",
+      "source_id": "bBRrjb6FFAM",
+      "source_title": "2009-10 ΠΑΝΑΘΗΝΑΙΚΟΣ-ΠΑΝΙΩΝΙΟΣ 92-57",
+      "title": "ΠΑΡΤΙΔΑ ΣΤΟ ΠΑΡΚΕ! 😳 ΠΑΟ – ΠΑΝΙΩΝΙΟΣ 92-57 #paobc #shorts",
+      "sport": "basketball",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/BuAwihhIlzU",
+      "yt_id": "BuAwihhIlzU",
+      "yt_uploaded": "2026-11-24T15:00:26.789120+00:00",
+      "yt_state": "pending",
+      "instagram": "https://www.instagram.com/reel/DgIOkR_JJfz/",
+      "facebook": "https://www.facebook.com/reel/4538967766360873/",
+      "errors": []
     }
   ],
   "tt_backlog_done": [
