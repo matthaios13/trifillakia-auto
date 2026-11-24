@@ -167,7 +167,8 @@
     "-UkhWdNTqyg",
     "p6y8QEeCRfA",
     "bBRrjb6FFAM",
-    "xQmGVgSM2WU"
+    "xQmGVgSM2WU",
+    "4HGlJQvgFH8"
   ],
   "log": [
     {
@@ -2579,6 +2580,21 @@
       "yt_state": "public",
       "instagram": "https://www.instagram.com/reel/DgIcSc0vdRj/",
       "facebook": "https://www.facebook.com/reel/1156535376871198/",
+      "errors": []
+    },
+    {
+      "slot": "2026-11-24 21:30",
+      "source_id": "4HGlJQvgFH8",
+      "source_title": "2001-02 ΠΑΝΑΘΗΝΑΙΚΟΣ-ΟΣΦΠ 88-78",
+      "title": "ΝΙΚΗ ΣΤΟ ΝΤΕΡΜΠΙ! 🔥 ΠΑΟ – ΟΛΥΜΠΙΑΚΟΣ 88-78 #paobc #shorts",
+      "sport": "basketball",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/7HRcCaqpqS8",
+      "yt_id": "7HRcCaqpqS8",
+      "yt_uploaded": "2026-11-24T19:30:24.075723+00:00",
+      "yt_state": "pending",
+      "instagram": "https://www.instagram.com/reel/DgItfe7BYAK/",
+      "facebook": "https://www.facebook.com/reel/1635531804977930/",
       "errors": []
     }
   ],
