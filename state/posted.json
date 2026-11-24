@@ -162,7 +162,8 @@
     "-wrY1UKZ2M8",
     "oy88tMXCrAQ",
     "chDgHi45ZG0",
-    "qtrkc4sk2ls"
+    "qtrkc4sk2ls",
+    "e7Ggku-FBCI"
   ],
   "log": [
     {
@@ -2460,9 +2461,24 @@
       "youtube": "https://youtube.com/shorts/h7X6h6Ha3Kw",
       "yt_id": "h7X6h6Ha3Kw",
       "yt_uploaded": "2026-11-24T07:10:20.558933+00:00",
-      "yt_state": "pending",
+      "yt_state": "public",
       "instagram": "https://www.instagram.com/reel/DgHYxIYSN9b/",
       "facebook": "https://www.facebook.com/reel/2223000512431358/",
+      "errors": []
+    },
+    {
+      "slot": "2026-11-24 10:00",
+      "source_id": "e7Ggku-FBCI",
+      "source_title": "ΠΑΝΑΘΗΝΑΪΚΟΣ – ΝΙΚΗ ΒΟΛΟΥ 1953/54",
+      "title": "🔥 ΠΑΝΑΘΗΝΑΪΚΟΣ – ΝΙΚΗ ΒΟΛΟΥ 1-0! ☘️ #paofc #shorts",
+      "sport": "football",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/59BZjd1HdHs",
+      "yt_id": "59BZjd1HdHs",
+      "yt_uploaded": "2026-11-24T08:00:28.814142+00:00",
+      "yt_state": "pending",
+      "instagram": "https://www.instagram.com/reel/DgHegKBMW0d/",
+      "facebook": "https://www.facebook.com/reel/1356306543183879/",
       "errors": []
     }
   ],
