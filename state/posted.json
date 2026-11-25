@@ -172,7 +172,8 @@
     "CAdWmTkT2BU",
     "vi7MM25ipzI",
     "N45stvYGuV0",
-    "fvbXrYVdl9I"
+    "fvbXrYVdl9I",
+    "KtvKCKlmJJg"
   ],
   "log": [
     {
@@ -2680,9 +2681,24 @@
       "youtube": "https://youtube.com/shorts/ms8Z_WySsV0",
       "yt_id": "ms8Z_WySsV0",
       "yt_uploaded": "2026-11-25T12:00:38.897618+00:00",
-      "yt_state": "pending",
+      "yt_state": "public",
       "instagram": "https://www.instagram.com/reel/DgKeyZ0qDZW/",
       "facebook": "https://www.facebook.com/reel/1398743705440936/",
+      "errors": []
+    },
+    {
+      "slot": "2026-11-25 17:00",
+      "source_id": "KtvKCKlmJJg",
+      "source_title": "1992-93 ΠΑΝΑΘΗΝΑΙΚΟΣ-ΑΡΗΣ Θ. 96-89 ΤΕΛΙΚΟΣ ΚΥΠΕΛΛΟΥ",
+      "title": "ΤΟ ΚΥΠΕΛΛΟ ΕΙΝΑΙ ΠΡΑΣΙΝΟ! 🏆 ΠΑΟ – ΑΡΗΣ 96-89 #paobc #shorts",
+      "sport": "basketball",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/4KqrrGKopik",
+      "yt_id": "4KqrrGKopik",
+      "yt_uploaded": "2026-11-25T15:00:39.554434+00:00",
+      "yt_state": "pending",
+      "instagram": "https://www.instagram.com/reel/DgKzcGKA_uQ/",
+      "facebook": "https://www.facebook.com/reel/2599703327164438/",
       "errors": []
     }
   ],
