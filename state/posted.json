@@ -171,7 +171,8 @@
     "4HGlJQvgFH8",
     "CAdWmTkT2BU",
     "vi7MM25ipzI",
-    "N45stvYGuV0"
+    "N45stvYGuV0",
+    "fvbXrYVdl9I"
   ],
   "log": [
     {
@@ -2667,6 +2668,21 @@
       "yt_state": "public",
       "instagram": "https://www.instagram.com/reel/DgKUdUCRa1S/",
       "facebook": "https://www.facebook.com/reel/2992627807796644/",
+      "errors": []
+    },
+    {
+      "slot": "2026-11-25 14:00",
+      "source_id": "fvbXrYVdl9I",
+      "source_title": "ΑΕΚ - ΠΑΝΑΘΗΝΑΪΚΟΣ 1973/74",
+      "title": "🔥 ΑΕΚ – ΠΑΝΑΘΗΝΑΪΚΟΣ 0-2! ☘️ #paofc #shorts",
+      "sport": "football",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/ms8Z_WySsV0",
+      "yt_id": "ms8Z_WySsV0",
+      "yt_uploaded": "2026-11-25T12:00:38.897618+00:00",
+      "yt_state": "pending",
+      "instagram": "https://www.instagram.com/reel/DgKeyZ0qDZW/",
+      "facebook": "https://www.facebook.com/reel/1398743705440936/",
       "errors": []
     }
   ],
