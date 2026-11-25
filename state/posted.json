@@ -170,7 +170,8 @@
     "xQmGVgSM2WU",
     "4HGlJQvgFH8",
     "CAdWmTkT2BU",
-    "vi7MM25ipzI"
+    "vi7MM25ipzI",
+    "N45stvYGuV0"
   ],
   "log": [
     {
@@ -2639,7 +2640,7 @@
       "youtube": "https://youtube.com/shorts/xP94AthF5xA",
       "yt_id": "xP94AthF5xA",
       "yt_uploaded": "2026-11-25T09:10:00.385215+00:00",
-      "yt_state": "pending"
+      "yt_state": "public"
     },
     {
       "slot": "show pt-20261122-k1",
@@ -2651,7 +2652,22 @@
       "youtube": "https://youtube.com/shorts/tv3QxyEkpjA",
       "yt_id": "tv3QxyEkpjA",
       "yt_uploaded": "2026-11-25T09:20:02.218278+00:00",
-      "yt_state": "pending"
+      "yt_state": "public"
+    },
+    {
+      "slot": "2026-11-25 12:30",
+      "source_id": "N45stvYGuV0",
+      "source_title": "1968-69 ΠΑΝΑΘΗΝΑΙΚΟΣ-ΧΑΝΤΕΛΣ 95-55",
+      "title": "ΘΗΣΑΥΡΟΣ ΑΠΟ ΤΗ ΣΕΖΟΝ 1968-69! 📼 ΠΑΟ – ΧΑΝΤΕΛΣ 95-55 #paobc #shorts",
+      "sport": "basketball",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/cER87VrjfQM",
+      "yt_id": "cER87VrjfQM",
+      "yt_uploaded": "2026-11-25T10:30:24.891209+00:00",
+      "yt_state": "pending",
+      "instagram": "https://www.instagram.com/reel/DgKUdUCRa1S/",
+      "facebook": "https://www.facebook.com/reel/2992627807796644/",
+      "errors": []
     }
   ],
   "tt_backlog_done": [
