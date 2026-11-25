@@ -169,7 +169,8 @@
     "bBRrjb6FFAM",
     "xQmGVgSM2WU",
     "4HGlJQvgFH8",
-    "CAdWmTkT2BU"
+    "CAdWmTkT2BU",
+    "vi7MM25ipzI"
   ],
   "log": [
     {
@@ -2608,9 +2609,24 @@
       "youtube": "https://youtube.com/shorts/xuE5nJOemZo",
       "yt_id": "xuE5nJOemZo",
       "yt_uploaded": "2026-11-25T07:00:36.133993+00:00",
-      "yt_state": "pending",
+      "yt_state": "public",
       "instagram": "https://www.instagram.com/reel/DgJ8chDhZXE/",
       "facebook": "https://www.facebook.com/reel/2320725025439090/",
+      "errors": []
+    },
+    {
+      "slot": "2026-11-25 10:00",
+      "source_id": "vi7MM25ipzI",
+      "source_title": "ΠΑΝΑΘΗΝΑΪΚΟΣ - ΠΑΝΕΛΕΥΣΙΝΙΑΚΟΣ 1984/85",
+      "title": "🔥 ΠΑΝΑΘΗΝΑΪΚΟΣ – ΠΑΝΕΛΕΥΣΙΝΙΑΚΟΣ 5-0! ☘️ #paofc #shorts",
+      "sport": "football",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/25u8ihoUqvE",
+      "yt_id": "25u8ihoUqvE",
+      "yt_uploaded": "2026-11-25T08:00:29.436857+00:00",
+      "yt_state": "pending",
+      "instagram": "https://www.instagram.com/reel/DgKDVzRxmAm/",
+      "facebook": "https://www.facebook.com/reel/2045191489505990/",
       "errors": []
     }
   ],
