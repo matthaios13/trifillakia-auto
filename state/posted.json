@@ -2624,10 +2624,22 @@
       "youtube": "https://youtube.com/shorts/25u8ihoUqvE",
       "yt_id": "25u8ihoUqvE",
       "yt_uploaded": "2026-11-25T08:00:29.436857+00:00",
-      "yt_state": "pending",
+      "yt_state": "public",
       "instagram": "https://www.instagram.com/reel/DgKDVzRxmAm/",
       "facebook": "https://www.facebook.com/reel/2045191489505990/",
       "errors": []
+    },
+    {
+      "slot": "show pt-20261122-m1",
+      "kind": "show_short",
+      "source_id": "show:pt-20261122-m1",
+      "source_title": "PITCH TALK",
+      "title": "Μεταγραφή εξαριού από τον Δεκέμβριο! ✍️ | PITCH TALK #shorts #elaoposeisai",
+      "ok": false,
+      "youtube": "https://youtube.com/shorts/xP94AthF5xA",
+      "yt_id": "xP94AthF5xA",
+      "yt_uploaded": "2026-11-25T09:10:00.385215+00:00",
+      "yt_state": "pending"
     }
   ],
   "tt_backlog_done": [
