@@ -2696,10 +2696,22 @@
       "youtube": "https://youtube.com/shorts/4KqrrGKopik",
       "yt_id": "4KqrrGKopik",
       "yt_uploaded": "2026-11-25T15:00:39.554434+00:00",
-      "yt_state": "pending",
+      "yt_state": "public",
       "instagram": "https://www.instagram.com/reel/DgKzcGKA_uQ/",
       "facebook": "https://www.facebook.com/reel/2599703327164438/",
       "errors": []
+    },
+    {
+      "slot": "show zeljko-pathos-2026-11-25",
+      "kind": "show_short",
+      "source_id": "show:zeljko-pathos-2026-11-25",
+      "source_title": "Trifillakia",
+      "title": "Το πάθος του Ζέλικο Ομπράντοβιτς 🔥",
+      "ok": false,
+      "youtube": "https://youtube.com/shorts/F_T36YNHTUA",
+      "yt_id": "F_T36YNHTUA",
+      "yt_uploaded": "2026-11-25T16:35:14.045751+00:00",
+      "yt_state": "pending"
     }
   ],
   "tt_backlog_done": [
