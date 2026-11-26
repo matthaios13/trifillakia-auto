@@ -175,7 +175,8 @@
     "fvbXrYVdl9I",
     "KtvKCKlmJJg",
     "_6yEdqFm9QM",
-    "882oTi6AUf8"
+    "882oTi6AUf8",
+    "QJDcYdXaGR8"
   ],
   "log": [
     {
@@ -2767,7 +2768,22 @@
       "youtube": "https://youtube.com/shorts/J45-1JR2who",
       "yt_id": "J45-1JR2who",
       "yt_uploaded": "2026-11-26T07:14:43.563502+00:00",
-      "yt_state": "pending"
+      "yt_state": "public"
+    },
+    {
+      "slot": "2026-11-26 10:00",
+      "source_id": "QJDcYdXaGR8",
+      "source_title": "ΠΑΝΑΧΑΪΚΗ - ΠΑΝΑΘΗΝΑΪΚΟΣ 1969/70",
+      "title": "🔥 ΠΑΝΑΧΑΪΚΗ – ΠΑΝΑΘΗΝΑΪΚΟΣ 0-2! ☘️ #paofc #shorts",
+      "sport": "football",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/FlmhcniDjLA",
+      "yt_id": "FlmhcniDjLA",
+      "yt_uploaded": "2026-11-26T08:00:21.788297+00:00",
+      "yt_state": "pending",
+      "instagram": "https://www.instagram.com/reel/DgMoFIZBW16/",
+      "facebook": "https://www.facebook.com/reel/934622412952091/",
+      "errors": []
     }
   ],
   "tt_backlog_done": [
