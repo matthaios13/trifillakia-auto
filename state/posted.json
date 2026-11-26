@@ -181,7 +181,8 @@
     "hb1aKSXRGPE",
     "zinjd8Kx68U",
     "QhRhWlqfNs8",
-    "pPscc9c4v8w"
+    "pPscc9c4v8w",
+    "oZqdlW_qSeM"
   ],
   "log": [
     {
@@ -2860,9 +2861,24 @@
       "youtube": "https://youtube.com/shorts/5M8v4ms2vn4",
       "yt_id": "5M8v4ms2vn4",
       "yt_uploaded": "2026-11-26T17:04:03.474932+00:00",
-      "yt_state": "pending",
+      "yt_state": "public",
       "instagram": "https://www.instagram.com/reel/DgNmTNdAfPS/",
       "facebook": "https://www.facebook.com/reel/966632909639732/",
+      "errors": []
+    },
+    {
+      "slot": "2026-11-26 21:30",
+      "source_id": "oZqdlW_qSeM",
+      "source_title": "1968-69 ΠΑΝΑΘΗΝΑΙΚΟΣ-ΔΥΝΑΜΟ ΤΥΦΛΙΔΑΣ 81-67",
+      "title": "ΘΗΣΑΥΡΟΣ ΑΠΟ ΤΗ ΣΕΖΟΝ 1968-69! 📼 ΠΑΟ – ΔΥΝΑΜΟ ΤΥΦΛΙΔΑΣ 81-67 #paobc #shorts",
+      "sport": "basketball",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/lQquUm8RrF4",
+      "yt_id": "lQquUm8RrF4",
+      "yt_uploaded": "2026-11-26T19:40:42.780006+00:00",
+      "yt_state": "pending",
+      "instagram": "https://www.instagram.com/reel/DgN4OkRRr1d/",
+      "facebook": "https://www.facebook.com/reel/1205630995322439/",
       "errors": []
     }
   ],
