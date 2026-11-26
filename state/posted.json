@@ -180,7 +180,8 @@
     "jpuohoWLra8",
     "hb1aKSXRGPE",
     "zinjd8Kx68U",
-    "QhRhWlqfNs8"
+    "QhRhWlqfNs8",
+    "pPscc9c4v8w"
   ],
   "log": [
     {
@@ -2844,9 +2845,24 @@
       "youtube": "https://youtube.com/shorts/7Z8ju_GYq8g",
       "yt_id": "7Z8ju_GYq8g",
       "yt_uploaded": "2026-11-26T15:00:27.291416+00:00",
-      "yt_state": "pending",
+      "yt_state": "public",
       "instagram": "https://www.instagram.com/reel/DgNYJ_TBa_T/",
       "facebook": "https://www.facebook.com/reel/1182087014243189/",
+      "errors": []
+    },
+    {
+      "slot": "2026-11-26 19:00",
+      "source_id": "pPscc9c4v8w",
+      "source_title": "ΠΑΝΑΘΗΝΑΪΚΟΣ – ΚΑΛΛΙΘΕΑ 2025/26",
+      "title": "🔥 ΠΑΝΑΘΗΝΑΪΚΟΣ – ΚΑΛΛΙΘΕΑ 1-0! ☘️ #paofc #shorts",
+      "sport": "football",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/5M8v4ms2vn4",
+      "yt_id": "5M8v4ms2vn4",
+      "yt_uploaded": "2026-11-26T17:04:03.474932+00:00",
+      "yt_state": "pending",
+      "instagram": "https://www.instagram.com/reel/DgNmTNdAfPS/",
+      "facebook": "https://www.facebook.com/reel/966632909639732/",
       "errors": []
     }
   ],
