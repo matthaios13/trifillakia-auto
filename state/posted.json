@@ -177,7 +177,8 @@
     "_6yEdqFm9QM",
     "882oTi6AUf8",
     "QJDcYdXaGR8",
-    "jpuohoWLra8"
+    "jpuohoWLra8",
+    "hb1aKSXRGPE"
   ],
   "log": [
     {
@@ -2781,7 +2782,7 @@
       "youtube": "https://youtube.com/shorts/FlmhcniDjLA",
       "yt_id": "FlmhcniDjLA",
       "yt_uploaded": "2026-11-26T08:00:21.788297+00:00",
-      "yt_state": "pending",
+      "yt_state": "public",
       "instagram": "https://www.instagram.com/reel/DgMoFIZBW16/",
       "facebook": "https://www.facebook.com/reel/934622412952091/",
       "errors": []
@@ -2796,9 +2797,24 @@
       "youtube": "https://youtube.com/shorts/FqnMz-KGRwQ",
       "yt_id": "FqnMz-KGRwQ",
       "yt_uploaded": "2026-11-26T08:10:22.625922+00:00",
-      "yt_state": "pending",
+      "yt_state": "public",
       "instagram": "https://www.instagram.com/reel/DgMpOqkqlGu/",
       "facebook": "https://www.facebook.com/reel/41380648368188788/",
+      "errors": []
+    },
+    {
+      "slot": "2026-11-26 12:30",
+      "source_id": "hb1aKSXRGPE",
+      "source_title": "1976-77 ΣΠΟΡΤΙΓΚ-ΠΑΝΑΘΗΝΑΙΚΟΣ 69-70",
+      "title": "ΝΙΚΗ ΜΕ ΑΓΩΝΙΑ ΜΕΧΡΙ ΤΕΛΟΥΣ! 😰 ΣΠΟΡΤΙΓΚ – ΠΑΟ 69-70 #paobc #shorts",
+      "sport": "basketball",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/3bznToKmQn4",
+      "yt_id": "3bznToKmQn4",
+      "yt_uploaded": "2026-11-26T10:30:35.232242+00:00",
+      "yt_state": "pending",
+      "instagram": "https://www.instagram.com/reel/DgM5RtgThNA/",
+      "facebook": "https://www.facebook.com/reel/4484936775168794/",
       "errors": []
     }
   ],
