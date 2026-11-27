@@ -189,7 +189,8 @@
     "8kcZWJMlL3Q",
     "drive-1_9ubI5yCWTsFrdU2Fd-xCmY7Em1AYCwB",
     "M2k1o3qqlUc",
-    "lSCWJFAiYhU"
+    "lSCWJFAiYhU",
+    "rz5vP4dEf2Y"
   ],
   "log": [
     {
@@ -2989,9 +2990,24 @@
       "youtube": "https://youtube.com/shorts/QNhe39aWln4",
       "yt_id": "QNhe39aWln4",
       "yt_uploaded": "2026-11-27T17:00:23.930788+00:00",
-      "yt_state": "pending",
+      "yt_state": "public",
       "instagram": "https://www.instagram.com/reel/DgQKsRxA4SD/",
       "facebook": "https://www.facebook.com/reel/1895667778087430/",
+      "errors": []
+    },
+    {
+      "slot": "2026-11-27 21:30",
+      "source_id": "rz5vP4dEf2Y",
+      "source_title": "1989-90 ΕΣΠΕΡΟΣ Κ.-ΠΑΝΑΘΗΝΑΙΚΟΣ 76-83",
+      "title": "ΣΠΑΝΙΟ ΒΙΝΤΕΟ ΑΠΟ ΤΟ 1989! 📼 ΕΣΠΕΡΟΣ ΚΑΛΛΙΘΕΑΣ – ΠΑΟ 76-83 #paobc #shorts",
+      "sport": "basketball",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/1VKTj5z-lH4",
+      "yt_id": "1VKTj5z-lH4",
+      "yt_uploaded": "2026-11-27T19:43:09.291796+00:00",
+      "yt_state": "pending",
+      "instagram": "https://www.instagram.com/reel/DgQdTbesDWd/",
+      "facebook": "https://www.facebook.com/reel/1182851544694863/",
       "errors": []
     }
   ],
