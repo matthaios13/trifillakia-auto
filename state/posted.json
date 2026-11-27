@@ -188,7 +188,8 @@
     "N8nI-unrrAM",
     "8kcZWJMlL3Q",
     "drive-1_9ubI5yCWTsFrdU2Fd-xCmY7Em1AYCwB",
-    "M2k1o3qqlUc"
+    "M2k1o3qqlUc",
+    "lSCWJFAiYhU"
   ],
   "log": [
     {
@@ -2973,9 +2974,24 @@
       "youtube": "https://youtube.com/shorts/66rbZt0VPKQ",
       "yt_id": "66rbZt0VPKQ",
       "yt_uploaded": "2026-11-27T15:01:02.984527+00:00",
-      "yt_state": "pending",
+      "yt_state": "public",
       "instagram": "https://www.instagram.com/reel/DgP9BW-K_j7/",
       "facebook": "https://www.facebook.com/reel/1145490308207641/",
+      "errors": []
+    },
+    {
+      "slot": "2026-11-27 19:00",
+      "source_id": "lSCWJFAiYhU",
+      "source_title": "ΑΓΡΟΤΙΚΟΣ ΑΣΤΕΡΑΣ - ΠΑΝΑΘΗΝΑΪΚΟΣ 2011/12",
+      "title": "🔥 ΑΓΡΟΤΙΚΟΣ ΑΣΤΕΡΑΣ – ΠΑΝΑΘΗΝΑΪΚΟΣ 0-1! ☘️ #paofc #shorts",
+      "sport": "football",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/QNhe39aWln4",
+      "yt_id": "QNhe39aWln4",
+      "yt_uploaded": "2026-11-27T17:00:23.930788+00:00",
+      "yt_state": "pending",
+      "instagram": "https://www.instagram.com/reel/DgQKsRxA4SD/",
+      "facebook": "https://www.facebook.com/reel/1895667778087430/",
       "errors": []
     }
   ],
