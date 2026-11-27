@@ -186,7 +186,8 @@
     "g1H1U74qX6g",
     "-jgetnE2ERo",
     "N8nI-unrrAM",
-    "8kcZWJMlL3Q"
+    "8kcZWJMlL3Q",
+    "drive-1_9ubI5yCWTsFrdU2Fd-xCmY7Em1AYCwB"
   ],
   "log": [
     {
@@ -2940,9 +2941,25 @@
       "youtube": "https://youtube.com/shorts/5ZoWUPzgP8Q",
       "yt_id": "5ZoWUPzgP8Q",
       "yt_uploaded": "2026-11-27T12:00:24.626904+00:00",
-      "yt_state": "pending",
+      "yt_state": "public",
       "instagram": "https://www.instagram.com/reel/DgPob4BokWw/",
       "facebook": "https://www.facebook.com/reel/4780798312245085/",
+      "errors": []
+    },
+    {
+      "slot": "2026-11-27 13:52 (drive)",
+      "source_id": "drive-1_9ubI5yCWTsFrdU2Fd-xCmY7Em1AYCwB",
+      "source_title": "[PAO INSIDE] ☘️ Ο Παναθηναϊκός είναι ο μεγαλύτερος πολυαθλητικός σύλλογος της Ελλάδας",
+      "title": "☘️ Ο Παναθηναϊκός είναι ο μεγαλύτερος πολυαθλητικός σύλλογος της… #elaoposeisai #shorts #paoinside",
+      "uploader": "Trifillakia GR (Trifillakia.gr)",
+      "sport": "both",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/qlreX-u-7xA",
+      "yt_id": "qlreX-u-7xA",
+      "yt_uploaded": "2026-11-27T13:53:49.523974+00:00",
+      "yt_state": "pending",
+      "instagram": "https://www.instagram.com/reel/DgP1VFZBEef/",
+      "facebook": "https://www.facebook.com/reel/2919347968447186/",
       "errors": []
     }
   ],
