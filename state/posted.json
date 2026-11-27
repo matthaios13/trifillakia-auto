@@ -185,7 +185,8 @@
     "oZqdlW_qSeM",
     "g1H1U74qX6g",
     "-jgetnE2ERo",
-    "N8nI-unrrAM"
+    "N8nI-unrrAM",
+    "8kcZWJMlL3Q"
   ],
   "log": [
     {
@@ -2924,9 +2925,24 @@
       "youtube": "https://youtube.com/shorts/fonnAFnrgDc",
       "yt_id": "fonnAFnrgDc",
       "yt_uploaded": "2026-11-27T10:30:25.248840+00:00",
-      "yt_state": "pending",
+      "yt_state": "public",
       "instagram": "https://www.instagram.com/reel/DgPeDJSA-uI/",
       "facebook": "https://www.facebook.com/reel/1134432606151506/",
+      "errors": []
+    },
+    {
+      "slot": "2026-11-27 14:00",
+      "source_id": "8kcZWJMlL3Q",
+      "source_title": "ΠΑΝΑΘΗΝΑΪΚΟΣ - ΚΑΒΑΛΑ 1975/76",
+      "title": "🔥 ΠΑΝΑΘΗΝΑΪΚΟΣ – ΚΑΒΑΛΑ 2-1! ☘️ #paofc #shorts",
+      "sport": "football",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/5ZoWUPzgP8Q",
+      "yt_id": "5ZoWUPzgP8Q",
+      "yt_uploaded": "2026-11-27T12:00:24.626904+00:00",
+      "yt_state": "pending",
+      "instagram": "https://www.instagram.com/reel/DgPob4BokWw/",
+      "facebook": "https://www.facebook.com/reel/4780798312245085/",
       "errors": []
     }
   ],
