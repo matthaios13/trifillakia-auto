@@ -184,7 +184,8 @@
     "pPscc9c4v8w",
     "oZqdlW_qSeM",
     "g1H1U74qX6g",
-    "-jgetnE2ERo"
+    "-jgetnE2ERo",
+    "N8nI-unrrAM"
   ],
   "log": [
     {
@@ -2893,7 +2894,7 @@
       "youtube": "https://youtube.com/shorts/RNfOUxUqjHg",
       "yt_id": "RNfOUxUqjHg",
       "yt_uploaded": "2026-11-27T08:00:28.515742+00:00",
-      "yt_state": "pending",
+      "yt_state": "public",
       "instagram": "https://www.instagram.com/reel/DgPM460s8jE/",
       "facebook": "https://www.facebook.com/reel/2687842601686543/",
       "errors": []
@@ -2908,9 +2909,24 @@
       "youtube": "https://youtube.com/shorts/pJPFN54qDrs",
       "yt_id": "pJPFN54qDrs",
       "yt_uploaded": "2026-11-27T08:10:23.899310+00:00",
-      "yt_state": "pending",
+      "yt_state": "public",
       "instagram": "https://www.instagram.com/reel/DgPOBc8h9dA/",
       "facebook": "https://www.facebook.com/reel/1137933169096347/",
+      "errors": []
+    },
+    {
+      "slot": "2026-11-27 12:30",
+      "source_id": "N8nI-unrrAM",
+      "source_title": "1981-82 ΠΑΟΚ-ΠΑΝΑΘΗΝΑΙΚΟΣ 63-65 ΤΕΛΙΚΟΣ ΚΥΠΕΛΛΟΥ",
+      "title": "ΘΗΣΑΥΡΟΣ ΑΠΟ ΤΗ ΣΕΖΟΝ 1981-82! 📼 ΠΑΟΚ – ΠΑΟ 63-65 #paobc #shorts",
+      "sport": "basketball",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/fonnAFnrgDc",
+      "yt_id": "fonnAFnrgDc",
+      "yt_uploaded": "2026-11-27T10:30:25.248840+00:00",
+      "yt_state": "pending",
+      "instagram": "https://www.instagram.com/reel/DgPeDJSA-uI/",
+      "facebook": "https://www.facebook.com/reel/1134432606151506/",
       "errors": []
     }
   ],
