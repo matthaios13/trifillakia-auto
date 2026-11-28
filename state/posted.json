@@ -192,7 +192,8 @@
     "lSCWJFAiYhU",
     "rz5vP4dEf2Y",
     "NP_ketQ_Umo",
-    "rYfgHMTgj3E"
+    "rYfgHMTgj3E",
+    "zTf6hLMmJlI"
   ],
   "log": [
     {
@@ -3022,7 +3023,7 @@
       "youtube": "https://youtube.com/shorts/YuMuftwPhs8",
       "yt_id": "YuMuftwPhs8",
       "yt_uploaded": "2026-11-28T08:00:26.282999+00:00",
-      "yt_state": "pending",
+      "yt_state": "public",
       "instagram": "https://www.instagram.com/reel/DgRxsIARKvQ/",
       "facebook": "https://www.facebook.com/reel/1480083737597024/",
       "errors": []
@@ -3037,9 +3038,24 @@
       "youtube": "https://youtube.com/shorts/jZhP-p6JUMk",
       "yt_id": "jZhP-p6JUMk",
       "yt_uploaded": "2026-11-28T08:10:24.000228+00:00",
-      "yt_state": "pending",
+      "yt_state": "public",
       "instagram": "https://www.instagram.com/reel/DgRy0bRB3rC/",
       "facebook": "https://www.facebook.com/reel/1559352816000839/",
+      "errors": []
+    },
+    {
+      "slot": "2026-11-28 12:30",
+      "source_id": "zTf6hLMmJlI",
+      "source_title": "2007-08 ΠΑΝΑΘΗΝΑΙΚΟΣ-ΑΕΚ 78-52",
+      "title": "ΝΙΚΗ ΣΤΟ ΝΤΕΡΜΠΙ! 🔥 ΠΑΟ – ΑΕΚ 78-52 #paobc #shorts",
+      "sport": "basketball",
+      "ok": true,
+      "youtube": "https://youtube.com/shorts/Ruj83arxmwg",
+      "yt_id": "Ruj83arxmwg",
+      "yt_uploaded": "2026-11-28T10:30:23.887596+00:00",
+      "yt_state": "pending",
+      "instagram": "https://www.instagram.com/reel/DgSC13WJIjR/",
+      "facebook": "https://www.facebook.com/reel/1031860513269855/",
       "errors": []
     }
   ],
